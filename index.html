@@ -133,12 +133,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
   }
   .nav-logo{
     font-weight: 800;
     font-size: 1.15rem;
     text-decoration: none;
     color: var(--texto);
+    white-space: nowrap;
+  }
+  .nav-actions{
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
   .nav-links{
     display: flex;
@@ -157,6 +164,31 @@
     transition: border-color 0.15s ease, color 0.15s ease;
   }
   .nav-links a:hover{ color: var(--verde-escuro); border-color: var(--verde-escuro); }
+
+  .lang-toggle{
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--borda);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+    flex: none;
+  }
+  .lang-btn{
+    border: none;
+    background: transparent;
+    padding: 6px 11px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    color: var(--texto-suave);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .lang-btn:hover{ color: var(--texto); }
+  .lang-btn.ativo{ background: var(--verde-escuro); color: var(--branco); }
+  .lang-btn.ativo:hover{ color: var(--branco); }
 
   .nav-toggle{
     display: none;
@@ -746,6 +778,7 @@
 
   @media (max-width: 720px){
     :root{ --nav-altura: 64px; }
+    .nav-actions{ gap: 10px; }
     .nav-links{
       position: fixed;
       top: calc(var(--faixa-altura) + var(--nav-altura));
@@ -780,27 +813,35 @@
   @media (max-width: 480px){
     .container{ padding: 0 18px; }
     .hero h1{ font-size: 2.2rem; }
+    .nav-logo{ font-size: 1rem; }
+    .lang-btn{ padding: 6px 9px; font-size: 0.7rem; }
   }
 </style>
 </head>
 <body>
 
-  <div class="faixa-entrega">🟣 Entrega em até 72h úteis</div>
+  <div class="faixa-entrega" data-i18n="faixa_entrega">🟣 Entrega em até 72h úteis</div>
 
   <header class="site-header">
     <div class="nav-wrap">
       <a href="#" class="nav-logo">Jéssica Mendes</a>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#destaques">Destaques</a></li>
-        <li><a href="#trabalhos">Trabalhos</a></li>
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#numeros">Números</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
+      <div class="nav-actions">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
+          <li><a href="#destaques" data-i18n="nav_destaques">Destaques</a></li>
+          <li><a href="#trabalhos" data-i18n="nav_trabalhos">Trabalhos</a></li>
+          <li><a href="#servicos" data-i18n="nav_servicos">Serviços</a></li>
+          <li><a href="#numeros" data-i18n="nav_numeros">Números</a></li>
+          <li><a href="#contato" data-i18n="nav_contato">Contato</a></li>
+        </ul>
+        <div class="lang-toggle" id="langToggle" role="group" aria-label="Idioma do site / Site language">
+          <button type="button" class="lang-btn ativo" data-lang="pt" aria-pressed="true">PT</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" data-i18n-aria="nav_toggle_aria" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -811,33 +852,33 @@
         <div class="hero-grid">
           <div>
             <h1>Jéssica Mendes</h1>
-            <p class="hero-frase">Vídeos e fotos <span class="destaque-serif">autênticos</span> que ajudam marcas de beleza, skincare, moda, comida e fitness a se conectarem de verdade com as pessoas.</p>
+            <p class="hero-frase" data-i18n="hero_frase">Vídeos e fotos <span class="destaque-serif">autênticos</span> que ajudam marcas de beleza, skincare, moda, comida e fitness a se conectarem de verdade com as pessoas.</p>
             <div class="hero-botoes">
-              <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Oi%20J%C3%A9ssica%2C%20vim%20do%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto" target="_blank" rel="noopener">Falar comigo</a>
-              <a class="botao botao-secundario" href="#trabalhos">Ver os trabalhos</a>
+              <a class="botao botao-primario" id="botaoFalarComigo" href="https://wa.me/5511989794275?text=Oi%20J%C3%A9ssica%2C%20vim%20do%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto" target="_blank" rel="noopener" data-i18n="hero_botao_falar">Falar comigo</a>
+              <a class="botao botao-secundario" href="#trabalhos" data-i18n="hero_botao_ver">Ver os trabalhos</a>
             </div>
             <div class="hero-numeros">
               <div class="hero-numero">
                 <strong data-contador="2" data-sufixo="+">0</strong>
-                <span>vídeos entregues</span>
+                <span data-i18n="hero_num1_label">vídeos entregues</span>
               </div>
               <div class="hero-numero">
                 <strong data-contador="2" data-sufixo="+">0</strong>
-                <span>marcas atendidas</span>
+                <span data-i18n="hero_num2_label">marcas atendidas</span>
               </div>
               <div class="hero-numero">
                 <strong data-contador="1000" data-formato="mil" data-sufixo="+">0</strong>
-                <span>views somadas</span>
+                <span data-i18n="hero_num3_label">views somadas</span>
               </div>
             </div>
           </div>
           <!-- Para trocar pela foto real: substitua a div.ph abaixo por <img src="sua-foto.jpg" alt="Jéssica Mendes, UGC Creator"> mantendo a classe hero-foto -->
           <div class="hero-foto">
-            <div class="ph ph-479" role="img" aria-label="Foto da creator, formato quatro por cinco"><span>Foto da creator, formato 4:5</span></div>
+            <div class="ph ph-479" role="img" data-i18n-aria="hero_foto_aria" aria-label="Foto da creator, formato quatro por cinco"><span data-i18n="hero_foto_caption">Foto da creator, formato 4:5</span></div>
           </div>
         </div>
 
-        <div class="marcas-faixa" aria-label="Marcas com quem já trabalhei">
+        <div class="marcas-faixa" data-i18n-aria="marcas_aria" aria-label="Marcas com quem já trabalhei">
           <div class="marcas-track" id="marcasTrack"></div>
         </div>
       </div>
@@ -849,16 +890,16 @@
         <div class="sobre-grid">
           <!-- Para trocar pela foto real: substitua a div.ph abaixo por <img src="sua-foto-sobre.jpg" alt="Jéssica Mendes sorrindo"> mantendo a classe sobre-foto -->
           <div class="sobre-foto reveal">
-            <div class="ph ph-11" role="img" aria-label="Foto da creator para a seção sobre mim, formato quadrado"><span>Foto da creator, formato 1:1</span></div>
+            <div class="ph ph-11" role="img" data-i18n-aria="sobre_foto_aria" aria-label="Foto da creator para a seção sobre mim, formato quadrado"><span data-i18n="sobre_foto_caption">Foto da creator, formato 1:1</span></div>
           </div>
           <div class="reveal">
-            <h2>Sobre mim</h2>
-            <p>Meu olhar é atento aos detalhes e à forma como cada história pode ser contada de maneira natural, bonita e envolvente. Gosto de pensar em cada vídeo como um momento real, sem exagero, só mostrando o produto do jeito que ele apareceria no dia a dia de qualquer pessoa.</p>
-            <p>Já criei conteúdo para marcas de beleza, skincare, moda, comida e fitness, sempre buscando um resultado que pareça genuíno na tela e que funcione de verdade para quem contrata. Atendo de Sua Cidade e entrego tudo dentro do prazo combinado.</p>
+            <h2 data-i18n="sobre_titulo">Sobre mim</h2>
+            <p data-i18n="sobre_p1">Meu olhar é atento aos detalhes e à forma como cada história pode ser contada de maneira natural, bonita e envolvente. Gosto de pensar em cada vídeo como um momento real, sem exagero, só mostrando o produto do jeito que ele apareceria no dia a dia de qualquer pessoa.</p>
+            <p data-i18n="sobre_p2">Já criei conteúdo para marcas de beleza, skincare, moda, comida e fitness, sempre buscando um resultado que pareça genuíno na tela e que funcione de verdade para quem contrata. Atendo de Sua Cidade e entrego tudo dentro do prazo combinado.</p>
             <ul class="promessas">
-              <li>Roteiro aprovado antes de gravar</li>
-              <li>Uma rodada de ajuste inclusa</li>
-              <li>Entrega em até 72 horas úteis</li>
+              <li data-i18n="promessa1">Roteiro aprovado antes de gravar</li>
+              <li data-i18n="promessa2">Uma rodada de ajuste inclusa</li>
+              <li data-i18n="promessa3">Entrega em até 72 horas úteis</li>
             </ul>
             <p class="assinatura">Jéssica Mendes</p>
           </div>
@@ -870,8 +911,8 @@
     <section id="destaques" class="secao">
       <div class="container">
         <div class="secao-titulo reveal">
-          <h2>Conteúdos de <span class="destaque-serif">destaque</span></h2>
-          <p>Alguns vídeos que representam bem o meu estilo de criação.</p>
+          <h2 data-i18n="destaques_titulo">Conteúdos de <span class="destaque-serif">destaque</span></h2>
+          <p data-i18n="destaques_subtitulo">Alguns vídeos que representam bem o meu estilo de criação.</p>
         </div>
         <div class="destaques-grid" id="destaquesGrid"></div>
       </div>
@@ -881,8 +922,8 @@
     <section id="trabalhos" class="secao secao-alt">
       <div class="container">
         <div class="secao-titulo reveal">
-          <h2>Trabalhos por <span class="destaque-serif">nicho</span></h2>
-          <p>Filtre por área para ver os trabalhos mais parecidos com o que você precisa.</p>
+          <h2 data-i18n="trabalhos_titulo">Trabalhos por <span class="destaque-serif">nicho</span></h2>
+          <p data-i18n="trabalhos_subtitulo">Filtre por área para ver os trabalhos mais parecidos com o que você precisa.</p>
         </div>
         <div class="filtros" id="filtros" role="group" aria-label="Filtrar trabalhos por nicho"></div>
         <div class="trabalhos-grid" id="trabalhosGrid"></div>
@@ -893,8 +934,8 @@
     <section id="servicos" class="secao">
       <div class="container">
         <div class="secao-titulo reveal">
-          <h2>Como eu te <span class="destaque-serif">ajudo</span></h2>
-          <p>Serviços pensados para encaixar em diferentes momentos da sua marca.</p>
+          <h2 data-i18n="servicos_titulo">Como eu te <span class="destaque-serif">ajudo</span></h2>
+          <p data-i18n="servicos_subtitulo">Serviços pensados para encaixar em diferentes momentos da sua marca.</p>
         </div>
         <div class="servicos-grid" id="servicosGrid"></div>
       </div>
@@ -904,16 +945,16 @@
     <section id="numeros" class="secao secao-alt">
       <div class="container">
         <div class="secao-titulo reveal">
-          <h2>Números que contam um pouco da <span class="destaque-serif">jornada</span></h2>
-          <p>Resultados reais de quem já trabalhou comigo.</p>
+          <h2 data-i18n="numeros_titulo">Números que contam um pouco da <span class="destaque-serif">jornada</span></h2>
+          <p data-i18n="numeros_subtitulo">Resultados reais de quem já trabalhou comigo.</p>
         </div>
 
         <div class="metricas-grid" id="metricasGrid"></div>
 
-        <p class="subtitulo-bloco reveal">Resultados de campanha</p>
+        <p class="subtitulo-bloco reveal" data-i18n="subtitulo_campanhas">Resultados de campanha</p>
         <div class="campanhas-grid" id="campanhasGrid"></div>
 
-        <p class="subtitulo-bloco reveal">Depoimentos</p>
+        <p class="subtitulo-bloco reveal" data-i18n="subtitulo_depoimentos">Depoimentos</p>
         <div class="depoimentos-grid" id="depoimentosGrid"></div>
       </div>
     </section>
@@ -922,25 +963,25 @@
     <section id="contato" class="secao">
       <div class="container">
         <div class="secao-titulo reveal">
-          <h2>Bora criar <span class="destaque-serif">juntos</span>?</h2>
-          <p>Me conta um pouco sobre a sua marca e eu respondo rapidinho.</p>
+          <h2 data-i18n="contato_titulo">Bora criar <span class="destaque-serif">juntos</span>?</h2>
+          <p data-i18n="contato_subtitulo">Me conta um pouco sobre a sua marca e eu respondo rapidinho.</p>
         </div>
         <div class="contato-grid">
           <form id="formContato" class="reveal" novalidate>
             <div class="form-campo">
-              <label for="campoNome">Nome</label>
+              <label for="campoNome" data-i18n="label_nome">Nome</label>
               <input type="text" id="campoNome" name="nome" required autocomplete="name">
             </div>
             <div class="form-campo">
-              <label for="campoEmail">E-mail</label>
+              <label for="campoEmail" data-i18n="label_email">E-mail</label>
               <input type="email" id="campoEmail" name="email" required autocomplete="email">
             </div>
             <div class="form-campo">
-              <label for="campoMensagem">Mensagem</label>
+              <label for="campoMensagem" data-i18n="label_mensagem">Mensagem</label>
               <textarea id="campoMensagem" name="mensagem" rows="4" required></textarea>
             </div>
-            <button type="submit" class="botao botao-primario">Enviar mensagem</button>
-            <div class="form-confirmacao" id="formConfirmacao" role="status">Mensagem recebida! Em breve eu te respondo por e-mail ou WhatsApp.</div>
+            <button type="submit" class="botao botao-primario" data-i18n="botao_enviar">Enviar mensagem</button>
+            <div class="form-confirmacao" id="formConfirmacao" role="status" data-i18n="confirmacao">Mensagem recebida! Em breve eu te respondo por e-mail ou WhatsApp.</div>
           </form>
 
           <div class="reveal">
@@ -968,35 +1009,35 @@
       <div class="rodape-redes">
         <a href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener">Instagram</a>
         <a href="https://wa.me/5511989794275" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:jessicamendes.ugc@gmail.com">E-mail</a>
+        <a href="mailto:jessicamendes.ugc@gmail.com" data-i18n="footer_email">E-mail</a>
       </div>
-      <p class="ano">© <span id="anoAtual"></span> Jéssica Mendes. Todos os direitos reservados.</p>
+      <p class="ano" data-i18n="footer_ano">© <span id="anoAtual"></span> Jéssica Mendes. Todos os direitos reservados.</p>
     </div>
   </footer>
 
   <!-- Card de captura de mídia kit -->
   <div class="captura-fundo" id="capturaFundo">
     <div class="captura-modal" role="dialog" aria-modal="true" aria-labelledby="capturaTitulo">
-      <button class="captura-fechar" id="capturaFechar" aria-label="Fechar">✕</button>
-      <span class="captura-etiqueta">Mídia kit</span>
+      <button class="captura-fechar" id="capturaFechar" data-i18n-aria="captura_fechar_aria" aria-label="Fechar">✕</button>
+      <span class="captura-etiqueta" data-i18n="captura_etiqueta">Mídia kit</span>
       <div id="capturaConteudo">
-        <h3 id="capturaTitulo">Quer meu mídia kit completo?</h3>
-        <p>Deixe seu nome e e-mail que eu envio com todos os detalhes do meu trabalho.</p>
+        <h3 id="capturaTitulo" data-i18n="captura_titulo">Quer meu mídia kit completo?</h3>
+        <p data-i18n="captura_texto">Deixe seu nome e e-mail que eu envio com todos os detalhes do meu trabalho.</p>
         <form class="captura-form" id="formCaptura">
           <div class="form-campo">
-            <label for="capturaNome">Nome</label>
+            <label for="capturaNome" data-i18n="captura_label_nome">Nome</label>
             <input type="text" id="capturaNome" name="nome" required autocomplete="name">
           </div>
           <div class="form-campo">
-            <label for="capturaEmail">E-mail</label>
+            <label for="capturaEmail" data-i18n="captura_label_email">E-mail</label>
             <input type="email" id="capturaEmail" name="email" required autocomplete="email">
           </div>
-          <button type="submit" class="botao botao-primario" style="width:100%;">Quero receber</button>
+          <button type="submit" class="botao botao-primario" style="width:100%;" data-i18n="captura_botao">Quero receber</button>
         </form>
       </div>
       <div class="captura-obrigado" id="capturaObrigado">
-        <h3>Prontinho!</h3>
-        <p>Recebi seus dados. Em breve envio o mídia kit completo para o seu e-mail.</p>
+        <h3 data-i18n="captura_obrigado_titulo">Prontinho!</h3>
+        <p data-i18n="captura_obrigado_texto">Recebi seus dados. Em breve envio o mídia kit completo para o seu e-mail.</p>
       </div>
     </div>
   </div>
@@ -1007,118 +1048,339 @@
 
   /* ==================================================
      DADOS: edite os arrays abaixo para atualizar o site
+     Existem duas versões, pt e en. Mantenha a mesma
+     ordem e estrutura nos dois idiomas.
      ================================================== */
 
-  // Marcas com quem já trabalhou (aparecem na faixa rolante da capa)
-  const marcas = [
-    "Mundo Flex", "Dance Glow", "Marca 03", "Marca 04", "Marca 05",
-    "Marca 06", "Marca 07", "Marca 08", "Marca 09", "Marca 10",
-    "Marca 11", "Marca 12"
-  ];
-
-  // Conteúdos de destaque (seção 3). Troque "link" pelo link real do vídeo
-  // e a legenda dentro do bloco .ph pela imagem de capa real (formato 9:16).
-  const destaques = [
-    {
-      titulo: "Vídeo destaque 01",
-      contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.",
-      link: "https://youtube.com/shorts/dfxWcAF3jVI?feature=share", // LINK DO VÍDEO 1
-      numero: "570",
-      rotulo: "visualizações",
-      novo: true
+  const conteudo = {
+    pt: {
+      // Marcas com quem já trabalhou (faixa rolante da capa)
+      marcas: [
+        "Mundo Flex", "Dance Glow", "Marca 03", "Marca 04", "Marca 05",
+        "Marca 06", "Marca 07", "Marca 08", "Marca 09", "Marca 10",
+        "Marca 11", "Marca 12"
+      ],
+      // Conteúdos de destaque (seção 3). Troque "link" pelo link real do vídeo
+      // e a legenda dentro do bloco .ph pela imagem de capa real (formato 9:16).
+      destaques: [
+        {
+          titulo: "Vídeo destaque 01",
+          contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.",
+          link: "https://youtube.com/shorts/dfxWcAF3jVI?feature=share", // LINK DO VÍDEO 1
+          numero: "570",
+          rotulo: "visualizações",
+          novo: true
+        },
+        {
+          titulo: "Vídeo destaque 02",
+          contexto: "Vídeo curto pensado para performar bem em campanhas pagas.",
+          link: "https://youtube.com/shorts/NskwmQoX8xI?feature=share", // LINK DO VÍDEO 2
+          numero: "433",
+          rotulo: "visualizações",
+          novo: false
+        },
+        {
+          titulo: "Vídeo destaque 03",
+          contexto: "Espaço reservado para o próximo conteúdo de destaque.",
+          link: "#", // COLE AQUI O LINK DO VÍDEO 3
+          numero: "+000",
+          rotulo: "visualizações",
+          novo: false
+        }
+      ],
+      // Trabalhos por nicho (seção 4). "nicho" precisa bater com a chave em filtros.
+      trabalhos: [
+        { titulo: "Trabalho 01", marca: "Marca 01", nicho: "beleza", novo: true },
+        { titulo: "Trabalho 02", marca: "Marca 02", nicho: "beleza", novo: false },
+        { titulo: "Trabalho 03", marca: "Marca 03", nicho: "skincare", novo: true },
+        { titulo: "Trabalho 04", marca: "Marca 04", nicho: "skincare", novo: false },
+        { titulo: "Trabalho 05", marca: "Marca 05", nicho: "moda", novo: false },
+        { titulo: "Trabalho 06", marca: "Marca 06", nicho: "moda", novo: false },
+        { titulo: "Trabalho 07", marca: "Marca 07", nicho: "comida", novo: false },
+        { titulo: "Trabalho 08", marca: "Marca 08", nicho: "comida", novo: false },
+        { titulo: "Trabalho 09", marca: "Marca 09", nicho: "fitness", novo: false },
+        { titulo: "Trabalho 10", marca: "Marca 10", nicho: "fitness", novo: false }
+      ],
+      filtros: [
+        { chave: "todos", rotulo: "Todos" },
+        { chave: "beleza", rotulo: "Beleza" },
+        { chave: "skincare", rotulo: "Skincare" },
+        { chave: "moda", rotulo: "Moda" },
+        { chave: "comida", rotulo: "Comida" },
+        { chave: "fitness", rotulo: "Fitness" }
+      ],
+      // Serviços oferecidos (seção 5)
+      servicos: [
+        { numero: "01", titulo: "Vídeo UGC", texto: "Vídeo autêntico gravado no meu estilo, pronto para você usar em anúncios ou redes sociais." },
+        { numero: "02", titulo: "Corte para anúncio", texto: "Edição do vídeo em versões curtas, otimizadas para performance em campanhas pagas." },
+        { numero: "03", titulo: "Fotos do produto", texto: "Ensaio fotográfico simples e natural, mostrando o produto em uso no dia a dia." },
+        { numero: "04", titulo: "Unboxing", texto: "Vídeo de abertura do produto, com a primeira reação real de quem está recebendo." },
+        { numero: "05", titulo: "Publicação no meu perfil", texto: "Conteúdo publicado no meu Instagram, alcançando a minha própria audiência." },
+        { numero: "06", titulo: "Pacote mensal", texto: "Combo de vídeos e fotos entregues todo mês, com condição especial para quem fecha recorrência." }
+      ],
+      // Métricas com contador (seção 6). Baseadas apenas nos números reais informados.
+      metricas: [
+        { valor: 2, sufixo: "+", rotulo: "vídeos entregues" },
+        { valor: 2, sufixo: "+", rotulo: "marcas atendidas" },
+        { valor: 1000, formato: "mil", sufixo: "+", rotulo: "views somadas" }
+      ],
+      // Resultados de campanha (seção 6). Preencha com dados reais quando tiver.
+      campanhas: [
+        { titulo: "Campanha 01", marca: "Marca 01", resultado: "[Descreva aqui o resultado desta campanha]" },
+        { titulo: "Campanha 02", marca: "Marca 02", resultado: "[Descreva aqui o resultado desta campanha]" },
+        { titulo: "Campanha 03", marca: "Marca 03", resultado: "[Descreva aqui o resultado desta campanha]" }
+      ],
+      // Depoimentos de clientes (seção 6)
+      depoimentos: [
+        { nome: "Cliente 01", empresa: "Empresa 01", texto: "[Cole aqui o depoimento deste cliente]" },
+        { nome: "Cliente 02", empresa: "Empresa 02", texto: "[Cole aqui o depoimento deste cliente]" },
+        { nome: "Cliente 03", empresa: "Empresa 03", texto: "[Cole aqui o depoimento deste cliente]" },
+        { nome: "Cliente 04", empresa: "Empresa 04", texto: "[Cole aqui o depoimento deste cliente]" }
+      ],
+      ui: {
+        novo: "Novo",
+        subConsulta: "Sob consulta",
+        contratar: "Contratar →",
+        assistir: "Assistir",
+        capaVideo: "Capa do vídeo, 9:16",
+        capaTrabalho: "Capa do trabalho, 9:16",
+        avaliacaoAria: "Avaliação cinco estrelas",
+        metricaPlaceholder: "Espaço para a próxima métrica",
+        milUnidade: "mil",
+        whatsappTrabalho: (titulo) => `Oi Jéssica, vi o ${titulo} no seu portfólio e quero contratar`
+      }
     },
-    {
-      titulo: "Vídeo destaque 02",
-      contexto: "Vídeo curto pensado para performar bem em campanhas pagas.",
-      link: "https://youtube.com/shorts/NskwmQoX8xI?feature=share", // LINK DO VÍDEO 2
-      numero: "433",
-      rotulo: "visualizações",
-      novo: false
-    },
-    {
-      titulo: "Vídeo destaque 03",
-      contexto: "Espaço reservado para o próximo conteúdo de destaque.",
-      link: "#", // COLE AQUI O LINK DO VÍDEO 3
-      numero: "+000",
-      rotulo: "visualizações",
-      novo: false
+    en: {
+      marcas: [
+        "Mundo Flex", "Dance Glow", "Brand 03", "Brand 04", "Brand 05",
+        "Brand 06", "Brand 07", "Brand 08", "Brand 09", "Brand 10",
+        "Brand 11", "Brand 12"
+      ],
+      destaques: [
+        {
+          titulo: "Featured video 01",
+          contexto: "Reels style content showing the product with authenticity.",
+          link: "https://youtube.com/shorts/dfxWcAF3jVI?feature=share",
+          numero: "570",
+          rotulo: "views",
+          novo: true
+        },
+        {
+          titulo: "Featured video 02",
+          contexto: "Short video built to perform well in paid campaigns.",
+          link: "https://youtube.com/shorts/NskwmQoX8xI?feature=share",
+          numero: "433",
+          rotulo: "views",
+          novo: false
+        },
+        {
+          titulo: "Featured video 03",
+          contexto: "Space reserved for the next featured content.",
+          link: "#",
+          numero: "+000",
+          rotulo: "views",
+          novo: false
+        }
+      ],
+      trabalhos: [
+        { titulo: "Project 01", marca: "Brand 01", nicho: "beleza", novo: true },
+        { titulo: "Project 02", marca: "Brand 02", nicho: "beleza", novo: false },
+        { titulo: "Project 03", marca: "Brand 03", nicho: "skincare", novo: true },
+        { titulo: "Project 04", marca: "Brand 04", nicho: "skincare", novo: false },
+        { titulo: "Project 05", marca: "Brand 05", nicho: "moda", novo: false },
+        { titulo: "Project 06", marca: "Brand 06", nicho: "moda", novo: false },
+        { titulo: "Project 07", marca: "Brand 07", nicho: "comida", novo: false },
+        { titulo: "Project 08", marca: "Brand 08", nicho: "comida", novo: false },
+        { titulo: "Project 09", marca: "Brand 09", nicho: "fitness", novo: false },
+        { titulo: "Project 10", marca: "Brand 10", nicho: "fitness", novo: false }
+      ],
+      filtros: [
+        { chave: "todos", rotulo: "All" },
+        { chave: "beleza", rotulo: "Beauty" },
+        { chave: "skincare", rotulo: "Skincare" },
+        { chave: "moda", rotulo: "Fashion" },
+        { chave: "comida", rotulo: "Food" },
+        { chave: "fitness", rotulo: "Fitness" }
+      ],
+      servicos: [
+        { numero: "01", titulo: "UGC video", texto: "Authentic video filmed in my own style, ready for you to use in ads or on social media." },
+        { numero: "02", titulo: "Ad cutdown", texto: "Editing the video into short versions optimized for paid campaign performance." },
+        { numero: "03", titulo: "Product photos", texto: "Simple, natural photo shoot showing the product in everyday use." },
+        { numero: "04", titulo: "Unboxing", texto: "Unboxing video with a genuine first reaction from whoever is receiving it." },
+        { numero: "05", titulo: "Posted on my profile", texto: "Content posted on my own Instagram, reaching my own audience." },
+        { numero: "06", titulo: "Monthly package", texto: "A monthly bundle of videos and photos, with a special rate for recurring clients." }
+      ],
+      metricas: [
+        { valor: 2, sufixo: "+", rotulo: "videos delivered" },
+        { valor: 2, sufixo: "+", rotulo: "brands served" },
+        { valor: 1000, formato: "mil", sufixo: "+", rotulo: "total views" }
+      ],
+      campanhas: [
+        { titulo: "Campaign 01", marca: "Brand 01", resultado: "[Describe this campaign's result here]" },
+        { titulo: "Campaign 02", marca: "Brand 02", resultado: "[Describe this campaign's result here]" },
+        { titulo: "Campaign 03", marca: "Brand 03", resultado: "[Describe this campaign's result here]" }
+      ],
+      depoimentos: [
+        { nome: "Client 01", empresa: "Company 01", texto: "[Paste this client's testimonial here]" },
+        { nome: "Client 02", empresa: "Company 02", texto: "[Paste this client's testimonial here]" },
+        { nome: "Client 03", empresa: "Company 03", texto: "[Paste this client's testimonial here]" },
+        { nome: "Client 04", empresa: "Company 04", texto: "[Paste this client's testimonial here]" }
+      ],
+      ui: {
+        novo: "New",
+        subConsulta: "Upon request",
+        contratar: "Hire →",
+        assistir: "Watch",
+        capaVideo: "Video cover, 9:16",
+        capaTrabalho: "Project cover, 9:16",
+        avaliacaoAria: "Five star rating",
+        metricaPlaceholder: "Space for the next metric",
+        milUnidade: "K",
+        whatsappTrabalho: (titulo) => `Hi Jessica, I saw ${titulo} on your portfolio and I would like to hire you`
+      }
     }
-  ];
+  };
 
-  // Trabalhos por nicho (seção 4). "nicho" precisa bater com um dos filtros abaixo.
-  const trabalhos = [
-    { titulo: "Trabalho 01", marca: "Marca 01", nicho: "beleza", novo: true },
-    { titulo: "Trabalho 02", marca: "Marca 02", nicho: "beleza", novo: false },
-    { titulo: "Trabalho 03", marca: "Marca 03", nicho: "skincare", novo: true },
-    { titulo: "Trabalho 04", marca: "Marca 04", nicho: "skincare", novo: false },
-    { titulo: "Trabalho 05", marca: "Marca 05", nicho: "moda", novo: false },
-    { titulo: "Trabalho 06", marca: "Marca 06", nicho: "moda", novo: false },
-    { titulo: "Trabalho 07", marca: "Marca 07", nicho: "comida", novo: false },
-    { titulo: "Trabalho 08", marca: "Marca 08", nicho: "comida", novo: false },
-    { titulo: "Trabalho 09", marca: "Marca 09", nicho: "fitness", novo: false },
-    { titulo: "Trabalho 10", marca: "Marca 10", nicho: "fitness", novo: false }
-  ];
+  // Textos estáticos da página (menu, seções fixas, formulário, rodapé, modal)
+  const textosEstaticos = {
+    pt: {
+      faixa_entrega: "🟣 Entrega em até 72h úteis",
+      nav_sobre: "Sobre",
+      nav_destaques: "Destaques",
+      nav_trabalhos: "Trabalhos",
+      nav_servicos: "Serviços",
+      nav_numeros: "Números",
+      nav_contato: "Contato",
+      nav_toggle_aria: "Abrir menu",
+      hero_frase: 'Vídeos e fotos <span class="destaque-serif">autênticos</span> que ajudam marcas de beleza, skincare, moda, comida e fitness a se conectarem de verdade com as pessoas.',
+      hero_botao_falar: "Falar comigo",
+      hero_botao_ver: "Ver os trabalhos",
+      hero_num1_label: "vídeos entregues",
+      hero_num2_label: "marcas atendidas",
+      hero_num3_label: "views somadas",
+      hero_foto_aria: "Foto da creator, formato quatro por cinco",
+      hero_foto_caption: "Foto da creator, formato 4:5",
+      marcas_aria: "Marcas com quem já trabalhei",
+      sobre_foto_aria: "Foto da creator para a seção sobre mim, formato quadrado",
+      sobre_foto_caption: "Foto da creator, formato 1:1",
+      sobre_titulo: "Sobre mim",
+      sobre_p1: "Meu olhar é atento aos detalhes e à forma como cada história pode ser contada de maneira natural, bonita e envolvente. Gosto de pensar em cada vídeo como um momento real, sem exagero, só mostrando o produto do jeito que ele apareceria no dia a dia de qualquer pessoa.",
+      sobre_p2: "Já criei conteúdo para marcas de beleza, skincare, moda, comida e fitness, sempre buscando um resultado que pareça genuíno na tela e que funcione de verdade para quem contrata. Atendo de Sua Cidade e entrego tudo dentro do prazo combinado.",
+      promessa1: "Roteiro aprovado antes de gravar",
+      promessa2: "Uma rodada de ajuste inclusa",
+      promessa3: "Entrega em até 72 horas úteis",
+      destaques_titulo: 'Conteúdos de <span class="destaque-serif">destaque</span>',
+      destaques_subtitulo: "Alguns vídeos que representam bem o meu estilo de criação.",
+      trabalhos_titulo: 'Trabalhos por <span class="destaque-serif">nicho</span>',
+      trabalhos_subtitulo: "Filtre por área para ver os trabalhos mais parecidos com o que você precisa.",
+      servicos_titulo: 'Como eu te <span class="destaque-serif">ajudo</span>',
+      servicos_subtitulo: "Serviços pensados para encaixar em diferentes momentos da sua marca.",
+      numeros_titulo: 'Números que contam um pouco da <span class="destaque-serif">jornada</span>',
+      numeros_subtitulo: "Resultados reais de quem já trabalhou comigo.",
+      subtitulo_campanhas: "Resultados de campanha",
+      subtitulo_depoimentos: "Depoimentos",
+      contato_titulo: 'Bora criar <span class="destaque-serif">juntos</span>?',
+      contato_subtitulo: "Me conta um pouco sobre a sua marca e eu respondo rapidinho.",
+      label_nome: "Nome",
+      label_email: "E-mail",
+      label_mensagem: "Mensagem",
+      botao_enviar: "Enviar mensagem",
+      confirmacao: "Mensagem recebida! Em breve eu te respondo por e-mail ou WhatsApp.",
+      footer_email: "E-mail",
+      footer_ano: '© <span id="anoAtual"></span> Jéssica Mendes. Todos os direitos reservados.',
+      captura_fechar_aria: "Fechar",
+      captura_etiqueta: "Mídia kit",
+      captura_titulo: "Quer meu mídia kit completo?",
+      captura_texto: "Deixe seu nome e e-mail que eu envio com todos os detalhes do meu trabalho.",
+      captura_label_nome: "Nome",
+      captura_label_email: "E-mail",
+      captura_botao: "Quero receber",
+      captura_obrigado_titulo: "Prontinho!",
+      captura_obrigado_texto: "Recebi seus dados. Em breve envio o mídia kit completo para o seu e-mail."
+    },
+    en: {
+      faixa_entrega: "🟣 Delivery within 72 business hours",
+      nav_sobre: "About",
+      nav_destaques: "Highlights",
+      nav_trabalhos: "Work",
+      nav_servicos: "Services",
+      nav_numeros: "Numbers",
+      nav_contato: "Contact",
+      nav_toggle_aria: "Open menu",
+      hero_frase: 'Authentic <span class="destaque-serif">videos</span> and photos that help beauty, skincare, fashion, food and fitness brands truly connect with people.',
+      hero_botao_falar: "Talk to me",
+      hero_botao_ver: "See my work",
+      hero_num1_label: "videos delivered",
+      hero_num2_label: "brands served",
+      hero_num3_label: "total views",
+      hero_foto_aria: "Creator photo, four by five format",
+      hero_foto_caption: "Creator photo, 4:5 format",
+      marcas_aria: "Brands I have worked with",
+      sobre_foto_aria: "Creator photo for the about section, square format",
+      sobre_foto_caption: "Creator photo, 1:1 format",
+      sobre_titulo: "About me",
+      sobre_p1: "My eye is drawn to detail and to the way every story can be told in a natural, beautiful and engaging manner. I like to think of each video as a real moment, with no exaggeration, just showing the product the way it would show up in anyone's everyday life.",
+      sobre_p2: "I have already created content for beauty, skincare, fashion, food and fitness brands, always aiming for a result that feels genuine on screen and truly works for whoever hires me. I am based in Your City and deliver everything within the agreed deadline.",
+      promessa1: "Script approved before filming",
+      promessa2: "One round of revisions included",
+      promessa3: "Delivery within 72 business hours",
+      destaques_titulo: 'Featured <span class="destaque-serif">content</span>',
+      destaques_subtitulo: "A few videos that really show my creative style.",
+      trabalhos_titulo: 'Work by <span class="destaque-serif">niche</span>',
+      trabalhos_subtitulo: "Filter by area to see the work that best matches what you need.",
+      servicos_titulo: 'How I can <span class="destaque-serif">help</span>',
+      servicos_subtitulo: "Services designed to fit different moments of your brand.",
+      numeros_titulo: 'Numbers that tell a bit of the <span class="destaque-serif">journey</span>',
+      numeros_subtitulo: "Real results from people who have already worked with me.",
+      subtitulo_campanhas: "Campaign results",
+      subtitulo_depoimentos: "Testimonials",
+      contato_titulo: 'Let\'s create <span class="destaque-serif">together</span>?',
+      contato_subtitulo: "Tell me a bit about your brand and I will reply quickly.",
+      label_nome: "Name",
+      label_email: "Email",
+      label_mensagem: "Message",
+      botao_enviar: "Send message",
+      confirmacao: "Message received! I will get back to you soon by email or WhatsApp.",
+      footer_email: "Email",
+      footer_ano: '© <span id="anoAtual"></span> Jéssica Mendes. All rights reserved.',
+      captura_fechar_aria: "Close",
+      captura_etiqueta: "Media kit",
+      captura_titulo: "Want my full media kit?",
+      captura_texto: "Leave your name and email and I will send you every detail about my work.",
+      captura_label_nome: "Name",
+      captura_label_email: "Email",
+      captura_botao: "I want it",
+      captura_obrigado_titulo: "All set!",
+      captura_obrigado_texto: "Got your details. I will send the full media kit to your email soon."
+    }
+  };
 
-  const filtrosNicho = [
-    { chave: "todos", rotulo: "Todos" },
-    { chave: "beleza", rotulo: "Beleza" },
-    { chave: "skincare", rotulo: "Skincare" },
-    { chave: "moda", rotulo: "Moda" },
-    { chave: "comida", rotulo: "Comida" },
-    { chave: "fitness", rotulo: "Fitness" }
-  ];
-
-  // Serviços oferecidos (seção 5)
-  const servicos = [
-    { numero: "01", titulo: "Vídeo UGC", texto: "Vídeo autêntico gravado no meu estilo, pronto para você usar em anúncios ou redes sociais." },
-    { numero: "02", titulo: "Corte para anúncio", texto: "Edição do vídeo em versões curtas, otimizadas para performance em campanhas pagas." },
-    { numero: "03", titulo: "Fotos do produto", texto: "Ensaio fotográfico simples e natural, mostrando o produto em uso no dia a dia." },
-    { numero: "04", titulo: "Unboxing", texto: "Vídeo de abertura do produto, com a primeira reação real de quem está recebendo." },
-    { numero: "05", titulo: "Publicação no meu perfil", texto: "Conteúdo publicado no meu Instagram, alcançando a minha própria audiência." },
-    { numero: "06", titulo: "Pacote mensal", texto: "Combo de vídeos e fotos entregues todo mês, com condição especial para quem fecha recorrência." }
-  ];
-
-  // Métricas com contador (seção 6). Baseadas apenas nos números reais informados.
-  const metricas = [
-    { valor: 2, sufixo: "+", rotulo: "vídeos entregues" },
-    { valor: 2, sufixo: "+", rotulo: "marcas atendidas" },
-    { valor: 1000, formato: "mil", sufixo: "+", rotulo: "views somadas" }
-  ];
-
-  // Resultados de campanha (seção 6). Preencha com dados reais quando tiver.
-  const campanhas = [
-    { titulo: "Campanha 01", marca: "Marca 01", resultado: "[Descreva aqui o resultado desta campanha]" },
-    { titulo: "Campanha 02", marca: "Marca 02", resultado: "[Descreva aqui o resultado desta campanha]" },
-    { titulo: "Campanha 03", marca: "Marca 03", resultado: "[Descreva aqui o resultado desta campanha]" }
-  ];
-
-  // Depoimentos de clientes (seção 6)
-  const depoimentos = [
-    { nome: "Cliente 01", empresa: "Empresa 01", texto: "[Cole aqui o depoimento deste cliente]" },
-    { nome: "Cliente 02", empresa: "Empresa 02", texto: "[Cole aqui o depoimento deste cliente]" },
-    { nome: "Cliente 03", empresa: "Empresa 03", texto: "[Cole aqui o depoimento deste cliente]" },
-    { nome: "Cliente 04", empresa: "Empresa 04", texto: "[Cole aqui o depoimento deste cliente]" }
-  ];
-
+  let idiomaAtual = "pt";
   const reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ==================== RENDERIZAÇÃO ==================== */
 
   function renderizarMarcas(){
     const track = document.getElementById("marcasTrack");
+    const marcas = conteudo[idiomaAtual].marcas;
     const lista = marcas.concat(marcas); // duplica para rolagem contínua
     track.innerHTML = lista.map(m => `<span>${m}</span>`).join("");
   }
 
   function renderizarDestaques(){
     const grid = document.getElementById("destaquesGrid");
-    grid.innerHTML = destaques.map(d => `
-      <a class="destaque-card reveal" href="${d.link}" target="_blank" rel="noopener" aria-label="Assistir ${d.titulo}">
+    const t = conteudo[idiomaAtual].ui;
+    grid.innerHTML = conteudo[idiomaAtual].destaques.map(d => {
+      const ariaCapa = idiomaAtual === "pt"
+        ? `Capa vertical do ${d.titulo}, formato nove por dezesseis`
+        : `Vertical cover of ${d.titulo}, nine by sixteen format`;
+      return `
+      <a class="destaque-card reveal visivel" href="${d.link}" target="_blank" rel="noopener" aria-label="${t.assistir} ${d.titulo}">
         <div class="destaque-capa">
-          ${d.novo ? '<span class="selo-novo">Novo</span>' : ''}
+          ${d.novo ? `<span class="selo-novo">${t.novo}</span>` : ''}
           <div class="play-botao" aria-hidden="true"></div>
           <!-- Para trocar pela capa real: substitua a div.ph por <img src="capa-do-video.jpg" alt="Capa do ${d.titulo}"> -->
-          <div class="ph ph-916" role="img" aria-label="Capa vertical do ${d.titulo}, formato nove por dezesseis"><span>Capa do vídeo, 9:16</span></div>
+          <div class="ph ph-916" role="img" aria-label="${ariaCapa}"><span>${t.capaVideo}</span></div>
         </div>
         <div class="destaque-info">
           <div class="destaque-numero">${d.numero}</div>
@@ -1127,12 +1389,14 @@
           <p class="destaque-contexto">${d.contexto}</p>
         </div>
       </a>
-    `).join("");
+    `;
+    }).join("");
   }
 
   function renderizarFiltros(){
     const wrap = document.getElementById("filtros");
-    wrap.innerHTML = filtrosNicho.map((f, i) => `
+    const filtros = conteudo[idiomaAtual].filtros;
+    wrap.innerHTML = filtros.map((f, i) => `
       <button type="button" class="filtro-botao${i === 0 ? ' ativo' : ''}" data-nicho="${f.chave}" aria-pressed="${i === 0 ? 'true' : 'false'}">${f.rotulo}</button>
     `).join("");
 
@@ -1148,24 +1412,34 @@
 
   function renderizarTrabalhos(){
     const grid = document.getElementById("trabalhosGrid");
-    grid.innerHTML = trabalhos.map(t => `
-      <article class="trabalho-card reveal" data-nicho="${t.nicho}">
+    const t = conteudo[idiomaAtual].ui;
+    grid.innerHTML = conteudo[idiomaAtual].trabalhos.map(item => {
+      const ariaCapa = idiomaAtual === "pt"
+        ? `Capa do ${item.titulo}, formato nove por dezesseis`
+        : `Cover of ${item.titulo}, nine by sixteen format`;
+      const msgWhats = encodeURIComponent(t.whatsappTrabalho(item.titulo));
+      return `
+      <article class="trabalho-card reveal visivel" data-nicho="${item.nicho}">
         <div class="trabalho-capa">
-          ${t.novo ? '<span class="selo-novo">Novo</span>' : ''}
-          <!-- Para trocar pela capa real: substitua a div.ph por <img src="capa-do-trabalho.jpg" alt="Capa do ${t.titulo}"> -->
-          <div class="ph ph-916" role="img" aria-label="Capa do ${t.titulo}, formato nove por dezesseis"><span>Capa do trabalho, 9:16</span></div>
+          ${item.novo ? `<span class="selo-novo">${t.novo}</span>` : ''}
+          <!-- Para trocar pela capa real: substitua a div.ph por <img src="capa-do-trabalho.jpg" alt="Capa do ${item.titulo}"> -->
+          <div class="ph ph-916" role="img" aria-label="${ariaCapa}"><span>${t.capaTrabalho}</span></div>
         </div>
         <div class="trabalho-corpo">
-          <div class="estrelas" aria-label="Avaliação cinco estrelas">★★★★★</div>
-          <div class="trabalho-titulo">${t.titulo}</div>
-          <div class="trabalho-marca">${t.marca}</div>
+          <div class="estrelas" aria-label="${t.avaliacaoAria}">★★★★★</div>
+          <div class="trabalho-titulo">${item.titulo}</div>
+          <div class="trabalho-marca">${item.marca}</div>
           <div class="trabalho-rodape">
-            <span class="etiqueta">Sob consulta</span>
-            <a class="contratar-link" href="https://wa.me/5511989794275?text=Oi%20J%C3%A9ssica%2C%20vi%20o%20${encodeURIComponent(t.titulo)}%20no%20seu%20portf%C3%B3lio%20e%20quero%20contratar" target="_blank" rel="noopener">Contratar →</a>
+            <span class="etiqueta">${t.subConsulta}</span>
+            <a class="contratar-link" href="https://wa.me/5511989794275?text=${msgWhats}" target="_blank" rel="noopener">${t.contratar}</a>
           </div>
         </div>
       </article>
-    `).join("");
+    `;
+    }).join("");
+
+    const filtroAtivo = document.querySelector(".filtro-botao.ativo");
+    filtrarTrabalhos(filtroAtivo ? filtroAtivo.dataset.nicho : "todos");
   }
 
   function filtrarTrabalhos(nicho){
@@ -1177,8 +1451,8 @@
 
   function renderizarServicos(){
     const grid = document.getElementById("servicosGrid");
-    grid.innerHTML = servicos.map(s => `
-      <div class="servico-card reveal">
+    grid.innerHTML = conteudo[idiomaAtual].servicos.map(s => `
+      <div class="servico-card reveal visivel">
         <span class="servico-numero">${s.numero}</span>
         <h3>${s.titulo}</h3>
         <p>${s.texto}</p>
@@ -1188,32 +1462,38 @@
 
   function formatarNumero(valor, formato){
     if(formato === "mil"){
+      const unidade = conteudo[idiomaAtual].ui.milUnidade;
       const emMil = valor / 1000;
+      if(idiomaAtual === "en"){
+        const texto = Number.isInteger(emMil) ? emMil.toString() : emMil.toFixed(1);
+        return texto + unidade;
+      }
       const texto = Number.isInteger(emMil) ? emMil.toString() : emMil.toFixed(1).replace(".", ",");
-      return texto + " mil";
+      return texto + " " + unidade;
     }
     return valor.toString();
   }
 
   function renderizarMetricas(){
     const grid = document.getElementById("metricasGrid");
-    grid.innerHTML = metricas.map(m => `
-      <div class="metrica-card reveal">
-        <strong data-contador="${m.valor}" ${m.formato ? `data-formato="${m.formato}"` : ""} data-sufixo="${m.sufixo || ''}">0</strong>
+    const t = conteudo[idiomaAtual].ui;
+    grid.innerHTML = conteudo[idiomaAtual].metricas.map(m => `
+      <div class="metrica-card reveal visivel">
+        <strong>${formatarNumero(m.valor, m.formato) + (m.sufixo || '')}</strong>
         <span>${m.rotulo}</span>
       </div>
     `).join("") + `
-      <div class="metrica-card placeholder reveal">
+      <div class="metrica-card placeholder reveal visivel">
         <strong>+</strong>
-        <span>Espaço para a próxima métrica</span>
+        <span>${t.metricaPlaceholder}</span>
       </div>
     `;
   }
 
   function renderizarCampanhas(){
     const grid = document.getElementById("campanhasGrid");
-    grid.innerHTML = campanhas.map(c => `
-      <div class="campanha-card reveal">
+    grid.innerHTML = conteudo[idiomaAtual].campanhas.map(c => `
+      <div class="campanha-card reveal visivel">
         <h3>${c.titulo}</h3>
         <div class="campanha-marca">${c.marca}</div>
         <p class="campanha-resultado">${c.resultado}</p>
@@ -1223,14 +1503,76 @@
 
   function renderizarDepoimentos(){
     const grid = document.getElementById("depoimentosGrid");
-    grid.innerHTML = depoimentos.map(d => `
-      <div class="depoimento-card reveal">
+    grid.innerHTML = conteudo[idiomaAtual].depoimentos.map(d => `
+      <div class="depoimento-card reveal visivel">
         <span class="depoimento-aspas" aria-hidden="true">"</span>
         <p class="depoimento-texto">${d.texto}</p>
         <p class="depoimento-nome">${d.nome}</p>
         <p class="depoimento-empresa">${d.empresa}</p>
       </div>
     `).join("");
+  }
+
+  function renderizarConteudoDinamico(){
+    renderizarMarcas();
+    renderizarDestaques();
+    renderizarFiltros();
+    renderizarTrabalhos();
+    renderizarServicos();
+    renderizarMetricas();
+    renderizarCampanhas();
+    renderizarDepoimentos();
+  }
+
+  /* ==================== TEXTOS ESTÁTICOS E IDIOMA ==================== */
+
+  function aplicarTextosEstaticos(){
+    const dicionario = textosEstaticos[idiomaAtual];
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const chave = el.getAttribute("data-i18n");
+      if(dicionario[chave] !== undefined){
+        el.innerHTML = dicionario[chave];
+      }
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(el => {
+      const chave = el.getAttribute("data-i18n-aria");
+      if(dicionario[chave] !== undefined){
+        el.setAttribute("aria-label", dicionario[chave]);
+      }
+    });
+    document.documentElement.lang = idiomaAtual === "pt" ? "pt-BR" : "en";
+  }
+
+  function atualizarBotoesIdioma(){
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      const ativo = btn.dataset.lang === idiomaAtual;
+      btn.classList.toggle("ativo", ativo);
+      btn.setAttribute("aria-pressed", ativo ? "true" : "false");
+    });
+  }
+
+  function atualizarContadoresEstaticos(){
+    document.querySelectorAll(".hero-numeros [data-contador]").forEach(el => {
+      const meta = parseInt(el.dataset.contador, 10) || 0;
+      const formato = el.dataset.formato;
+      const sufixo = el.dataset.sufixo || "";
+      el.textContent = formatarNumero(meta, formato) + sufixo;
+    });
+  }
+
+  function trocarIdioma(lang){
+    if(lang === idiomaAtual) return;
+    idiomaAtual = lang;
+    aplicarTextosEstaticos();
+    atualizarBotoesIdioma();
+    renderizarConteudoDinamico();
+    atualizarContadoresEstaticos();
+  }
+
+  function iniciarSeletorIdioma(){
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => trocarIdioma(btn.dataset.lang));
+    });
   }
 
   /* ==================== MENU MOBILE ==================== */
@@ -1253,7 +1595,7 @@
   /* ==================== ANIMAÇÃO DE ENTRADA ==================== */
 
   function iniciarRevelacao(){
-    const itens = document.querySelectorAll(".reveal");
+    const itens = document.querySelectorAll(".reveal:not(.visivel)");
     if(reduzirMovimento){
       itens.forEach(el => el.classList.add("visivel"));
       return;
@@ -1331,7 +1673,7 @@
     const fundo = document.getElementById("capturaFundo");
     const fechar = document.getElementById("capturaFechar");
     const form = document.getElementById("formCaptura");
-    const conteudo = document.getElementById("capturaConteudo");
+    const conteudoModal = document.getElementById("capturaConteudo");
     const obrigado = document.getElementById("capturaObrigado");
     const CHAVE = "midiaKitMostrado";
 
@@ -1362,7 +1704,7 @@
         form.reportValidity();
         return;
       }
-      conteudo.style.display = "none";
+      conteudoModal.style.display = "none";
       obrigado.classList.add("visivel");
       setTimeout(fecharModal, 2600);
     });
@@ -1371,16 +1713,17 @@
   /* ==================== INICIALIZAÇÃO ==================== */
 
   function iniciar(){
-    renderizarMarcas();
-    renderizarDestaques();
-    renderizarFiltros();
-    renderizarTrabalhos();
-    renderizarServicos();
-    renderizarMetricas();
-    renderizarCampanhas();
-    renderizarDepoimentos();
+    aplicarTextosEstaticos();
+    atualizarBotoesIdioma();
+    renderizarConteudoDinamico();
+
+    // Após a primeira renderização, os cards ficam prontos para animar ao entrar na tela
+    document.querySelectorAll(".destaques-grid .reveal, .trabalhos-grid .reveal, .servicos-grid .reveal, .metricas-grid .reveal, .campanhas-grid .reveal, .depoimentos-grid .reveal").forEach(el => {
+      el.classList.remove("visivel");
+    });
 
     iniciarMenu();
+    iniciarSeletorIdioma();
     iniciarRevelacao();
     iniciarContadores();
     iniciarFormulario();
