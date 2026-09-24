@@ -241,6 +241,13 @@
     overflow: hidden;
     box-shadow: var(--sombra-forte);
   }
+  .hero-foto img{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+  }
   .selo-novo{
     position: absolute;
     top: 16px; right: 16px;
@@ -872,9 +879,8 @@
               </div>
             </div>
           </div>
-          <!-- Para trocar pela foto real: substitua a div.ph abaixo por <img src="sua-foto.jpg" alt="Jéssica Mendes, UGC Creator"> mantendo a classe hero-foto -->
           <div class="hero-foto">
-            <div class="ph ph-479" role="img" data-i18n-aria="hero_foto_aria" aria-label="Foto da creator, formato quatro por cinco"><span data-i18n="hero_foto_caption">Foto da creator, formato 4:5</span></div>
+            <img src="public/foto-capa.jpg" alt="Jéssica Mendes, UGC Creator" loading="lazy">
           </div>
         </div>
 
