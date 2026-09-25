@@ -486,6 +486,13 @@
   }
   .trabalho-card:hover{ transform: translateY(-4px); box-shadow: var(--sombra-forte); }
   .trabalho-capa{ position: relative; }
+  .trabalho-video{
+    width: 100%;
+    aspect-ratio: 9/16;
+    border: 0;
+    display: block;
+    background: #000;
+  }
   .trabalho-corpo{ padding: 16px 18px 20px; }
   .estrelas{ color: var(--amarelo); letter-spacing: 2px; font-size: 0.95rem; margin-bottom: 6px; }
   .trabalho-titulo{ font-weight: 800; font-size: 1.02rem; margin-bottom: 2px; }
@@ -1095,14 +1102,15 @@
         }
       ],
       // Trabalhos por nicho (seção 4). "nicho" precisa bater com a chave em filtros.
+      // Quando o item tem "video" (ID do YouTube), o card toca o vídeo direto no site.
       trabalhos: [
         { titulo: "Trabalho 01", marca: "Marca 01", nicho: "beleza", novo: true },
         { titulo: "Trabalho 02", marca: "Marca 02", nicho: "beleza", novo: false },
         { titulo: "Trabalho 03", marca: "Marca 03", nicho: "skincare", novo: true },
         { titulo: "Trabalho 04", marca: "Marca 04", nicho: "skincare", novo: false },
-        { titulo: "Trabalho 05", marca: "Marca 05", nicho: "moda", novo: false },
+        { titulo: "Vídeo Mundoflex", marca: "Mundoflex", nicho: "moda", novo: true, video: "dfxWcAF3jVI" },
         { titulo: "Trabalho 06", marca: "Marca 06", nicho: "moda", novo: false },
-        { titulo: "Trabalho 07", marca: "Marca 07", nicho: "comida", novo: false },
+        { titulo: "Vídeo Garlic", marca: "Garlic", nicho: "comida", novo: true, video: "q6svlyd-RTU" },
         { titulo: "Trabalho 08", marca: "Marca 08", nicho: "comida", novo: false },
         { titulo: "Trabalho 09", marca: "Marca 09", nicho: "fitness", novo: false },
         { titulo: "Trabalho 10", marca: "Marca 10", nicho: "fitness", novo: false }
@@ -1193,9 +1201,9 @@
         { titulo: "Project 02", marca: "Brand 02", nicho: "beleza", novo: false },
         { titulo: "Project 03", marca: "Brand 03", nicho: "skincare", novo: true },
         { titulo: "Project 04", marca: "Brand 04", nicho: "skincare", novo: false },
-        { titulo: "Project 05", marca: "Brand 05", nicho: "moda", novo: false },
+        { titulo: "Mundoflex video", marca: "Mundoflex", nicho: "moda", novo: true, video: "dfxWcAF3jVI" },
         { titulo: "Project 06", marca: "Brand 06", nicho: "moda", novo: false },
-        { titulo: "Project 07", marca: "Brand 07", nicho: "comida", novo: false },
+        { titulo: "Garlic video", marca: "Garlic", nicho: "comida", novo: true, video: "q6svlyd-RTU" },
         { titulo: "Project 08", marca: "Brand 08", nicho: "comida", novo: false },
         { titulo: "Project 09", marca: "Brand 09", nicho: "fitness", novo: false },
         { titulo: "Project 10", marca: "Brand 10", nicho: "fitness", novo: false }
@@ -1424,12 +1432,15 @@
         ? `Capa do ${item.titulo}, formato nove por dezesseis`
         : `Cover of ${item.titulo}, nine by sixteen format`;
       const msgWhats = encodeURIComponent(t.whatsappTrabalho(item.titulo));
+      const capaHtml = item.video
+        ? `<iframe class="trabalho-video" src="https://www.youtube-nocookie.com/embed/${item.video}" title="${item.titulo}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+        : `<!-- Para trocar pela capa real: substitua a div.ph por <img src="capa-do-trabalho.jpg" alt="Capa do ${item.titulo}"> -->
+          <div class="ph ph-916" role="img" aria-label="${ariaCapa}"><span>${t.capaTrabalho}</span></div>`;
       return `
       <article class="trabalho-card reveal visivel" data-nicho="${item.nicho}">
         <div class="trabalho-capa">
           ${item.novo ? `<span class="selo-novo">${t.novo}</span>` : ''}
-          <!-- Para trocar pela capa real: substitua a div.ph por <img src="capa-do-trabalho.jpg" alt="Capa do ${item.titulo}"> -->
-          <div class="ph ph-916" role="img" aria-label="${ariaCapa}"><span>${t.capaTrabalho}</span></div>
+          ${capaHtml}
         </div>
         <div class="trabalho-corpo">
           <div class="estrelas" aria-label="${t.avaliacaoAria}">★★★★★</div>
