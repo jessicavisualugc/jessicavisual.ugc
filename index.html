@@ -493,6 +493,23 @@
     display: block;
     background: #000;
   }
+  .trabalho-video-facade{
+    position: relative;
+    aspect-ratio: 9/16;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    display: block;
+    width: 100%;
+    background: #000;
+  }
+  .trabalho-video-facade img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .trabalho-corpo{ padding: 16px 18px 20px; }
   .estrelas{ color: var(--amarelo); letter-spacing: 2px; font-size: 0.95rem; margin-bottom: 6px; }
   .trabalho-titulo{ font-weight: 800; font-size: 1.02rem; margin-bottom: 2px; }
@@ -1433,7 +1450,10 @@
         : `Cover of ${item.titulo}, nine by sixteen format`;
       const msgWhats = encodeURIComponent(t.whatsappTrabalho(item.titulo));
       const capaHtml = item.video
-        ? `<iframe class="trabalho-video" src="https://www.youtube-nocookie.com/embed/${item.video}" title="${item.titulo}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+        ? `<button type="button" class="trabalho-video-facade" data-video-id="${item.video}" aria-label="${t.assistir} ${item.titulo}">
+            <img src="https://img.youtube.com/vi/${item.video}/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play-botao" aria-hidden="true"></div>
+          </button>`
         : `<!-- Para trocar pela capa real: substitua a div.ph por <img src="capa-do-trabalho.jpg" alt="Capa do ${item.titulo}"> -->
           <div class="ph ph-916" role="img" aria-label="${ariaCapa}"><span>${t.capaTrabalho}</span></div>`;
       return `
@@ -1457,6 +1477,25 @@
 
     const filtroAtivo = document.querySelector(".filtro-botao.ativo");
     filtrarTrabalhos(filtroAtivo ? filtroAtivo.dataset.nicho : "todos");
+    iniciarVideosFacade();
+  }
+
+  // Só carrega o player do YouTube quando a pessoa clica, evitando que a
+  // interface do YouTube (curtir, compartilhar, canal) apareça sem interação.
+  function iniciarVideosFacade(){
+    document.querySelectorAll(".trabalho-video-facade").forEach(botao => {
+      botao.addEventListener("click", () => {
+        const id = botao.dataset.videoId;
+        const iframe = document.createElement("iframe");
+        iframe.className = "trabalho-video";
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+        iframe.title = botao.getAttribute("aria-label") || "";
+        iframe.loading = "lazy";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        botao.replaceWith(iframe);
+      });
+    });
   }
 
   function filtrarTrabalhos(nicho){
