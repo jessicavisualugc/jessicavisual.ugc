@@ -1125,9 +1125,9 @@
         { titulo: "Trabalho 02", marca: "Marca 02", nicho: "beleza", novo: false },
         { titulo: "Trabalho 03", marca: "Marca 03", nicho: "skincare", novo: true },
         { titulo: "Trabalho 04", marca: "Marca 04", nicho: "skincare", novo: false },
-        { titulo: "Vídeo Mundoflex", marca: "Mundoflex", nicho: "moda", novo: true, video: "dfxWcAF3jVI" },
+        { titulo: "Mundoflex", marca: "Mundoflex", nicho: "moda", novo: true, video: "dfxWcAF3jVI" },
         { titulo: "Trabalho 06", marca: "Marca 06", nicho: "moda", novo: false },
-        { titulo: "Vídeo Garlic", marca: "Garlic", nicho: "comida", novo: true, video: "q6svlyd-RTU" },
+        { titulo: "Garlic", marca: "Garlic", nicho: "comida", novo: true, video: "q6svlyd-RTU" },
         { titulo: "Trabalho 08", marca: "Marca 08", nicho: "comida", novo: false },
         { titulo: "Trabalho 09", marca: "Marca 09", nicho: "fitness", novo: false },
         { titulo: "Trabalho 10", marca: "Marca 10", nicho: "fitness", novo: false }
@@ -1218,9 +1218,9 @@
         { titulo: "Project 02", marca: "Brand 02", nicho: "beleza", novo: false },
         { titulo: "Project 03", marca: "Brand 03", nicho: "skincare", novo: true },
         { titulo: "Project 04", marca: "Brand 04", nicho: "skincare", novo: false },
-        { titulo: "Mundoflex video", marca: "Mundoflex", nicho: "moda", novo: true, video: "dfxWcAF3jVI" },
+        { titulo: "Mundoflex", marca: "Mundoflex", nicho: "moda", novo: true, video: "dfxWcAF3jVI" },
         { titulo: "Project 06", marca: "Brand 06", nicho: "moda", novo: false },
-        { titulo: "Garlic video", marca: "Garlic", nicho: "comida", novo: true, video: "q6svlyd-RTU" },
+        { titulo: "Garlic", marca: "Garlic", nicho: "comida", novo: true, video: "q6svlyd-RTU" },
         { titulo: "Project 08", marca: "Brand 08", nicho: "comida", novo: false },
         { titulo: "Project 09", marca: "Brand 09", nicho: "fitness", novo: false },
         { titulo: "Project 10", marca: "Brand 10", nicho: "fitness", novo: false }
@@ -1464,8 +1464,10 @@
         </div>
         <div class="trabalho-corpo">
           <div class="estrelas" aria-label="${t.avaliacaoAria}">★★★★★</div>
-          <div class="trabalho-titulo">${item.titulo}</div>
-          <div class="trabalho-marca">${item.marca}</div>
+          ${item.video
+            ? `<div class="trabalho-titulo" style="margin-bottom:12px;">${item.marca}</div>`
+            : `<div class="trabalho-titulo">${item.titulo}</div><div class="trabalho-marca">${item.marca}</div>`
+          }
           <div class="trabalho-rodape">
             <span class="etiqueta">${t.subConsulta}</span>
             <a class="contratar-link" href="https://wa.me/5511989794275?text=${msgWhats}" target="_blank" rel="noopener">${t.contratar}</a>
