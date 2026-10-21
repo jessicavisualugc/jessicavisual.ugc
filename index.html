@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jéssica Mendes | Portfólio UGC Creator</title>
-<meta name="description" content="Portfólio de Jéssica Mendes, UGC Creator para marcas de beleza, skincare, moda e comida. Vídeos e fotos autênticos sob consulta.">
+<title>SEU NOME | Portfólio UGC Creator</title>
+<meta name="description" content="Portfólio de SEU NOME, UGC Creator. Escreva aqui uma descrição curta do que você faz pelas marcas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -261,7 +261,6 @@
     box-shadow: var(--sombra);
     background: var(--creme-2);
   }
-  .hero-foto img{ width: 100%; height: auto; aspect-ratio: 735 / 1280; object-fit: cover; }
   .hero-legenda{
     position: relative;
     z-index: 1;
@@ -272,6 +271,22 @@
     text-transform: uppercase;
     color: var(--tinta-suave);
   }
+
+  /* Bloco de foto (troque pela imagem real, veja o comentário no HTML) */
+  .ph-foto{
+    aspect-ratio: 4 / 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+    background: linear-gradient(160deg, #d8e3f3 0%, #7da3d6 55%, #0049a4 100%);
+    color: var(--creme);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .ph-foto span{ background: rgba(20, 17, 13, 0.35); padding: 7px 13px; border-radius: 8px; }
 
   .marcas-faixa{ margin-top: 56px; background: var(--tinta); padding: 17px 0; overflow: hidden; white-space: nowrap; }
   .marcas-track{ display: inline-flex; gap: 0; animation: rolar-marcas 32s linear infinite; }
@@ -298,7 +313,6 @@
   /* 2. SOBRE */
   .sobre-grid{ display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 72px; align-items: center; }
   .sobre-foto{ border-radius: var(--raio); overflow: hidden; box-shadow: var(--sombra); background: var(--creme-2); }
-  .sobre-foto img{ width: 100%; height: auto; aspect-ratio: 735 / 1280; object-fit: cover; }
   .sobre-texto h2{ font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 300; }
   .sobre-texto p{ font-size: 1.1rem; color: var(--tinta-suave); }
   .sobre-texto p strong{ color: var(--tinta); font-weight: 600; }
@@ -581,7 +595,7 @@
 
   <header class="site-header">
     <div class="nav-wrap">
-      <a href="#" class="nav-logo">Jéssica <i>Mendes</i></a>
+      <a href="#" class="nav-logo">SEU <i>NOME</i></a>
       <div class="nav-actions">
         <nav aria-label="Principal">
           <ul class="nav-links" id="navLinks">
@@ -610,33 +624,36 @@
       <div class="container hero-grid">
         <div class="hero-texto">
           <p class="hero-kicker">UGC Creator</p>
-          <h1><span>Jéssica</span><span><em>Mendes</em></span></h1>
-          <p class="hero-frase" data-i18n="hero_frase">Vídeos e fotos <em>autênticos</em> que ajudam marcas de beleza, skincare, moda e comida a se conectarem de verdade com as pessoas.</p>
+          <h1><span>SEU</span><span><em>NOME</em></span></h1>
+          <p class="hero-frase" data-i18n="hero_frase">Escreva aqui uma frase curta sobre o que você faz pelas <em>marcas</em>.</p>
           <div class="hero-botoes">
-            <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener" data-i18n="hero_botao_falar">Falar comigo</a>
+            <!-- Troque 5500000000000 pelo seu WhatsApp com DDI e DDD (ex.: 5511999999999) -->
+            <a class="botao botao-primario" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener" data-i18n="hero_botao_falar">Falar comigo</a>
             <a class="botao botao-secundario" href="#trabalhos" data-i18n="hero_botao_ver">Ver os trabalhos</a>
           </div>
+          <!-- Os três números abaixo contam até o valor de data-contador. Troque os zeros pelos seus números reais. -->
           <div class="hero-numeros">
             <div class="hero-numero">
-              <strong data-contador="2" data-sufixo="+">0</strong>
+              <strong data-contador="0" data-sufixo="+">0</strong>
               <span data-i18n="hero_num1_label">vídeos entregues</span>
             </div>
             <div class="hero-numero">
-              <strong data-contador="2" data-sufixo="+">0</strong>
+              <strong data-contador="0" data-sufixo="+">0</strong>
               <span data-i18n="hero_num2_label">marcas atendidas</span>
             </div>
             <div class="hero-numero">
-              <strong data-contador="1000" data-formato="mil" data-sufixo="+">0</strong>
+              <strong data-contador="0" data-sufixo="+">0</strong>
               <span data-i18n="hero_num3_label">views somadas</span>
             </div>
           </div>
         </div>
-        <!-- Para trocar a foto: substitua o arquivo public/foto-capa.jpg (mantenha o mesmo nome). Formato retrato, sem corte. -->
         <div class="hero-foto-wrap">
           <div class="hero-foto">
-            <img src="public/foto-capa.jpg" alt="Jéssica Mendes, UGC Creator" data-i18n-alt="hero_foto_alt">
+            <!-- Para trocar pela foto real: suba a imagem em public/sua-foto.jpg e troque o bloco abaixo por
+                 <img src="public/sua-foto.jpg" alt="Foto de SEU NOME" style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;"> (formato 4:5) -->
+            <div class="ph-foto" role="img" data-i18n-aria="hero_foto_aria" aria-label="Foto da creator, formato 4:5"><span data-i18n="hero_foto_legenda">foto da creator 4:5</span></div>
           </div>
-          <p class="hero-legenda">Jéssica Mendes, UGC Creator</p>
+          <p class="hero-legenda">SEU NOME, UGC Creator</p>
         </div>
       </div>
       <div class="marcas-faixa" data-i18n-aria="marcas_aria" aria-label="Marcas com quem já trabalhei">
@@ -648,19 +665,20 @@
     <section id="sobre" class="secao">
       <div class="container sobre-grid">
         <div class="sobre-foto reveal">
-          <img src="public/foto-capa.jpg" alt="Jéssica Mendes sorrindo" data-i18n-alt="sobre_foto_alt" loading="lazy">
+          <!-- Para trocar pela foto real, siga a mesma instrução da foto da capa (formato 4:5). -->
+          <div class="ph-foto" role="img" data-i18n-aria="sobre_foto_aria" aria-label="Foto da creator para a seção sobre, formato 4:5"><span data-i18n="hero_foto_legenda">foto da creator 4:5</span></div>
         </div>
         <div class="sobre-texto reveal">
           <p class="eyebrow"><b>01</b><span data-i18n="sobre_eyebrow">Quem sou</span></p>
           <h2 data-i18n="sobre_titulo">Sobre <em>mim</em></h2>
-          <p data-i18n="sobre_p1">Meu olhar é atento aos detalhes e à forma como cada história pode ser contada de maneira natural, bonita e envolvente. Gosto de pensar em cada vídeo como um momento real, sem exagero, só mostrando o produto do jeito que ele apareceria no dia a dia de qualquer pessoa.</p>
-          <p data-i18n="sobre_p2">Já criei conteúdo para marcas de beleza, skincare, moda e comida, sempre buscando um resultado que pareça genuíno na tela e que funcione de verdade para quem contrata. Atendo de Sua Cidade e entrego tudo dentro do prazo combinado.</p>
+          <p data-i18n="sobre_p1">Escreva aqui um texto curto, caloroso e em primeira pessoa, contando quem você é e como gosta de criar conteúdo.</p>
+          <p data-i18n="sobre_p2">Fale também do seu jeito de trabalhar com as marcas e do que as pessoas podem esperar de você. Atendo de Sua Cidade.</p>
           <ul class="promessas">
             <li data-i18n="promessa1">Roteiro aprovado antes de gravar</li>
             <li data-i18n="promessa2">Uma rodada de ajuste inclusa</li>
             <li data-i18n="promessa3">Entrega em até 72 horas úteis</li>
           </ul>
-          <p class="assinatura">Jéssica Mendes</p>
+          <p class="assinatura">SEU NOME</p>
         </div>
       </div>
     </section>
@@ -671,7 +689,7 @@
         <div class="secao-cab reveal">
           <p class="eyebrow"><b>02</b><span data-i18n="destaques_eyebrow">Destaques</span></p>
           <h2 data-i18n="destaques_titulo">Conteúdos de <em>destaque</em></h2>
-          <p data-i18n="destaques_sub">Alguns vídeos que representam bem o meu estilo de criação.</p>
+          <p data-i18n="destaques_sub">Escolha os três vídeos que melhor representam o seu estilo de criação.</p>
         </div>
         <div class="destaques-grid" id="destaquesGrid"></div>
       </div>
@@ -708,7 +726,7 @@
         <div class="secao-cab reveal">
           <p class="eyebrow"><b>05</b><span data-i18n="numeros_eyebrow">Resultados</span></p>
           <h2 data-i18n="numeros_titulo">Números e <em>depoimentos</em></h2>
-          <p data-i18n="numeros_sub">O que já entreguei e o que dizem as marcas com quem trabalhei.</p>
+          <p data-i18n="numeros_sub">O que você já entregou e o que dizem as marcas com quem trabalhou.</p>
         </div>
         <div class="metricas-grid" id="metricasGrid"></div>
         <p class="subtitulo-bloco reveal" data-i18n="subtitulo_campanhas">Resultados de campanha</p>
@@ -725,10 +743,11 @@
           <p class="eyebrow"><b>06</b><span data-i18n="contato_eyebrow">Contato</span></p>
           <h2 class="secao-cab" style="margin:0 0 0.4em;font-size:clamp(2.2rem,5vw,3.7rem);font-weight:300;" data-i18n="contato_titulo">Bora criar <em>juntos</em>?</h2>
           <p style="color:var(--tinta-suave);font-size:1.05rem;max-width:30em;" data-i18n="contato_sub">Me conta um pouco sobre a sua marca e eu respondo rapidinho.</p>
+          <!-- Troque os dados de contato abaixo (WhatsApp, e-mail e Instagram) pelos seus -->
           <div class="contato-botoes">
-            <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener">WhatsApp (11) 98979-4275</a>
-            <a class="botao botao-secundario" href="mailto:jessicamendes.ugc@gmail.com">jessicamendes.ugc@gmail.com</a>
-            <a class="botao botao-secundario" href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener">Instagram @jessicavisual.ugc</a>
+            <a class="botao botao-primario" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener">WhatsApp (00) 00000-0000</a>
+            <a class="botao botao-secundario" href="mailto:seuemail@email.com">seuemail@email.com</a>
+            <a class="botao botao-secundario" href="https://instagram.com/seuusuario" target="_blank" rel="noopener">Instagram @seuusuario</a>
           </div>
         </div>
         <form id="formContato" class="form-card reveal" novalidate>
@@ -755,14 +774,14 @@
   <footer>
     <div class="container">
       <div class="rodape-grid">
-        <p class="nome">Jéssica Mendes</p>
+        <p class="nome">SEU NOME</p>
         <div class="rodape-redes">
-          <a href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://wa.me/5511989794275" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="mailto:jessicamendes.ugc@gmail.com" data-i18n="footer_email">E-mail</a>
+          <a href="https://instagram.com/seuusuario" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:seuemail@email.com" data-i18n="footer_email">E-mail</a>
         </div>
       </div>
-      <p class="ano" data-i18n="footer_ano">© <span id="anoAtual"></span> Jéssica Mendes. Todos os direitos reservados.</p>
+      <p class="ano" data-i18n="footer_ano">© <span id="anoAtual"></span> SEU NOME. Todos os direitos reservados.</p>
     </div>
   </footer>
 
@@ -807,37 +826,38 @@
     pt: {
       // Marcas com quem já trabalhou (faixa rolante da capa)
       marcas: [
-        "Mundo Flex", "Dance Glow", "Marca 03", "Marca 04", "Marca 05", "Marca 06",
+        "Marca 01", "Marca 02", "Marca 03", "Marca 04", "Marca 05", "Marca 06",
         "Marca 07", "Marca 08", "Marca 09", "Marca 10", "Marca 11", "Marca 12"
       ],
 
       // Conteúdos de destaque (3 espaços de vídeo).
-      // video: ID do YouTube (o código que vem depois de /shorts/ no link). Deixe "" se ainda não tiver o vídeo.
+      // video: ID do YouTube (o código que vem depois de /shorts/ no link). Deixe "" enquanto não tiver o vídeo.
       // capa: opcional. Caminho de uma imagem 9:16 (ex.: "public/capa1.jpg") para trocar a miniatura automática.
       destaques: [
-        { titulo: "Vídeo destaque 01", contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.", video: "dfxWcAF3jVI", capa: "", numero: "570", rotulo: "visualizações", novo: true },
-        { titulo: "Vídeo destaque 02", contexto: "Vídeo curto pensado para performar bem em campanhas pagas.", video: "NskwmQoX8xI", capa: "", numero: "433", rotulo: "visualizações", novo: false },
-        { titulo: "Vídeo destaque 03", contexto: "Espaço reservado para o próximo conteúdo de destaque.", video: "", capa: "", numero: "+000", rotulo: "visualizações", novo: false }
+        { titulo: "Título do conteúdo 01", contexto: "Linha curta de contexto sobre este conteúdo.", video: "", capa: "", numero: "+00", rotulo: "rótulo do número", novo: false },
+        { titulo: "Título do conteúdo 02", contexto: "Linha curta de contexto sobre este conteúdo.", video: "", capa: "", numero: "+00", rotulo: "rótulo do número", novo: false },
+        { titulo: "Título do conteúdo 03", contexto: "Linha curta de contexto sobre este conteúdo.", video: "", capa: "", numero: "+00", rotulo: "rótulo do número", novo: false }
       ],
 
       // Trabalhos por nicho. "nicho" precisa bater com uma "chave" de filtros.
       // Com "video" preenchido (ID do YouTube), o vídeo toca dentro do card, no próprio site.
       trabalhos: [
-        { marca: "Mundoflex", nicho: "moda", novo: true, video: "iwIwYsA58bQ" },
-        { marca: "Garlic", nicho: "comida", novo: true, video: "tXJ2VzRaKY4" },
-        { marca: "Marca 01", nicho: "beleza", novo: false, video: "" },
-        { marca: "Marca 02", nicho: "beleza", novo: false, video: "" },
-        { marca: "Marca 03", nicho: "skincare", novo: false, video: "" },
-        { marca: "Marca 04", nicho: "skincare", novo: false, video: "" },
-        { marca: "Marca 06", nicho: "moda", novo: false, video: "" },
-        { marca: "Marca 08", nicho: "comida", novo: false, video: "" }
+        { marca: "Marca 01", nicho: "nicho1", novo: false, video: "" },
+        { marca: "Marca 02", nicho: "nicho1", novo: false, video: "" },
+        { marca: "Marca 03", nicho: "nicho2", novo: false, video: "" },
+        { marca: "Marca 04", nicho: "nicho2", novo: false, video: "" },
+        { marca: "Marca 05", nicho: "nicho3", novo: false, video: "" },
+        { marca: "Marca 06", nicho: "nicho3", novo: false, video: "" },
+        { marca: "Marca 07", nicho: "nicho4", novo: false, video: "" },
+        { marca: "Marca 08", nicho: "nicho4", novo: false, video: "" }
       ],
+      // Botões de filtro. Troque "Nicho 01" etc. pelos nomes dos seus nichos (a "chave" liga o botão aos trabalhos).
       filtros: [
         { chave: "todos", rotulo: "Todos" },
-        { chave: "beleza", rotulo: "Beleza" },
-        { chave: "skincare", rotulo: "Skincare" },
-        { chave: "moda", rotulo: "Moda" },
-        { chave: "comida", rotulo: "Comida" }
+        { chave: "nicho1", rotulo: "Nicho 01" },
+        { chave: "nicho2", rotulo: "Nicho 02" },
+        { chave: "nicho3", rotulo: "Nicho 03" },
+        { chave: "nicho4", rotulo: "Nicho 04" }
       ],
 
       // Serviços (seção Como eu te ajudo)
@@ -850,11 +870,11 @@
         { numero: "06", titulo: "Pacote mensal", texto: "Combo de vídeos e fotos entregues todo mês, com condição especial para quem fecha recorrência." }
       ],
 
-      // Métricas com contador. Só os números reais informados; o quarto espaço fica livre.
+      // Métricas com contador. Troque os zeros pelos seus números reais (valor: 1000 com formato: "mil" aparece como "1 mil").
       metricas: [
-        { valor: 2, sufixo: "+", rotulo: "vídeos entregues" },
-        { valor: 2, sufixo: "+", rotulo: "marcas atendidas" },
-        { valor: 1000, formato: "mil", sufixo: "+", rotulo: "views somadas" }
+        { valor: 0, sufixo: "+", rotulo: "vídeos entregues" },
+        { valor: 0, sufixo: "+", rotulo: "marcas atendidas" },
+        { valor: 0, sufixo: "+", rotulo: "views somadas" }
       ],
 
       // Resultados de campanha (troque os textos entre colchetes pelos resultados reais)
@@ -879,36 +899,36 @@
         capaLegenda: "capa 9:16",
         metricaLivre: "Espaço para a próxima métrica",
         milUnidade: "mil",
-        whatsappTrabalho: (marca) => `Oi Jéssica, vi o trabalho da ${marca} no seu portfólio e quero contratar`
+        whatsappTrabalho: (marca) => `Oi, vi o trabalho da ${marca} no seu portfólio e quero contratar`
       }
     },
 
     en: {
       marcas: [
-        "Mundo Flex", "Dance Glow", "Brand 03", "Brand 04", "Brand 05", "Brand 06",
+        "Brand 01", "Brand 02", "Brand 03", "Brand 04", "Brand 05", "Brand 06",
         "Brand 07", "Brand 08", "Brand 09", "Brand 10", "Brand 11", "Brand 12"
       ],
       destaques: [
-        { titulo: "Featured video 01", contexto: "Reels style content showing the product with authenticity.", video: "dfxWcAF3jVI", capa: "", numero: "570", rotulo: "views", novo: true },
-        { titulo: "Featured video 02", contexto: "Short video built to perform well in paid campaigns.", video: "NskwmQoX8xI", capa: "", numero: "433", rotulo: "views", novo: false },
-        { titulo: "Featured video 03", contexto: "Space reserved for the next featured content.", video: "", capa: "", numero: "+000", rotulo: "views", novo: false }
+        { titulo: "Content title 01", contexto: "Short context line about this content.", video: "", capa: "", numero: "+00", rotulo: "number label", novo: false },
+        { titulo: "Content title 02", contexto: "Short context line about this content.", video: "", capa: "", numero: "+00", rotulo: "number label", novo: false },
+        { titulo: "Content title 03", contexto: "Short context line about this content.", video: "", capa: "", numero: "+00", rotulo: "number label", novo: false }
       ],
       trabalhos: [
-        { marca: "Mundoflex", nicho: "moda", novo: true, video: "iwIwYsA58bQ" },
-        { marca: "Garlic", nicho: "comida", novo: true, video: "tXJ2VzRaKY4" },
-        { marca: "Brand 01", nicho: "beleza", novo: false, video: "" },
-        { marca: "Brand 02", nicho: "beleza", novo: false, video: "" },
-        { marca: "Brand 03", nicho: "skincare", novo: false, video: "" },
-        { marca: "Brand 04", nicho: "skincare", novo: false, video: "" },
-        { marca: "Brand 06", nicho: "moda", novo: false, video: "" },
-        { marca: "Brand 08", nicho: "comida", novo: false, video: "" }
+        { marca: "Brand 01", nicho: "nicho1", novo: false, video: "" },
+        { marca: "Brand 02", nicho: "nicho1", novo: false, video: "" },
+        { marca: "Brand 03", nicho: "nicho2", novo: false, video: "" },
+        { marca: "Brand 04", nicho: "nicho2", novo: false, video: "" },
+        { marca: "Brand 05", nicho: "nicho3", novo: false, video: "" },
+        { marca: "Brand 06", nicho: "nicho3", novo: false, video: "" },
+        { marca: "Brand 07", nicho: "nicho4", novo: false, video: "" },
+        { marca: "Brand 08", nicho: "nicho4", novo: false, video: "" }
       ],
       filtros: [
         { chave: "todos", rotulo: "All" },
-        { chave: "beleza", rotulo: "Beauty" },
-        { chave: "skincare", rotulo: "Skincare" },
-        { chave: "moda", rotulo: "Fashion" },
-        { chave: "comida", rotulo: "Food" }
+        { chave: "nicho1", rotulo: "Niche 01" },
+        { chave: "nicho2", rotulo: "Niche 02" },
+        { chave: "nicho3", rotulo: "Niche 03" },
+        { chave: "nicho4", rotulo: "Niche 04" }
       ],
       servicos: [
         { numero: "01", titulo: "UGC video", texto: "Authentic video filmed in my own style, ready for you to use in ads or on social media." },
@@ -919,9 +939,9 @@
         { numero: "06", titulo: "Monthly package", texto: "A monthly bundle of videos and photos, with a special rate for recurring clients." }
       ],
       metricas: [
-        { valor: 2, sufixo: "+", rotulo: "videos delivered" },
-        { valor: 2, sufixo: "+", rotulo: "brands served" },
-        { valor: 1000, formato: "mil", sufixo: "+", rotulo: "total views" }
+        { valor: 0, sufixo: "+", rotulo: "videos delivered" },
+        { valor: 0, sufixo: "+", rotulo: "brands served" },
+        { valor: 0, sufixo: "+", rotulo: "total views" }
       ],
       campanhas: [
         { titulo: "Campaign 01", marca: "Brand 01", resultado: "[Describe this campaign's result here]" },
@@ -941,7 +961,7 @@
         capaLegenda: "cover 9:16",
         metricaLivre: "Space for the next metric",
         milUnidade: "K",
-        whatsappTrabalho: (marca) => `Hi Jessica, I saw the ${marca} work on your portfolio and I would like to hire you`
+        whatsappTrabalho: (marca) => `Hi, I saw the ${marca} work on your portfolio and I would like to hire you`
       }
     }
   };
@@ -952,22 +972,23 @@
       nav_sobre: "Sobre", nav_destaques: "Destaques", nav_trabalhos: "Trabalhos",
       nav_servicos: "Serviços", nav_numeros: "Números", nav_contato: "Contato",
       nav_toggle_aria: "Abrir menu",
-      hero_frase: "Vídeos e fotos <em>autênticos</em> que ajudam marcas de beleza, skincare, moda e comida a se conectarem de verdade com as pessoas.",
+      hero_frase: "Escreva aqui uma frase curta sobre o que você faz pelas <em>marcas</em>.",
       hero_botao_falar: "Falar comigo", hero_botao_ver: "Ver os trabalhos",
       hero_num1_label: "vídeos entregues", hero_num2_label: "marcas atendidas", hero_num3_label: "views somadas",
-      hero_foto_alt: "Jéssica Mendes, UGC Creator",
+      hero_foto_aria: "Foto da creator, formato 4:5",
+      hero_foto_legenda: "foto da creator 4:5",
+      sobre_foto_aria: "Foto da creator para a seção sobre, formato 4:5",
       marcas_aria: "Marcas com quem já trabalhei",
       sobre_eyebrow: "Quem sou",
       sobre_titulo: "Sobre <em>mim</em>",
-      sobre_p1: "Meu olhar é atento aos detalhes e à forma como cada história pode ser contada de maneira natural, bonita e envolvente. Gosto de pensar em cada vídeo como um momento real, sem exagero, só mostrando o produto do jeito que ele apareceria no dia a dia de qualquer pessoa.",
-      sobre_p2: "Já criei conteúdo para marcas de beleza, skincare, moda e comida, sempre buscando um resultado que pareça genuíno na tela e que funcione de verdade para quem contrata. Atendo de Sua Cidade e entrego tudo dentro do prazo combinado.",
-      sobre_foto_alt: "Jéssica Mendes sorrindo",
+      sobre_p1: "Escreva aqui um texto curto, caloroso e em primeira pessoa, contando quem você é e como gosta de criar conteúdo.",
+      sobre_p2: "Fale também do seu jeito de trabalhar com as marcas e do que as pessoas podem esperar de você. Atendo de Sua Cidade.",
       promessa1: "Roteiro aprovado antes de gravar",
       promessa2: "Uma rodada de ajuste inclusa",
       promessa3: "Entrega em até 72 horas úteis",
       destaques_eyebrow: "Destaques",
       destaques_titulo: "Conteúdos de <em>destaque</em>",
-      destaques_sub: "Alguns vídeos que representam bem o meu estilo de criação.",
+      destaques_sub: "Escolha os três vídeos que melhor representam o seu estilo de criação.",
       trabalhos_eyebrow: "Trabalhos",
       trabalhos_titulo: "Trabalhos por <em>nicho</em>",
       trabalhos_sub: "Escolha um nicho e assista aos vídeos direto aqui no site.",
@@ -977,7 +998,7 @@
       servicos_sub: "Serviços pensados para encaixar em diferentes momentos da sua marca.",
       numeros_eyebrow: "Resultados",
       numeros_titulo: "Números e <em>depoimentos</em>",
-      numeros_sub: "O que já entreguei e o que dizem as marcas com quem trabalhei.",
+      numeros_sub: "O que você já entregou e o que dizem as marcas com quem trabalhou.",
       subtitulo_campanhas: "Resultados de campanha",
       subtitulo_depoimentos: "Depoimentos",
       contato_eyebrow: "Contato",
@@ -987,7 +1008,7 @@
       botao_enviar: "Enviar mensagem",
       confirmacao: "Mensagem recebida! Em breve eu te respondo por e-mail ou WhatsApp.",
       footer_email: "E-mail",
-      footer_ano: '© <span id="anoAtual"></span> Jéssica Mendes. Todos os direitos reservados.',
+      footer_ano: '© <span id="anoAtual"></span> SEU NOME. Todos os direitos reservados.',
       captura_fechar_aria: "Fechar",
       captura_etiqueta: "Mídia kit",
       captura_titulo: "Quer meu mídia kit completo?",
@@ -1001,22 +1022,23 @@
       nav_sobre: "About", nav_destaques: "Highlights", nav_trabalhos: "Work",
       nav_servicos: "Services", nav_numeros: "Numbers", nav_contato: "Contact",
       nav_toggle_aria: "Open menu",
-      hero_frase: "Authentic <em>videos</em> and photos that help beauty, skincare, fashion and food brands truly connect with people.",
+      hero_frase: "Write a short sentence here about what you do for <em>brands</em>.",
       hero_botao_falar: "Talk to me", hero_botao_ver: "See my work",
       hero_num1_label: "videos delivered", hero_num2_label: "brands served", hero_num3_label: "total views",
-      hero_foto_alt: "Jéssica Mendes, UGC Creator",
+      hero_foto_aria: "Creator photo, 4:5 format",
+      hero_foto_legenda: "creator photo 4:5",
+      sobre_foto_aria: "Creator photo for the about section, 4:5 format",
       marcas_aria: "Brands I have worked with",
       sobre_eyebrow: "Who I am",
       sobre_titulo: "About <em>me</em>",
-      sobre_p1: "My eye is drawn to detail and to the way every story can be told in a natural, beautiful and engaging manner. I like to think of each video as a real moment, with no exaggeration, just showing the product the way it would show up in anyone's everyday life.",
-      sobre_p2: "I have already created content for beauty, skincare, fashion and food brands, always aiming for a result that feels genuine on screen and truly works for whoever hires me. I am based in Your City and deliver everything within the agreed deadline.",
-      sobre_foto_alt: "Jéssica Mendes smiling",
+      sobre_p1: "Write a short, warm text here in the first person, telling who you are and how you like to create content.",
+      sobre_p2: "Also talk about how you work with brands and what people can expect from you. I am based in Your City.",
       promessa1: "Script approved before filming",
       promessa2: "One round of revisions included",
       promessa3: "Delivery within 72 business hours",
       destaques_eyebrow: "Highlights",
       destaques_titulo: "Featured <em>content</em>",
-      destaques_sub: "A few videos that really show my creative style.",
+      destaques_sub: "Pick the three videos that best show your creative style.",
       trabalhos_eyebrow: "Work",
       trabalhos_titulo: "Work by <em>niche</em>",
       trabalhos_sub: "Pick a niche and watch the videos right here on the site.",
@@ -1026,7 +1048,7 @@
       servicos_sub: "Services designed to fit different moments of your brand.",
       numeros_eyebrow: "Results",
       numeros_titulo: "Numbers and <em>testimonials</em>",
-      numeros_sub: "What I have delivered and what the brands I worked with say.",
+      numeros_sub: "What you have delivered and what the brands you worked with say.",
       subtitulo_campanhas: "Campaign results",
       subtitulo_depoimentos: "Testimonials",
       contato_eyebrow: "Contact",
@@ -1036,7 +1058,7 @@
       botao_enviar: "Send message",
       confirmacao: "Message received! I will get back to you soon by email or WhatsApp.",
       footer_email: "Email",
-      footer_ano: '© <span id="anoAtual"></span> Jéssica Mendes. All rights reserved.',
+      footer_ano: '© <span id="anoAtual"></span> SEU NOME. All rights reserved.',
       captura_fechar_aria: "Close",
       captura_etiqueta: "Media kit",
       captura_titulo: "Want my full media kit?",
@@ -1052,6 +1074,8 @@
   let primeiraRenderizacao = true;
   const reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const classeReveal = () => primeiraRenderizacao ? "reveal" : "reveal visivel";
+  // Troque 5500000000000 pelo seu WhatsApp com DDI e DDD
+  const WHATSAPP = "https://wa.me/5500000000000";
 
   /* ==================== VÍDEOS (tocam no próprio site) ==================== */
 
@@ -1139,7 +1163,7 @@
         <div class="trabalho-info">
           <div class="trabalho-nicho">${rotuloNicho[t.nicho] || t.nicho}</div>
           <h3 class="trabalho-titulo">${t.marca}</h3>
-          <a class="contratar-link" href="https://wa.me/5511989794275?text=${msg}" target="_blank" rel="noopener">${c.ui.contratar}</a>
+          <a class="contratar-link" href="${WHATSAPP}?text=${msg}" target="_blank" rel="noopener">${c.ui.contratar}</a>
         </div>
       </article>`;
     }).join("");
@@ -1234,10 +1258,6 @@
     document.querySelectorAll("[data-i18n-aria]").forEach(el => {
       const k = el.getAttribute("data-i18n-aria");
       if(dic[k] !== undefined) el.setAttribute("aria-label", dic[k]);
-    });
-    document.querySelectorAll("[data-i18n-alt]").forEach(el => {
-      const k = el.getAttribute("data-i18n-alt");
-      if(dic[k] !== undefined) el.setAttribute("alt", dic[k]);
     });
     document.documentElement.lang = idiomaAtual === "pt" ? "pt-BR" : "en";
   }
