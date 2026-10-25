@@ -498,6 +498,9 @@
     .servicos-topo{ grid-template-columns: 1fr; gap: 36px; }
     .foto-contato{ margin: 44px auto 0; }
   }
+  .processo-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; position: relative; z-index: 1; }
+  @media (max-width: 1000px){ .processo-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px){ .processo-grid{ grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -512,7 +515,7 @@
             <li><a href="#destaques" data-i18n="nav_destaques">Destaques</a></li>
             <li><a href="#trabalhos" data-i18n="nav_trabalhos">Trabalhos</a></li>
             <li><a href="#servicos" data-i18n="nav_servicos">Serviços</a></li>
-            <li><a href="#numeros" data-i18n="nav_numeros">Números</a></li>
+            <li><a href="#processo" data-i18n="nav_processo">Como funciona</a></li>
             <li><a href="#contato" data-i18n="nav_contato">Contato</a></li>
           </ul>
         </nav>
@@ -543,16 +546,16 @@
           </div>
           <div class="hero-numeros">
             <div class="hero-numero">
-              <strong data-contador="2" data-sufixo="+">0</strong>
-              <span data-i18n="hero_num1_label">vídeos entregues</span>
+              <strong data-contador="10" data-sufixo="+">0</strong>
+              <span data-i18n="hero_num1_label">anos no audiovisual</span>
             </div>
             <div class="hero-numero">
-              <strong data-contador="2" data-sufixo="+">0</strong>
-              <span data-i18n="hero_num2_label">marcas atendidas</span>
+              <strong data-contador="72" data-sufixo="h">0</strong>
+              <span data-i18n="hero_num2_label">prazo de entrega (úteis)</span>
             </div>
             <div class="hero-numero">
-              <strong data-contador="1000" data-formato="mil" data-sufixo="+">0</strong>
-              <span data-i18n="hero_num3_label">views somadas</span>
+              <strong data-contador="1" data-sufixo="">0</strong>
+              <span data-i18n="hero_num3_label">rodada de ajuste inclusa</span>
             </div>
           </div>
         </div>
@@ -567,7 +570,7 @@
           </figure>
         </div>
       </div>
-      <div class="marcas-faixa" data-i18n-aria="marcas_aria" aria-label="Marcas com quem já trabalhei">
+      <div class="marcas-faixa" data-i18n-aria="marcas_aria" aria-label="O que eu crio">
         <div class="marcas-track" id="marcasTrack"></div>
       </div>
     </section>
@@ -634,23 +637,24 @@
       </div>
     </section>
 
-    <!-- 6. NÚMEROS E DEPOIMENTOS -->
-    <section id="numeros" class="secao listrado">
+    <!-- 6. COMO FUNCIONA -->
+    <section id="processo" class="secao listrado">
       <div class="container">
-        <div class="secao-cab reveal">
-          <h2 data-i18n="numeros_titulo">Números e <span class="script">depoimentos</span></h2>
-          <p data-i18n="numeros_sub">O que já entreguei e o que dizem as marcas com quem trabalhei.</p>
+        <div class="servicos-topo">
+          <div class="secao-cab reveal">
+            <h2 data-i18n="processo_titulo">Como <span class="script">funciona</span></h2>
+            <p data-i18n="processo_sub">Um passo a passo simples para você saber o que esperar.</p>
+          </div>
+          <figure class="polaroid foto-servicos reveal">
+            <img src="public/foto-processo.jpg" alt="Retrato em preto e branco de Jéssica Mendes" data-i18n-alt="processo_foto_alt" loading="lazy">
+            <figcaption>Meu olhar</figcaption>
+          </figure>
         </div>
-        <div class="metricas-barra" id="metricasGrid"></div>
-        <p class="subtitulo-bloco reveal" data-i18n="subtitulo_campanhas">Resultados de campanha</p>
-        <div class="campanhas-grid" id="campanhasGrid"></div>
-        <p class="subtitulo-bloco reveal" data-i18n="subtitulo_depoimentos">Depoimentos</p>
-        <div class="depoimentos-grid" id="depoimentosGrid"></div>
+        <div class="processo-grid" id="processoGrid"></div>
       </div>
     </section>
 
-    <!-- 7. BORA CRIAR JUNTOS -->
-    <section id="contato" class="secao liso">
+    <!-- 7. BORA CRIAR JUNTOS --><section id="contato" class="secao liso">
       <svg class="estrela azul" style="top:50px;right:10%;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11 5.6-.6 10.4-5.4 11-11z"/></svg>
       <div class="container contato-grid">
         <div class="reveal">
@@ -741,18 +745,15 @@
   const conteudo = {
     pt: {
       // Marcas com quem já trabalhou (faixa rolante da capa)
-      marcas: [
-        "Mundo Flex", "Dance Glow", "Marca 03", "Marca 04", "Marca 05", "Marca 06",
-        "Marca 07", "Marca 08", "Marca 09", "Marca 10", "Marca 11", "Marca 12"
-      ],
+      marcas: [ "Beleza", "Skincare", "Moda", "Comida", "Unboxing", "Reels", "Fotos de produto", "Conteúdo para anúncios" ],
 
       // Conteúdos de destaque (3 espaços de vídeo).
       // video: ID do YouTube (o código que vem depois de /shorts/ no link). Deixe "" se ainda não tiver o vídeo.
       // capa: opcional. Caminho de uma imagem 9:16 (ex.: "public/capa1.jpg") para trocar a miniatura automática.
       destaques: [
-        { titulo: "Vídeo destaque 01", contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.", video: "", capa: "", numero: "570", rotulo: "visualizações", novo: false },
-        { titulo: "Vídeo destaque 02", contexto: "Vídeo curto pensado para performar bem em campanhas pagas.", video: "", capa: "", numero: "433", rotulo: "visualizações", novo: false },
-        { titulo: "Vídeo destaque 03", contexto: "Espaço reservado para o próximo conteúdo de destaque.", video: "", capa: "", numero: "+000", rotulo: "visualizações", novo: false }
+        { titulo: "Vídeo destaque 01", contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.", video: "", capa: "", numero: "", rotulo: "", novo: false },
+        { titulo: "Vídeo destaque 02", contexto: "Vídeo curto pensado para performar bem em campanhas pagas.", video: "", capa: "", numero: "", rotulo: "", novo: false },
+        { titulo: "Vídeo destaque 03", contexto: "Espaço reservado para o próximo conteúdo de destaque.", video: "", capa: "", numero: "", rotulo: "", novo: false }
       ],
 
       // Trabalhos por nicho. "nicho" precisa bater com uma "chave" de filtros.
@@ -819,14 +820,11 @@
     },
 
     en: {
-      marcas: [
-        "Mundo Flex", "Dance Glow", "Brand 03", "Brand 04", "Brand 05", "Brand 06",
-        "Brand 07", "Brand 08", "Brand 09", "Brand 10", "Brand 11", "Brand 12"
-      ],
+      marcas: [ "Beauty", "Skincare", "Fashion", "Food", "Unboxing", "Reels", "Product photos", "Content for ads" ],
       destaques: [
-        { titulo: "Featured video 01", contexto: "Reels style content showing the product with authenticity.", video: "", capa: "", numero: "570", rotulo: "views", novo: false },
-        { titulo: "Featured video 02", contexto: "Short video built to perform well in paid campaigns.", video: "", capa: "", numero: "433", rotulo: "views", novo: false },
-        { titulo: "Featured video 03", contexto: "Space reserved for the next featured content.", video: "", capa: "", numero: "+000", rotulo: "views", novo: false }
+        { titulo: "Featured video 01", contexto: "Reels style content showing the product with authenticity.", video: "", capa: "", numero: "", rotulo: "", novo: false },
+        { titulo: "Featured video 02", contexto: "Short video built to perform well in paid campaigns.", video: "", capa: "", numero: "", rotulo: "", novo: false },
+        { titulo: "Featured video 03", contexto: "Space reserved for the next featured content.", video: "", capa: "", numero: "", rotulo: "", novo: false }
       ],
       trabalhos: [
         { marca: "Mundoflex", nicho: "moda", novo: false, video: "" },
@@ -885,16 +883,16 @@
   const textosEstaticos = {
     pt: {
       nav_sobre: "Sobre", nav_destaques: "Destaques", nav_trabalhos: "Trabalhos",
-      nav_servicos: "Serviços", nav_numeros: "Números", nav_contato: "Contato",
+      nav_servicos: "Serviços", nav_processo: "Como funciona", nav_contato: "Contato",
       nav_toggle_aria: "Abrir menu",
       hero_frase: "Vídeos e fotos <em>autênticos</em> que ajudam marcas de beleza, skincare, moda e comida a se conectarem de verdade com as pessoas.",
       hero_botao_falar: "Falar comigo", hero_botao_ver: "Ver os trabalhos",
-      hero_num1_label: "vídeos entregues", hero_num2_label: "marcas atendidas", hero_num3_label: "views somadas",
+      hero_num1_label: "anos no audiovisual", hero_num2_label: "prazo de entrega (úteis)", hero_num3_label: "rodada de ajuste inclusa",
       hero_foto_alt: "Jéssica Mendes, UGC Creator",
       sobre_foto_alt: "Jéssica Mendes sorrindo",
       servicos_foto_alt: "Jéssica Mendes organizando caixas de produtos",
       contato_foto_alt: "Jéssica Mendes sorrindo",
-      marcas_aria: "Marcas com quem já trabalhei",
+      marcas_aria: "O que eu crio",
       sobre_titulo: 'Sobre <span class="script">mim</span>',
       sobre_p1: "Oi, eu sou a Jess! Há mais de 10 anos, estou nos bastidores do audiovisual como maquiadora e produtora. Hoje, uso esse olhar para criar UGC que parece vida real: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia de qualquer pessoa.",
       sobre_p2: "Já criei conteúdo para marcas de beleza, moda e comida, sempre com vídeos que passam confiança e prendem a atenção de quem está assistindo. Vamos criar algo juntas? Me chama e conta sobre o seu produto!",
@@ -908,8 +906,9 @@
       filtros_aria: "Filtrar trabalhos por nicho",
       servicos_titulo: 'Como eu te <span class="script">ajudo</span>',
       servicos_sub: "Serviços pensados para encaixar em diferentes momentos da sua marca.",
-      numeros_titulo: 'Números e <span class="script">depoimentos</span>',
-      numeros_sub: "O que já entreguei e o que dizem as marcas com quem trabalhei.",
+      processo_titulo: 'Como <span class="script">funciona</span>',
+      processo_sub: "Um passo a passo simples para você saber o que esperar.",
+      processo_foto_alt: "Retrato em preto e branco de Jéssica Mendes",
       subtitulo_campanhas: "Resultados de campanha",
       subtitulo_depoimentos: "Depoimentos",
       contato_titulo: "Bora criar algo <em>juntos</em>.",
@@ -930,16 +929,16 @@
     },
     en: {
       nav_sobre: "About", nav_destaques: "Highlights", nav_trabalhos: "Work",
-      nav_servicos: "Services", nav_numeros: "Numbers", nav_contato: "Contact",
+      nav_servicos: "Services", nav_processo: "How it works", nav_contato: "Contact",
       nav_toggle_aria: "Open menu",
       hero_frase: "Authentic <em>videos</em> and photos that help beauty, skincare, fashion and food brands truly connect with people.",
       hero_botao_falar: "Talk to me", hero_botao_ver: "See my work",
-      hero_num1_label: "videos delivered", hero_num2_label: "brands served", hero_num3_label: "total views",
+      hero_num1_label: "years in audiovisual", hero_num2_label: "delivery time (business)", hero_num3_label: "round of revisions included",
       hero_foto_alt: "Jéssica Mendes, UGC Creator",
       sobre_foto_alt: "Jéssica Mendes smiling",
       servicos_foto_alt: "Jéssica Mendes organizing product boxes",
       contato_foto_alt: "Jéssica Mendes smiling",
-      marcas_aria: "Brands I have worked with",
+      marcas_aria: "What I create",
       sobre_titulo: 'About <span class="script">me</span>',
       sobre_p1: "Hi, I am Jess! For more than 10 years I have been behind the scenes of audiovisual work as a makeup artist and producer. Today I use that eye to create UGC that feels like real life: natural, beautiful and never over the top, showing the product the way it shows up in anyone's everyday life.",
       sobre_p2: "I have created content for beauty, fashion and food brands, always with videos that build trust and hold the attention of whoever is watching. Shall we create something together? Message me and tell me about your product!",
@@ -953,8 +952,9 @@
       filtros_aria: "Filter work by niche",
       servicos_titulo: 'How I can <span class="script">help</span>',
       servicos_sub: "Services designed to fit different moments of your brand.",
-      numeros_titulo: 'Numbers and <span class="script">testimonials</span>',
-      numeros_sub: "What I have delivered and what the brands I worked with say.",
+      processo_titulo: 'How it <span class="script">works</span>',
+      processo_sub: "A simple step by step so you know what to expect.",
+      processo_foto_alt: "Black and white portrait of Jéssica Mendes",
       subtitulo_campanhas: "Campaign results",
       subtitulo_depoimentos: "Testimonials",
       contato_titulo: "Let's create something <em>together</em>.",
@@ -973,6 +973,21 @@
       captura_obrigado_titulo: "All set!",
       captura_obrigado_texto: "Got your details. I will send the full media kit to your email soon."
     }
+  };
+
+  const processo = {
+    pt: [
+      { numero: "01", titulo: "Você me conta", texto: "Você me passa o produto e o objetivo do vídeo." },
+      { numero: "02", titulo: "Roteiro aprovado", texto: "Eu envio o roteiro e só gravo depois da sua aprovação." },
+      { numero: "03", titulo: "Gravo e edito", texto: "Crio o conteúdo com o olhar de quem trabalha com audiovisual há mais de 10 anos." },
+      { numero: "04", titulo: "Entrega e ajuste", texto: "Entrego em até 72 horas úteis, com uma rodada de ajuste inclusa." }
+    ],
+    en: [
+      { numero: "01", titulo: "You tell me", texto: "You share the product and the goal of the video." },
+      { numero: "02", titulo: "Script approved", texto: "I send the script and only film after you approve it." },
+      { numero: "03", titulo: "I film and edit", texto: "I create the content with the eye of someone who has worked in audiovisual for over 10 years." },
+      { numero: "04", titulo: "Delivery and revisions", texto: "Delivered within 72 business hours, with one round of revisions included." }
+    ]
   };
 
   let idiomaAtual = "pt";
@@ -1032,8 +1047,7 @@
       <article class="destaque-card ${classeReveal()}">
         ${htmlCelular(d, c.ui, d.titulo)}
         <div class="destaque-info">
-          <div class="destaque-numero">${d.numero}</div>
-          <div class="destaque-rotulo">${d.rotulo}</div>
+          ${d.numero ? `<div class="destaque-numero">${d.numero}</div><div class="destaque-rotulo">${d.rotulo}</div>` : ""}
           <h3 class="destaque-titulo">${d.titulo}</h3>
           <p class="destaque-contexto">${d.contexto}</p>
         </div>
@@ -1091,6 +1105,16 @@
     pacote: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9 15l2 2 4-4"/></svg>`
   };
   const ORDEM_ICONES = ["video", "corte", "foto", "caixa", "perfil", "pacote"];
+
+  function renderizarProcesso(){
+    document.getElementById("processoGrid").innerHTML = processo[idiomaAtual].map(s => `
+      <article class="servico-card ${classeReveal()}">
+        <span class="servico-numero">${s.numero}</span>
+        <h3>${s.titulo}</h3>
+        <p>${s.texto}</p>
+      </article>
+    `).join("");
+  }
 
   function renderizarServicos(){    document.getElementById("servicosGrid").innerHTML = conteudo[idiomaAtual].servicos.map((s, i) => `
       <article class="servico-card ${classeReveal()}">
@@ -1156,9 +1180,7 @@
     renderizarFiltros();
     renderizarTrabalhos();
     renderizarServicos();
-    renderizarMetricas();
-    renderizarCampanhas();
-    renderizarDepoimentos();
+    renderizarProcesso();
     ativarVideos();
   }
 
