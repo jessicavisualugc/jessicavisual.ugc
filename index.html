@@ -163,8 +163,8 @@
   .hero-grid{ display: grid; grid-template-columns: 1.15fr 0.85fr; min-height: min(86vh, 720px); }
   .hero-painel{
     position: relative;
-    background: #5a7cc2;
-    color: var(--branco);
+    background: #c3d3f0;
+    color: var(--azul-profundo);
     padding: 64px 48px 56px max(28px, calc((100vw - 1160px) / 2 + 28px));
     display: flex;
     flex-direction: column;
@@ -172,23 +172,23 @@
   }
   .hero-kicker{ font-weight: 700; font-size: 0.78rem; letter-spacing: 0.3em; text-transform: uppercase; margin: 0 0 18px; }
   .hero-painel h1{
-    color: var(--branco);
+    color: var(--azul-escuro);
     font-size: clamp(3.4rem, 8.4vw, 7rem);
     line-height: 0.95;
     margin-bottom: 0.3em;
-    text-shadow: 0 2px 18px rgba(38, 57, 107, 0.25);
+    text-shadow: none;
   }
   .hero-painel h1 span{ display: block; }
   .hero-painel h1 span + span{ padding-left: 0.5em; }
   .hero-frase{ font-size: clamp(1rem, 1.5vw, 1.18rem); max-width: 30em; margin-bottom: 28px; }
   .hero-frase em{ font-family: "Playfair Display", serif; }
   .hero-botoes{ display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 36px; }
-  .hero-painel .botao-primario{ background: var(--branco); color: var(--azul-profundo); border-color: var(--branco); }
-  .hero-painel .botao-primario:hover{ background: var(--ceu); }
-  .hero-painel .botao-secundario{ color: var(--branco); border-color: var(--branco); }
-  .hero-painel .botao-secundario:hover{ background: var(--branco); color: var(--azul-profundo); }
-  .hero-numeros{ display: flex; flex-wrap: wrap; gap: 12px 40px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.55); max-width: 30em; }
-  .hero-numero strong{ display: block; font-family: "Playfair Display", serif; font-weight: 400; font-size: 2.4rem; line-height: 1.1; }
+  .hero-painel .botao-primario{ background: var(--azul-escuro); color: var(--branco); border-color: var(--azul-escuro); }
+  .hero-painel .botao-primario:hover{ background: var(--azul-profundo); }
+  .hero-painel .botao-secundario{ color: var(--azul-escuro); border-color: var(--azul-escuro); }
+  .hero-painel .botao-secundario:hover{ background: var(--azul-escuro); color: var(--branco); }
+  .hero-numeros{ display: flex; flex-wrap: wrap; gap: 12px 40px; padding-top: 22px; border-top: 1px solid rgba(54, 84, 143, 0.4); max-width: 30em; }
+  .hero-numero strong{ color: var(--azul-escuro); display: block; font-family: "Playfair Display", serif; font-weight: 400; font-size: 2.4rem; line-height: 1.1; }
   .hero-numero span{ font-size: 0.76rem; font-weight: 600; letter-spacing: 0.04em; }
 
   .hero-foto-area{ position: relative; display: flex; align-items: center; justify-content: center; padding: 56px 28px; overflow: hidden; }
@@ -214,7 +214,7 @@
   .polaroid::before{ content: ""; position: absolute; top: -14px; left: 50%; width: 92px; height: 26px; transform: translateX(-50%) rotate(-3deg); background: rgba(231, 174, 191, 0.75); z-index: 2; }
   .polaroid.inclinada-direita{ transform: rotate(2.5deg); }
 
-  .marcas-faixa{ background: var(--azul-profundo); padding: 16px 0; overflow: hidden; white-space: nowrap; }
+  .marcas-faixa{ background: #3d5c9c; padding: 16px 0; overflow: hidden; white-space: nowrap; }
   .marcas-track{ display: inline-flex; animation: rolar-marcas 32s linear infinite; }
   .marcas-track span{
     display: inline-flex;
