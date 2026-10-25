@@ -17,10 +17,11 @@
     --azul-medio: #a8bde8;
     --azul-escuro: #36548f;
     --azul-profundo: #26396b;
-    --tinta: #26304d;
-    --tinta-suave: #525f80;
+    --tinta: #4a3128;
+    --tinta-suave: #7d5e4e;
     --branco: #ffffff;
     --rosa: #f6dbe2;
+    --marrom: #6b4332;
     --rosa-claro: #fcf1f4;
     --rosa-forte: #e7aebf;
     --rosa-escuro: #a9506a;
@@ -51,7 +52,7 @@
     font-weight: 400;
     line-height: 1.05;
     margin: 0 0 0.4em 0;
-    color: var(--azul-escuro);
+    color: var(--marrom);
   }
   .script{
     font-family: "Pinyon Script", cursive;
@@ -68,7 +69,7 @@
   :focus-visible{ outline: 3px solid var(--azul-profundo); outline-offset: 3px; }
 
   .listrado{ background: repeating-linear-gradient(90deg, #fcebf0 0 38px, var(--listra) 38px 76px); }
-  .liso{ background: var(--rosa-claro); }
+  .liso{ background: #fbf8f2; }
 
   /* Botões */
   .botao{
@@ -261,10 +262,10 @@
     border: 1.5px solid var(--azul-escuro);
     font-weight: 700;
     font-size: 0.9rem;
-    color: var(--azul-profundo);
+    color: var(--marrom);
   }
   .promessas li::before{ content: "✱"; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa); color: var(--rosa-escuro); font-size: 0.95rem; }
-  .assinatura{ font-family: "Pinyon Script", cursive; font-size: 2.8rem; line-height: 1; color: var(--azul-escuro); margin: 22px 0 0; }
+  .assinatura{ font-family: "Pinyon Script", cursive; font-size: 2.8rem; line-height: 1; color: var(--marrom); margin: 22px 0 0; }
 
   /* Celulares e vídeos */
   .celular{ position: relative; width: 100%; max-width: 250px; margin: 0 auto; background: #10131c; border-radius: 36px; padding: 10px; box-shadow: var(--sombra); }
@@ -368,8 +369,8 @@
   .metricas-barra{ position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); background: #f6dbe2; border: 1.5px solid var(--azul-escuro); margin-bottom: 70px; }
   .metrica-card{ padding: 30px 22px; text-align: center; border-right: 1.5px solid var(--azul-escuro); }
   .metrica-card:last-child{ border-right: none; }
-  .metrica-card strong{ display: block; font-family: "Playfair Display", serif; font-weight: 400; font-size: clamp(2.4rem, 4.6vw, 3.6rem); line-height: 1; color: var(--azul-escuro); }
-  .metrica-card span{ display: block; margin-top: 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--azul-profundo); }
+  .metrica-card strong{ display: block; font-family: "Playfair Display", serif; font-weight: 400; font-size: clamp(2.4rem, 4.6vw, 3.6rem); line-height: 1; color: var(--marrom); }
+  .metrica-card span{ display: block; margin-top: 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--marrom); }
   .metrica-card.placeholder{ opacity: 0.65; }
   .subtitulo-bloco{ position: relative; z-index: 1; font-family: "Bebas Neue", Impact, sans-serif; font-size: 2.4rem; letter-spacing: 0.02em; color: var(--azul); margin: 0 0 20px; line-height: 1; }
   .campanhas-grid{ position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 70px; }
@@ -381,19 +382,19 @@
   .depoimento-card{ background: var(--branco); border: 1.5px solid var(--azul-escuro); padding: 26px 22px; margin: 0; }
   .depoimento-aspas{ display: block; font-family: "Playfair Display", serif; font-size: 3.4rem; line-height: 0.7; color: var(--rosa-forte); margin-bottom: 10px; }
   .depoimento-texto{ font-size: 0.92rem; color: var(--tinta-suave); }
-  .depoimento-nome{ font-weight: 800; font-size: 0.92rem; margin: 14px 0 0; color: var(--azul-profundo); }
+  .depoimento-nome{ font-weight: 800; font-size: 0.92rem; margin: 14px 0 0; color: var(--marrom); }
   .depoimento-empresa{ font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-suave); margin: 0; }
 
   /* 7. CONTATO */
   .contato-grid{ position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
   .contato-titulo{ font-family: "Playfair Display", serif; font-size: clamp(3rem, 8vw, 6.2rem); line-height: 0.95; color: var(--azul); margin: 0 0 24px; }
-  .contato-titulo em{ font-style: italic; color: var(--azul-escuro); }
+  .contato-titulo em{ font-style: italic; color: var(--marrom); }
   .contato-sub{ color: var(--tinta-suave); font-size: 1.05rem; max-width: 28em; }
   .contato-botoes{ display: grid; gap: 12px; max-width: 360px; margin-top: 28px; }
   .contato-botoes .botao{ justify-content: flex-start; }
   .form-card{ background: var(--branco); border: 1.5px solid var(--azul-escuro); padding: 34px 30px; box-shadow: 8px 8px 0 var(--rosa-forte); }
   .form-campo{ margin-bottom: 18px; display: flex; flex-direction: column; gap: 7px; }
-  .form-campo label{ font-weight: 800; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--azul-escuro); }
+  .form-campo label{ font-weight: 800; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--marrom); }
   .form-campo input, .form-campo textarea{ font-family: inherit; font-size: 1rem; padding: 13px 14px; border: 1.5px solid var(--linha); border-radius: 2px; background: var(--ceu-claro); color: var(--tinta); resize: vertical; }
   .form-campo input:focus, .form-campo textarea:focus{ border-color: var(--azul-escuro); outline: none; background: #fff; }
   .form-confirmacao{ display: none; margin-top: 16px; padding: 14px 16px; background: rgba(111, 144, 214, 0.2); border: 1.5px solid var(--azul-escuro); color: var(--azul-profundo); font-weight: 700; }
@@ -411,7 +412,7 @@
   /* CARD DE CAPTURA */
   .captura-fundo{ position: fixed; inset: 0; background: rgba(38, 57, 107, 0.6); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
   .captura-fundo.aberto{ display: flex; }
-  .captura-modal{ position: relative; width: 100%; max-width: 430px; background: var(--rosa-claro); border: 1.5px solid var(--azul-escuro); padding: 38px 32px 32px; box-shadow: 10px 10px 0 var(--azul-medio); }
+  .captura-modal{ position: relative; width: 100%; max-width: 430px; background: #fbf8f2; border: 1.5px solid var(--azul-escuro); padding: 38px 32px 32px; box-shadow: 10px 10px 0 var(--azul-medio); }
   .captura-fechar{ position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border: 1.5px solid var(--azul-escuro); background: transparent; cursor: pointer; font-size: 1rem; color: var(--azul-escuro); }
   .captura-etiqueta{ display: inline-block; background: var(--azul-escuro); color: var(--branco); font-size: 0.64rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; margin-bottom: 14px; }
   .captura-modal h3{ font-size: 1.8rem; margin-bottom: 8px; }
