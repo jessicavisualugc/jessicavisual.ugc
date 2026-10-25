@@ -67,7 +67,7 @@
 
   :focus-visible{ outline: 3px solid var(--azul-profundo); outline-offset: 3px; }
 
-  .listrado{ background: repeating-linear-gradient(90deg, #f8faff 0 38px, var(--listra) 38px 76px); }
+  .listrado{ background: repeating-linear-gradient(90deg, #fcebf0 0 38px, var(--listra) 38px 76px); }
   .liso{ background: var(--rosa-claro); }
 
   /* Botões */
@@ -157,14 +157,15 @@
   /* Decoração */
   .estrela{ position: absolute; width: 34px; height: 34px; color: var(--branco); pointer-events: none; }
   .estrela.azul{ color: var(--azul); }
+  .hero-painel .estrela{ color: var(--rosa-forte); }
   .ponto{ position: absolute; width: 11px; height: 11px; border-radius: 50%; background: var(--azul); pointer-events: none; }
 
   /* 1. CAPA */
   .hero-grid{ display: grid; grid-template-columns: 1.15fr 0.85fr; min-height: min(86vh, 720px); }
   .hero-painel{
     position: relative;
-    background: #c3d3f0;
-    color: var(--azul-profundo);
+    background: #f1e8dc;
+    color: #5e3d2e;
     padding: 64px 48px 56px max(28px, calc((100vw - 1160px) / 2 + 28px));
     display: flex;
     flex-direction: column;
@@ -172,7 +173,7 @@
   }
   .hero-kicker{ font-weight: 700; font-size: 0.78rem; letter-spacing: 0.3em; text-transform: uppercase; margin: 0 0 18px; }
   .hero-painel h1{
-    color: var(--azul-escuro);
+    color: #6b4332;
     font-size: clamp(3.4rem, 8.4vw, 7rem);
     line-height: 0.95;
     margin-bottom: 0.3em;
@@ -183,12 +184,12 @@
   .hero-frase{ font-size: clamp(1rem, 1.5vw, 1.18rem); max-width: 30em; margin-bottom: 28px; }
   .hero-frase em{ font-family: "Playfair Display", serif; }
   .hero-botoes{ display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 36px; }
-  .hero-painel .botao-primario{ background: var(--azul-escuro); color: var(--branco); border-color: var(--azul-escuro); }
-  .hero-painel .botao-primario:hover{ background: var(--azul-profundo); }
-  .hero-painel .botao-secundario{ color: var(--azul-escuro); border-color: var(--azul-escuro); }
-  .hero-painel .botao-secundario:hover{ background: var(--azul-escuro); color: var(--branco); }
-  .hero-numeros{ display: flex; flex-wrap: wrap; gap: 12px 40px; padding-top: 22px; border-top: 1px solid rgba(54, 84, 143, 0.4); max-width: 30em; }
-  .hero-numero strong{ color: var(--azul-escuro); display: block; font-family: "Playfair Display", serif; font-weight: 400; font-size: 2.4rem; line-height: 1.1; }
+  .hero-painel .botao-primario{ background: #6b4332; color: var(--branco); border-color: #6b4332; }
+  .hero-painel .botao-primario:hover{ background: #4e3023; }
+  .hero-painel .botao-secundario{ color: #6b4332; border-color: #6b4332; }
+  .hero-painel .botao-secundario:hover{ background: #6b4332; color: var(--branco); }
+  .hero-numeros{ display: flex; flex-wrap: wrap; gap: 12px 40px; padding-top: 22px; border-top: 1px solid rgba(107, 67, 50, 0.4); max-width: 30em; }
+  .hero-numero strong{ color: #6b4332; display: block; font-family: "Playfair Display", serif; font-weight: 400; font-size: 2.4rem; line-height: 1.1; }
   .hero-numero span{ font-size: 0.76rem; font-weight: 600; letter-spacing: 0.04em; }
 
   .hero-foto-area{ position: relative; display: flex; align-items: center; justify-content: center; padding: 56px 28px; overflow: hidden; }
