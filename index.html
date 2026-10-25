@@ -546,7 +546,7 @@
       <svg class="estrela azul" style="top:46px;right:8%;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11 5.6-.6 10.4-5.4 11-11z"/></svg>
       <div class="container sobre-grid">
         <figure class="polaroid inclinada-direita reveal" style="margin:0 auto;">
-          <img src="public/foto-capa.jpg" alt="Jéssica Mendes sorrindo" data-i18n-alt="sobre_foto_alt" loading="lazy">
+          <img src="public/foto-sobre.jpg" alt="Jéssica Mendes sorrindo" data-i18n-alt="sobre_foto_alt" loading="lazy">
           <figcaption>UGC Creator</figcaption>
         </figure>
         <div class="sobre-texto reveal">
@@ -709,16 +709,16 @@
       // video: ID do YouTube (o código que vem depois de /shorts/ no link). Deixe "" se ainda não tiver o vídeo.
       // capa: opcional. Caminho de uma imagem 9:16 (ex.: "public/capa1.jpg") para trocar a miniatura automática.
       destaques: [
-        { titulo: "Vídeo destaque 01", contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.", video: "dfxWcAF3jVI", capa: "", numero: "570", rotulo: "visualizações", novo: true },
-        { titulo: "Vídeo destaque 02", contexto: "Vídeo curto pensado para performar bem em campanhas pagas.", video: "NskwmQoX8xI", capa: "", numero: "433", rotulo: "visualizações", novo: false },
+        { titulo: "Vídeo destaque 01", contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.", video: "", capa: "", numero: "570", rotulo: "visualizações", novo: false },
+        { titulo: "Vídeo destaque 02", contexto: "Vídeo curto pensado para performar bem em campanhas pagas.", video: "", capa: "", numero: "433", rotulo: "visualizações", novo: false },
         { titulo: "Vídeo destaque 03", contexto: "Espaço reservado para o próximo conteúdo de destaque.", video: "", capa: "", numero: "+000", rotulo: "visualizações", novo: false }
       ],
 
       // Trabalhos por nicho. "nicho" precisa bater com uma "chave" de filtros.
       // Com "video" preenchido (ID do YouTube), o vídeo toca dentro do celular, no próprio site.
       trabalhos: [
-        { marca: "Mundoflex", nicho: "moda", novo: true, video: "iwIwYsA58bQ" },
-        { marca: "Garlic", nicho: "comida", novo: true, video: "tXJ2VzRaKY4" },
+        { marca: "Mundoflex", nicho: "moda", novo: false, video: "" },
+        { marca: "Garlic", nicho: "comida", novo: false, video: "" },
         { marca: "Marca 01", nicho: "beleza", novo: false, video: "" },
         { marca: "Marca 02", nicho: "beleza", novo: false, video: "" },
         { marca: "Marca 03", nicho: "skincare", novo: false, video: "" },
@@ -783,13 +783,13 @@
         "Brand 07", "Brand 08", "Brand 09", "Brand 10", "Brand 11", "Brand 12"
       ],
       destaques: [
-        { titulo: "Featured video 01", contexto: "Reels style content showing the product with authenticity.", video: "dfxWcAF3jVI", capa: "", numero: "570", rotulo: "views", novo: true },
-        { titulo: "Featured video 02", contexto: "Short video built to perform well in paid campaigns.", video: "NskwmQoX8xI", capa: "", numero: "433", rotulo: "views", novo: false },
+        { titulo: "Featured video 01", contexto: "Reels style content showing the product with authenticity.", video: "", capa: "", numero: "570", rotulo: "views", novo: false },
+        { titulo: "Featured video 02", contexto: "Short video built to perform well in paid campaigns.", video: "", capa: "", numero: "433", rotulo: "views", novo: false },
         { titulo: "Featured video 03", contexto: "Space reserved for the next featured content.", video: "", capa: "", numero: "+000", rotulo: "views", novo: false }
       ],
       trabalhos: [
-        { marca: "Mundoflex", nicho: "moda", novo: true, video: "iwIwYsA58bQ" },
-        { marca: "Garlic", nicho: "comida", novo: true, video: "tXJ2VzRaKY4" },
+        { marca: "Mundoflex", nicho: "moda", novo: false, video: "" },
+        { marca: "Garlic", nicho: "comida", novo: false, video: "" },
         { marca: "Brand 01", nicho: "beleza", novo: false, video: "" },
         { marca: "Brand 02", nicho: "beleza", novo: false, video: "" },
         { marca: "Brand 03", nicho: "skincare", novo: false, video: "" },
