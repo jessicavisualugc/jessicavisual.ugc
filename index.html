@@ -20,6 +20,10 @@
     --tinta: #26304d;
     --tinta-suave: #525f80;
     --branco: #ffffff;
+    --rosa: #f6dbe2;
+    --rosa-claro: #fcf1f4;
+    --rosa-forte: #e7aebf;
+    --rosa-escuro: #a9506a;
     --linha: rgba(54, 84, 143, 0.45);
     --sombra: 0 18px 40px rgba(54, 84, 143, 0.2);
     --nav-altura: 56px;
@@ -64,7 +68,7 @@
   :focus-visible{ outline: 3px solid var(--azul-profundo); outline-offset: 3px; }
 
   .listrado{ background: repeating-linear-gradient(90deg, #f8faff 0 38px, var(--listra) 38px 76px); }
-  .liso{ background: var(--ceu-claro); }
+  .liso{ background: var(--rosa-claro); }
 
   /* Botões */
   .botao{
@@ -207,6 +211,7 @@
     line-height: 1.2;
     color: var(--azul-escuro);
   }
+  .polaroid::before{ content: ""; position: absolute; top: -14px; left: 50%; width: 92px; height: 26px; transform: translateX(-50%) rotate(-3deg); background: rgba(231, 174, 191, 0.75); z-index: 2; }
   .polaroid.inclinada-direita{ transform: rotate(2.5deg); }
 
   .marcas-faixa{ background: var(--azul-profundo); padding: 16px 0; overflow: hidden; white-space: nowrap; }
@@ -257,7 +262,7 @@
     font-size: 0.9rem;
     color: var(--azul-profundo);
   }
-  .promessas li::before{ content: "✦"; color: var(--azul); font-size: 1rem; }
+  .promessas li::before{ content: "✱"; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa); color: var(--rosa-escuro); font-size: 0.95rem; }
   .assinatura{ font-family: "Pinyon Script", cursive; font-size: 2.8rem; line-height: 1; color: var(--azul-escuro); margin: 22px 0 0; }
 
   /* Celulares e vídeos */
@@ -316,7 +321,7 @@
   .destaque-card{ text-align: center; }
   .destaque-info{ padding-top: 24px; }
   .destaque-numero{ font-family: "Playfair Display", serif; font-size: 3rem; line-height: 1; color: var(--azul); }
-  .destaque-rotulo{ font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tinta-suave); margin: 6px 0 14px; }
+  .destaque-rotulo{ display: inline-block; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--azul-profundo); background: var(--rosa); border-radius: 999px; padding: 3px 12px; margin: 8px 0 14px; }
   .destaque-titulo{ font-size: 1.4rem; margin-bottom: 4px; }
   .destaque-contexto{ font-size: 0.92rem; color: var(--tinta-suave); margin: 0 auto; max-width: 20em; }
 
@@ -341,7 +346,7 @@
   .trabalhos-grid{ position: relative; z-index: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 44px 28px; }
   .trabalho-card{ text-align: center; }
   .trabalho-info{ padding-top: 18px; }
-  .trabalho-nicho{ font-size: 0.66rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--azul); margin-bottom: 2px; }
+  .trabalho-nicho{ display: inline-block; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--azul-profundo); background: var(--rosa); border: 1px solid var(--azul-escuro); border-radius: 999px; padding: 3px 12px; margin-bottom: 8px; }
   .trabalho-titulo{ font-size: 1.5rem; margin-bottom: 6px; }
   .contratar-link{ color: var(--azul-escuro); font-weight: 800; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; border-bottom: 1.5px solid var(--azul-escuro); }
   .contratar-link:hover{ color: var(--azul); border-color: var(--azul); }
@@ -349,13 +354,17 @@
   /* 5. SERVIÇOS */
   .servicos-grid{ position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .servico-card{ background: rgba(255, 255, 255, 0.9); border: 1.5px solid var(--azul-escuro); padding: 32px 28px 34px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-  .servico-card:hover{ transform: translateY(-4px); box-shadow: 6px 6px 0 var(--azul-medio); }
-  .servico-numero{ display: block; font-family: "Playfair Display", serif; font-style: italic; font-size: 2.6rem; line-height: 1; color: var(--azul); margin-bottom: 16px; }
+  .servico-card:hover{ transform: translateY(-4px); box-shadow: 6px 6px 0 var(--rosa-forte); }
+  .servico-icone{ display: flex; align-items: center; justify-content: center; width: 58px; height: 58px; border-radius: 50%; background: var(--rosa); border: 1.5px solid var(--azul-escuro); color: var(--azul-escuro); margin-bottom: 14px; }
+  .servico-icone svg{ width: 28px; height: 28px; }
+  .pill{ display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; border-radius: 999px; background: var(--rosa); color: var(--azul-profundo); border: 1.5px solid var(--azul-escuro); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; }
+  .pill::before{ content: "✱"; color: var(--rosa-escuro); font-size: 0.85rem; letter-spacing: 0; }
+  .servico-numero{ display: block; font-family: "Playfair Display", serif; font-style: italic; font-size: 1.1rem; line-height: 1; color: var(--rosa-escuro); margin-bottom: 8px; }
   .servico-card h3{ font-size: 1.45rem; margin-bottom: 10px; }
   .servico-card p{ color: var(--tinta-suave); font-size: 0.94rem; margin: 0; }
 
   /* 6. NÚMEROS E DEPOIMENTOS */
-  .metricas-barra{ position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); background: #d9e3f5; border: 1.5px solid var(--azul-escuro); margin-bottom: 70px; }
+  .metricas-barra{ position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); background: #f6dbe2; border: 1.5px solid var(--azul-escuro); margin-bottom: 70px; }
   .metrica-card{ padding: 30px 22px; text-align: center; border-right: 1.5px solid var(--azul-escuro); }
   .metrica-card:last-child{ border-right: none; }
   .metrica-card strong{ display: block; font-family: "Playfair Display", serif; font-weight: 400; font-size: clamp(2.4rem, 4.6vw, 3.6rem); line-height: 1; color: var(--azul-escuro); }
@@ -369,7 +378,7 @@
   .campanha-resultado{ margin: 0; font-size: 0.94rem; color: var(--tinta-suave); padding-left: 12px; border-left: 3px solid var(--azul); }
   .depoimentos-grid{ position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
   .depoimento-card{ background: var(--branco); border: 1.5px solid var(--azul-escuro); padding: 26px 22px; margin: 0; }
-  .depoimento-aspas{ display: block; font-family: "Playfair Display", serif; font-size: 3.4rem; line-height: 0.7; color: var(--azul); margin-bottom: 10px; }
+  .depoimento-aspas{ display: block; font-family: "Playfair Display", serif; font-size: 3.4rem; line-height: 0.7; color: var(--rosa-forte); margin-bottom: 10px; }
   .depoimento-texto{ font-size: 0.92rem; color: var(--tinta-suave); }
   .depoimento-nome{ font-weight: 800; font-size: 0.92rem; margin: 14px 0 0; color: var(--azul-profundo); }
   .depoimento-empresa{ font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-suave); margin: 0; }
@@ -381,7 +390,7 @@
   .contato-sub{ color: var(--tinta-suave); font-size: 1.05rem; max-width: 28em; }
   .contato-botoes{ display: grid; gap: 12px; max-width: 360px; margin-top: 28px; }
   .contato-botoes .botao{ justify-content: flex-start; }
-  .form-card{ background: var(--branco); border: 1.5px solid var(--azul-escuro); padding: 34px 30px; box-shadow: 8px 8px 0 var(--azul-medio); }
+  .form-card{ background: var(--branco); border: 1.5px solid var(--azul-escuro); padding: 34px 30px; box-shadow: 8px 8px 0 var(--rosa-forte); }
   .form-campo{ margin-bottom: 18px; display: flex; flex-direction: column; gap: 7px; }
   .form-campo label{ font-weight: 800; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--azul-escuro); }
   .form-campo input, .form-campo textarea{ font-family: inherit; font-size: 1rem; padding: 13px 14px; border: 1.5px solid var(--linha); border-radius: 2px; background: var(--ceu-claro); color: var(--tinta); resize: vertical; }
@@ -401,7 +410,7 @@
   /* CARD DE CAPTURA */
   .captura-fundo{ position: fixed; inset: 0; background: rgba(38, 57, 107, 0.6); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
   .captura-fundo.aberto{ display: flex; }
-  .captura-modal{ position: relative; width: 100%; max-width: 430px; background: var(--ceu-claro); border: 1.5px solid var(--azul-escuro); padding: 38px 32px 32px; box-shadow: 10px 10px 0 var(--azul-medio); }
+  .captura-modal{ position: relative; width: 100%; max-width: 430px; background: var(--rosa-claro); border: 1.5px solid var(--azul-escuro); padding: 38px 32px 32px; box-shadow: 10px 10px 0 var(--azul-medio); }
   .captura-fechar{ position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border: 1.5px solid var(--azul-escuro); background: transparent; cursor: pointer; font-size: 1rem; color: var(--azul-escuro); }
   .captura-etiqueta{ display: inline-block; background: var(--azul-escuro); color: var(--branco); font-size: 0.64rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; margin-bottom: 14px; }
   .captura-modal h3{ font-size: 1.8rem; margin-bottom: 8px; }
@@ -503,7 +512,7 @@
         <div class="hero-painel">
           <svg class="estrela" style="top:34px;right:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11 5.6-.6 10.4-5.4 11-11z"/></svg>
           <svg class="estrela" style="bottom:46px;right:70px;width:22px;height:22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11 5.6-.6 10.4-5.4 11-11z"/></svg>
-          <p class="hero-kicker">UGC Creator</p>
+          <p class="hero-kicker"><span class="pill">UGC Creator</span></p>
           <h1><span>Jéssica</span><span>Mendes</span></h1>
           <p class="hero-frase" data-i18n="hero_frase">Vídeos e fotos <em>autênticos</em> que ajudam marcas de beleza, skincare, moda e comida a se conectarem de verdade com as pessoas.</p>
           <div class="hero-botoes">
@@ -1037,9 +1046,19 @@
     });
   }
 
-  function renderizarServicos(){
-    document.getElementById("servicosGrid").innerHTML = conteudo[idiomaAtual].servicos.map(s => `
+  const ICONES = {
+    video: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg>`,
+    corte: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5L20 18M8 16.5L20 6"/></svg>`,
+    foto: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>`,
+    caixa: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-4 9 4v9l-9 4-9-4z"/><path d="M3 8l9 4 9-4M12 12v9"/></svg>`,
+    perfil: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.7" cy="7.3" r="0.6" fill="currentColor"/></svg>`,
+    pacote: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9 15l2 2 4-4"/></svg>`
+  };
+  const ORDEM_ICONES = ["video", "corte", "foto", "caixa", "perfil", "pacote"];
+
+  function renderizarServicos(){    document.getElementById("servicosGrid").innerHTML = conteudo[idiomaAtual].servicos.map((s, i) => `
       <article class="servico-card ${classeReveal()}">
+        <span class="servico-icone">${ICONES[ORDEM_ICONES[i]] || ""}</span>
         <span class="servico-numero">${s.numero}</span>
         <h3>${s.titulo}</h3>
         <p>${s.texto}</p>
