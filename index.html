@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-d">
+<meta name="build" content="20261026-e">
 <script>
 /* Atualizacao automatica: se existir uma versao mais nova publicada, a pagina recarrega sozinha uma vez. */
 (function(){
@@ -283,7 +283,7 @@
     font-size: 0.9rem;
     color: var(--marrom);
   }
-  .promessas li::before{ content: "✱"; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa); color: var(--rosa-escuro); font-size: 0.95rem; }
+  .promessas li::before{ content: "✓"; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa); color: var(--rosa-escuro); font-size: 0.95rem; }
   .assinatura{ font-family: "Dancing Script", cursive; font-weight: 600; font-size: 2.2rem; line-height: 1; color: var(--marrom); margin: 22px 0 0; }
 
   /* Celulares e vídeos */
@@ -652,6 +652,7 @@
     .sobre-texto .sobre-lead{ justify-self: center; width: fit-content; text-align: left; margin: 0 auto 6px; font-size: clamp(1.9rem, 8.5vw, 2.4rem); }
     .sobre-lead .lead-l2{ margin-left: 1.8em; }
   }
+  .promessas li::before{ color: var(--azul-escuro); font-family: "Manrope", system-ui, sans-serif; font-weight: 800; font-size: 1rem; }
 </style>
 </head>
 <body>
@@ -740,9 +741,9 @@
           <p data-i18n="sobre_p1">Há mais de 10 anos, estou nos bastidores do audiovisual como maquiadora e produtora. Hoje, uso esse olhar para criar UGC que parece vida real: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia de qualquer pessoa.</p>
           <p data-i18n="sobre_p2">Já criei conteúdo para marcas de beleza, moda, bem-estar, gastronomia e experiências, sempre com vídeos que passam confiança e prendem a atenção de quem está assistindo. Vamos criar algo juntas? Me chama e conta sobre o seu produto!</p>
           <ul class="promessas">
-            <li data-i18n="promessa1">Roteiro aprovado antes de gravar</li>
-            <li data-i18n="promessa2">Uma rodada de ajuste inclusa</li>
-            <li data-i18n="promessa3">Entrega em até 72 horas úteis</li>
+            <li data-i18n="promessa1">Roteiro aprovado por você antes de gravar</li>
+            <li data-i18n="promessa2">Uma rodada de ajustes inclusa no pacote</li>
+            <li data-i18n="promessa3">Conteúdo pronto em até 72 horas úteis após a aprovação</li>
           </ul>
           <p class="assinatura"><span class="letra-j">J</span>éssica Mendes</p>
         </div>
@@ -1059,9 +1060,9 @@
       sobre_lead: "<span class='lead-l1'>Oie,</span><span class='lead-l2'>eu sou a <span class='letra-j'>J</span>ess!</span>",
       sobre_p1: "Há mais de 10 anos, estou nos bastidores do audiovisual como maquiadora e produtora. Hoje, uso esse olhar para criar UGC que parece vida real: natural, bonito e sem exageros, mostrando o produto do jeito que aparece no dia a dia de qualquer pessoa.",
       sobre_p2: "Já criei conteúdo para marcas de beleza, moda, bem-estar, gastronomia e experiências, sempre com vídeos que passam confiança e prendem a atenção de quem está assistindo. Vamos criar algo juntas? Me chama e conta sobre o seu produto!",
-      promessa1: "Roteiro aprovado antes de gravar",
-      promessa2: "Uma rodada de ajuste inclusa",
-      promessa3: "Entrega em até 72 horas úteis",
+      promessa1: "Roteiro aprovado por você antes de gravar",
+      promessa2: "Uma rodada de ajustes inclusa no pacote",
+      promessa3: "Conteúdo pronto em até 72 horas úteis após a aprovação",
       destaques_titulo: "Conteúdos em destaque",
       destaques_sub: "Alguns vídeos que representam bem o meu estilo de criação.",
       trabalhos_titulo: 'Conteúdos por <span class="script">nicho</span>',
@@ -1106,9 +1107,9 @@
       sobre_lead: "<span class='lead-l1'>Hi,</span><span class='lead-l2'>I am <span class='letra-j'>J</span>ess!</span>",
       sobre_p1: "For more than 10 years I have been behind the scenes of audiovisual work as a makeup artist and producer. Today I use that eye to create UGC that feels like real life: natural, beautiful and never over the top, showing the product the way it shows up in anyone's everyday life.",
       sobre_p2: "I have created content for beauty, fashion, wellness, gastronomy and experiences brands, always with videos that build trust and hold the attention of whoever is watching. Shall we create something together? Message me and tell me about your product!",
-      promessa1: "Script approved before filming",
-      promessa2: "One round of revisions included",
-      promessa3: "Delivery within 72 business hours",
+      promessa1: "Script approved by you before filming",
+      promessa2: "One round of revisions included in the package",
+      promessa3: "Content ready within 72 business hours after approval",
       destaques_titulo: "Featured content",
       destaques_sub: "A few videos that really show my creative style.",
       trabalhos_titulo: 'Content by <span class="script">niche</span>',
@@ -1144,13 +1145,13 @@
       { numero: "01", titulo: "Você me conta", texto: "Você me passa o produto e o objetivo do vídeo." },
       { numero: "02", titulo: "Roteiro aprovado", texto: "Eu envio o roteiro e só gravo depois da sua aprovação." },
       { numero: "03", titulo: "Gravo e edito", texto: "Crio o conteúdo com o olhar de quem trabalha com audiovisual há mais de 10 anos." },
-      { numero: "04", titulo: "Entrega e ajuste", texto: "Entrego em até 72 horas úteis, com uma rodada de ajuste inclusa." }
+      { numero: "04", titulo: "Entrega e ajuste", texto: "Entrego em até 72 horas úteis após a sua aprovação, com uma rodada de ajustes inclusa." }
     ],
     en: [
       { numero: "01", titulo: "You tell me", texto: "You share the product and the goal of the video." },
       { numero: "02", titulo: "Script approved", texto: "I send the script and only film after you approve it." },
       { numero: "03", titulo: "I film and edit", texto: "I create the content with the eye of someone who has worked in audiovisual for over 10 years." },
-      { numero: "04", titulo: "Delivery and revisions", texto: "Delivered within 72 business hours, with one round of revisions included." }
+      { numero: "04", titulo: "Delivery and revisions", texto: "Delivered within 72 business hours after your approval, with one round of revisions included." }
     ]
   };
 
