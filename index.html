@@ -554,9 +554,35 @@
   .hero-numeros{ padding-top: 26px; }
   .hero-numero strong{ font-size: clamp(3.6rem, 7vw, 5.4rem); line-height: 1; font-weight: 400; }
   .hero-numero span{ font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-top: 6px; }
+  /* Faixa Black Friday */
+  :root{ --aviso: 0px; }
+  .aviso-bf{ position: fixed; top: 0; left: 0; right: 0; z-index: 1001; background: #3d5c9c; color: var(--branco); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 16px; padding: 9px 46px 9px 16px; font-size: 0.88rem; line-height: 1.3; text-align: center; }
+  .aviso-bf[hidden]{ display: none; }
+  .bf-selo{ background: var(--rosa); color: var(--marrom); font-weight: 800; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+  .bf-contagem{ font-family: "Fraunces", Georgia, serif; font-size: 1.15rem; }
+  .bf-contagem strong{ font-size: 1.8rem; font-weight: 500; color: var(--rosa); display: inline-block; line-height: 1; animation: bfpulso 2.2s ease-in-out infinite; }
+  .bf-botao{ background: var(--branco); color: #3d5c9c; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 16px; border-radius: 999px; text-decoration: none; transition: transform 0.2s ease, background 0.2s ease; }
+  .bf-botao:hover{ background: var(--rosa); color: var(--marrom); transform: translateY(-2px); }
+  .bf-fechar{ position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: 0; color: var(--branco); font-size: 1rem; cursor: pointer; padding: 6px 8px; opacity: 0.8; }
+  .bf-fechar:hover{ opacity: 1; }
+  @keyframes bfpulso{ 0%, 100%{ transform: scale(1); } 50%{ transform: scale(1.14); } }
+  @media (prefers-reduced-motion: reduce){ .bf-contagem strong{ animation: none; } }
+  .site-header{ top: var(--aviso, 0px); }
+  main{ padding-top: calc(var(--nav-altura) + var(--aviso, 0px)); }
+  section{ scroll-margin-top: calc(var(--nav-altura) + var(--aviso, 0px) + 4px); }
+  @media (max-width: 900px){ .nav-links{ top: calc(var(--nav-altura) + var(--aviso, 0px)); } }
+  @media (max-width: 640px){ .aviso-bf{ font-size: 0.8rem; padding-right: 40px; } .bf-contagem strong{ font-size: 1.5rem; } }
 </style>
 </head>
 <body>
+
+  <div class="aviso-bf" id="avisoBF" hidden role="region" aria-label="Contagem regressiva para a Black Friday">
+    <span class="bf-selo" id="bfSelo">Black Friday</span>
+    <span class="bf-contagem" id="bfContagem"></span>
+    <span class="bf-texto" id="bfTexto"></span>
+    <a class="bf-botao" id="bfBotao" href="#contato" target="_blank" rel="noopener"></a>
+    <button type="button" class="bf-fechar" id="bfFechar" aria-label="Fechar aviso">✕</button>
+  </div>
 
   <header class="site-header">
     <div class="nav-wrap">
@@ -1286,6 +1312,7 @@
     atualizarBotoesIdioma();
     renderizarConteudoDinamico();
     atualizarContadoresDaCapa();
+    atualizarBlackFriday();
   }
 
   /* ==================== MENU, ANIMAÇÕES, CONTADORES ==================== */
@@ -1390,7 +1417,87 @@
     });
   }
 
-    function iniciarCursor(){
+      /* ==================== BLACK FRIDAY ==================== */
+
+  const textosBF = {
+    pt: {
+      selo: "Black Friday",
+      dias: (n) => n === 0 ? "<strong>É hoje!</strong>" : (n === 1 ? "Falta <strong>1</strong> dia" : `Faltam <strong>${n}</strong> dias`),
+      texto: (n) => n === 0 ? "Ainda dá tempo de a sua marca aparecer. Me chame agora." : "Garanta seus vídeos UGC a tempo de vender mais.",
+      botao: "Quero meu conteúdo",
+      fechar: "Fechar aviso",
+      aria: "Contagem regressiva para a Black Friday",
+      msg: "Oi Jéssica! Vi a contagem da Black Friday no seu portfólio e quero conteúdo UGC para a minha marca."
+    },
+    en: {
+      selo: "Black Friday",
+      dias: (n) => n === 0 ? "<strong>It's today!</strong>" : (n === 1 ? "<strong>1</strong> day to go" : `<strong>${n}</strong> days to go`),
+      texto: (n) => n === 0 ? "There is still time for your brand to shine. Message me now." : "Get your UGC videos ready to sell more.",
+      botao: "I want my content",
+      fechar: "Close notice",
+      aria: "Black Friday countdown",
+      msg: "Hi Jessica! I saw the Black Friday countdown on your portfolio and I would like UGC content for my brand."
+    }
+  };
+
+  // Black Friday = quarta sexta-feira de novembro.
+  function dataBlackFriday(ano){
+    const primeiro = new Date(ano, 10, 1);
+    const primeiraSexta = 1 + ((5 - primeiro.getDay() + 7) % 7);
+    return new Date(ano, 10, primeiraSexta + 21);
+  }
+
+  function diasParaBlackFriday(){
+    const hoje = new Date();
+    const base = Date.UTC(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+    let bf = dataBlackFriday(hoje.getFullYear());
+    let alvo = Date.UTC(bf.getFullYear(), bf.getMonth(), bf.getDate());
+    if(alvo < base){
+      bf = dataBlackFriday(hoje.getFullYear() + 1);
+      alvo = Date.UTC(bf.getFullYear(), bf.getMonth(), bf.getDate());
+    }
+    return Math.round((alvo - base) / 86400000);
+  }
+
+  function ajustarAltura(){
+    const aviso = document.getElementById("avisoBF");
+    const altura = (aviso && !aviso.hidden) ? aviso.offsetHeight : 0;
+    document.documentElement.style.setProperty("--aviso", altura + "px");
+  }
+
+  function atualizarBlackFriday(){
+    const aviso = document.getElementById("avisoBF");
+    if(!aviso) return;
+    let fechado = false;
+    try{ fechado = sessionStorage.getItem("avisoBFFechado") === "1"; }catch(e){}
+    const dias = diasParaBlackFriday();
+    // Aparece nos 90 dias antes da Black Friday; depois dela some ate a proxima temporada.
+    if(fechado || dias > 90){ aviso.hidden = true; ajustarAltura(); return; }
+    const t = textosBF[idiomaAtual];
+    document.getElementById("bfSelo").textContent = t.selo;
+    document.getElementById("bfContagem").innerHTML = t.dias(dias);
+    document.getElementById("bfTexto").textContent = t.texto(dias);
+    const botao = document.getElementById("bfBotao");
+    botao.textContent = t.botao;
+    botao.href = `${WHATSAPP}?text=${encodeURIComponent(t.msg)}`;
+    document.getElementById("bfFechar").setAttribute("aria-label", t.fechar);
+    aviso.setAttribute("aria-label", t.aria);
+    aviso.hidden = false;
+    ajustarAltura();
+  }
+
+  function iniciarAviso(){
+    atualizarBlackFriday();
+    document.getElementById("bfFechar").addEventListener("click", () => {
+      try{ sessionStorage.setItem("avisoBFFechado", "1"); }catch(e){}
+      document.getElementById("avisoBF").hidden = true;
+      ajustarAltura();
+    });
+    window.addEventListener("resize", ajustarAltura);
+  }
+
+  /* ==================== CURSOR ==================== */
+  function iniciarCursor(){
     if(!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const el = document.createElement("div");
     el.className = "cursor-play";
@@ -1434,6 +1541,7 @@
     iniciarFormulario();
     iniciarCaptura();
     iniciarCursor();
+    iniciarAviso();
     document.getElementById("anoAtual").textContent = new Date().getFullYear();
   }
 
