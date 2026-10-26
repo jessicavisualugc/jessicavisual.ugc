@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-g">
+<meta name="build" content="20261026-h">
 <script>
 /* Atualizacao automatica: se existir uma versao mais nova publicada, a pagina recarrega sozinha uma vez. */
 (function(){
@@ -653,6 +653,15 @@
     .sobre-lead .lead-l2{ margin-left: 1.8em; }
   }
   .promessas li::before{ color: var(--azul-escuro); font-family: "Manrope", system-ui, sans-serif; font-weight: 800; font-size: 1rem; }
+  /* Video em destaque: o resto da pagina fica ao fundo */
+  .video-palco{ position: fixed; inset: 0; z-index: 3000; display: flex; align-items: center; justify-content: center; background: rgba(26, 36, 64, 0); -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); transition: background 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease; }
+  .video-palco.ativo{ background: rgba(26, 36, 64, 0.74); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .palco-video{ height: min(88vh, 780px); aspect-ratio: 9 / 16; max-width: 92vw; border-radius: 24px; overflow: hidden; background: #0b0d14; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.3, 1), opacity 0.4s ease; }
+  .palco-video iframe{ width: 100%; height: 100%; border: 0; display: block; }
+  .palco-fechar{ position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--branco); color: var(--azul-escuro); font-size: 1.1rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); z-index: 2; }
+  .palco-fechar:hover{ background: var(--rosa); color: var(--marrom); }
+  body.palco-aberto{ overflow: hidden; }
+  @media (max-width: 640px){ .palco-video{ height: auto; width: 92vw; max-height: 86vh; } }
 </style>
 </head>
 <body>
@@ -1199,16 +1208,59 @@
   function ativarVideos(){
     document.querySelectorAll(".video-facade:not([data-ativo])").forEach(botao => {
       botao.setAttribute("data-ativo", "1");
-      botao.addEventListener("click", () => {
-        const iframe = document.createElement("iframe");
-        iframe.className = "video-iframe";
-        iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080`;
-        iframe.title = botao.getAttribute("aria-label") || "";
-        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-        iframe.allowFullscreen = true;
-        botao.replaceWith(iframe);
-      });
+      botao.addEventListener("click", () => abrirPalco(botao));
     });
+  }
+
+  // Ao clicar, o video "vem para frente": a pagina fica de fundo (escurecida e desfocada) e o video cresce no centro.
+  function abrirPalco(botao){
+    if(document.querySelector(".video-palco")) return;
+    const origem = botao.getBoundingClientRect();
+    const palco = document.createElement("div");
+    palco.className = "video-palco";
+    palco.setAttribute("role", "dialog");
+    palco.setAttribute("aria-modal", "true");
+    palco.setAttribute("aria-label", botao.getAttribute("aria-label") || "Video");
+    palco.innerHTML = `<button type="button" class="palco-fechar" aria-label="Fechar vídeo">✕</button><div class="palco-video"></div>`;
+    document.body.appendChild(palco);
+    document.body.classList.add("palco-aberto");
+
+    const caixa = palco.querySelector(".palco-video");
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080`;
+    iframe.title = botao.getAttribute("aria-label") || "";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    caixa.appendChild(iframe);
+
+    // Animacao: parte da posicao do cartao e cresce ate o centro.
+    const alvo = caixa.getBoundingClientRect();
+    if(!reduzirMovimento && alvo.width > 0){
+      const dx = (origem.left + origem.width / 2) - (alvo.left + alvo.width / 2);
+      const dy = (origem.top + origem.height / 2) - (alvo.top + alvo.height / 2);
+      caixa.style.transform = `translate(${dx}px, ${dy}px) scale(${origem.width / alvo.width})`;
+      caixa.style.opacity = "0.5";
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        palco.classList.add("ativo");
+        caixa.style.transform = "";
+        caixa.style.opacity = "";
+      }));
+    } else {
+      palco.classList.add("ativo");
+    }
+
+    function fechar(){
+      document.removeEventListener("keydown", aoTeclar);
+      palco.classList.remove("ativo");
+      document.body.classList.remove("palco-aberto");
+      setTimeout(() => palco.remove(), reduzirMovimento ? 0 : 350);
+      botao.focus({ preventScroll: true });
+    }
+    function aoTeclar(e){ if(e.key === "Escape") fechar(); }
+    document.addEventListener("keydown", aoTeclar);
+    palco.addEventListener("click", (e) => { if(e.target === palco) fechar(); });
+    palco.querySelector(".palco-fechar").addEventListener("click", fechar);
+    palco.querySelector(".palco-fechar").focus({ preventScroll: true });
   }
 
   /* ==================== RENDERIZAÇÃO ==================== */
