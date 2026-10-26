@@ -529,6 +529,22 @@
   .play-botao{ top: auto; left: auto; right: 14px; bottom: 14px; transform: none; width: 54px; height: 54px; }
   .video-facade:hover .play-botao{ transform: scale(1.1); }
   .card-overlay{ padding-right: 80px; }
+  /* Play central translucido e movimento ao passar o mouse */
+  .card-overlay{ padding-right: 14px; }
+  .play-botao{ top: 50%; left: 50%; right: auto; bottom: auto; transform: translate(-50%, -50%); width: 64px; height: 64px; background: rgba(90, 124, 194, 0.62); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); border: 1.5px solid rgba(255, 255, 255, 0.55); box-shadow: 0 8px 22px rgba(54, 84, 143, 0.3); transition: transform 0.3s ease, background 0.3s ease; }
+  .video-facade:hover .play-botao{ transform: translate(-50%, -50%) scale(1.12); background: rgba(90, 124, 194, 0.85); }
+  .celular{ transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.3, 1), box-shadow 0.45s ease; }
+  .celular:hover{ transform: translateY(-8px) scale(1.025); box-shadow: 0 26px 48px rgba(54, 84, 143, 0.28); }
+  .video-facade img{ transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.3, 1); }
+  .celular:hover .video-facade img{ transform: scale(1.07); }
+
+  /* Cursor personalizado */
+  .cursor-play{ position: fixed; top: 0; left: 0; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 50%; background: rgba(90, 124, 194, 0.92); display: none; align-items: center; justify-content: center; pointer-events: none; z-index: 100000; box-shadow: 0 4px 14px rgba(54, 84, 143, 0.35); transform: translate3d(var(--x, -100px), var(--y, -100px), 0) scale(var(--s, 1)); transition: opacity 0.2s ease, background 0.2s ease; will-change: transform; }
+  .cursor-play::after{ content: ""; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent var(--branco); margin-left: 3px; }
+  .cursor-play.sobre-link{ --s: 1.3; background: rgba(90, 124, 194, 1); }
+  .com-cursor-play, .com-cursor-play *{ cursor: none !important; }
+  .com-cursor-play input, .com-cursor-play textarea{ cursor: text !important; }
+  @media (prefers-reduced-motion: reduce){ .celular:hover{ transform: none; } .celular:hover .video-facade img{ transform: none; } .video-facade:hover .play-botao{ transform: translate(-50%, -50%); } }
 </style>
 </head>
 <body>
@@ -1373,6 +1389,32 @@
     });
   }
 
+    function iniciarCursor(){
+    if(!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const el = document.createElement("div");
+    el.className = "cursor-play";
+    el.setAttribute("aria-hidden", "true");
+    document.body.appendChild(el);
+    document.documentElement.classList.add("com-cursor-play");
+    let x = -100, y = -100, cx = -100, cy = -100, visivel = false;
+    document.addEventListener("mousemove", (e) => {
+      x = e.clientX; y = e.clientY;
+      if(!visivel){ visivel = true; cx = x; cy = y; el.style.display = "flex"; }
+      el.style.opacity = e.target.closest("input, textarea") ? "0" : "1";
+      el.classList.toggle("sobre-link", !!e.target.closest("a, button, label, select"));
+    });
+    document.documentElement.addEventListener("mouseleave", () => { visivel = false; el.style.display = "none"; });
+    function mover(){
+      const fator = reduzirMovimento ? 1 : 0.28;
+      cx += (x - cx) * fator;
+      cy += (y - cy) * fator;
+      el.style.setProperty("--x", cx + "px");
+      el.style.setProperty("--y", cy + "px");
+      requestAnimationFrame(mover);
+    }
+    requestAnimationFrame(mover);
+  }
+
   /* ==================== INÍCIO ==================== */
 
   function iniciar(){
@@ -1386,6 +1428,7 @@
     iniciarContadores();
     iniciarFormulario();
     iniciarCaptura();
+    iniciarCursor();
     document.getElementById("anoAtual").textContent = new Date().getFullYear();
   }
 
