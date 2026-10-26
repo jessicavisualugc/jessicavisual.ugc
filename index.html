@@ -3,6 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="build" content="20261026-b">
+<script>
+/* Atualizacao automatica: se existir uma versao mais nova publicada, a pagina recarrega sozinha uma vez. */
+(function(){
+  try{
+    var atual = document.querySelector('meta[name="build"]').content;
+    fetch(location.pathname + "?chk=" + Date.now(), { cache: "no-store" })
+      .then(function(r){ return r.text(); })
+      .then(function(t){
+        var m = t.match(/<meta name="build" content="([^"]+)"/);
+        if(m && m[1] !== atual && !sessionStorage.getItem("buildRecarregado")){
+          sessionStorage.setItem("buildRecarregado", "1");
+          location.replace(location.pathname + "?v=" + m[1] + location.hash);
+        }
+      })
+      .catch(function(){});
+  }catch(e){}
+})();
+</script>
 <title>Jéssica Mendes | Portfólio UGC Creator</title>
 <meta name="description" content="Portfólio de Jéssica Mendes, UGC Creator para marcas de beleza, moda, bem-estar, gastronomia e experiências. Vídeos e fotos autênticos sob consulta.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
