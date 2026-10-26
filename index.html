@@ -515,6 +515,8 @@
   .play-botao{ z-index: 3; width: 64px; height: 64px; background: var(--marrom); box-shadow: 0 8px 22px rgba(45, 28, 20, 0.35); }
   .play-botao::after{ border-color: transparent transparent transparent var(--branco); }
   .ph{ position: relative; }
+  .card-chip{ font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 1.2rem; letter-spacing: 0; text-transform: none; padding: 8px 15px; border-radius: 8px; line-height: 1.1; }
+  .card-titulo{ font-family: "Manrope", system-ui, sans-serif; font-weight: 600; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; line-height: 1.2; color: rgba(255, 255, 255, 0.85); }
 </style>
 </head>
 <body>
@@ -765,8 +767,8 @@
       // video: ID do YouTube (o código que vem depois de /shorts/ no link). Deixe "" se ainda não tiver o vídeo.
       // capa: opcional. Caminho de uma imagem 9:16 (ex.: "public/capa1.jpg") para trocar a miniatura automática.
       destaques: [
-        { titulo: "Vídeo destaque 01", tema: "Gastronomia", contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.", video: "tXJ2VzRaKY4", capa: "", numero: "", rotulo: "", novo: false },
-        { titulo: "Vídeo destaque 02", tema: "Moda", contexto: "Vídeo curto pensado para performar bem em campanhas pagas.", video: "iwIwYsA58bQ", capa: "", numero: "", rotulo: "", novo: false },
+        { titulo: "Vídeo destaque 01", tema: "Gastronomia", marca: "Garlic", contexto: "Conteúdo em formato reels mostrando o produto com autenticidade.", video: "tXJ2VzRaKY4", capa: "", numero: "", rotulo: "", novo: false },
+        { titulo: "Vídeo destaque 02", tema: "Moda", marca: "Mundoflex", contexto: "Vídeo curto pensado para performar bem em campanhas pagas.", video: "iwIwYsA58bQ", capa: "", numero: "", rotulo: "", novo: false },
         { titulo: "Vídeo destaque 03", tema: "Em breve", contexto: "Espaço reservado para o próximo conteúdo de destaque.", video: "", capa: "", numero: "", rotulo: "", novo: false }
       ],
 
@@ -836,8 +838,8 @@
     en: {
       marcas: [ "Beauty", "Skincare", "Fashion", "Food", "Unboxing", "Reels", "Product photos", "Content for ads" ],
       destaques: [
-        { titulo: "Featured video 01", tema: "Gastronomy", contexto: "Reels style content showing the product with authenticity.", video: "tXJ2VzRaKY4", capa: "", numero: "", rotulo: "", novo: false },
-        { titulo: "Featured video 02", tema: "Fashion", contexto: "Short video built to perform well in paid campaigns.", video: "iwIwYsA58bQ", capa: "", numero: "", rotulo: "", novo: false },
+        { titulo: "Featured video 01", tema: "Gastronomy", marca: "Garlic", contexto: "Reels style content showing the product with authenticity.", video: "tXJ2VzRaKY4", capa: "", numero: "", rotulo: "", novo: false },
+        { titulo: "Featured video 02", tema: "Fashion", marca: "Mundoflex", contexto: "Short video built to perform well in paid campaigns.", video: "iwIwYsA58bQ", capa: "", numero: "", rotulo: "", novo: false },
         { titulo: "Featured video 03", tema: "Coming soon", contexto: "Space reserved for the next featured content.", video: "", capa: "", numero: "", rotulo: "", novo: false }
       ],
       trabalhos: [
@@ -1014,12 +1016,12 @@
 
   function miniaturaYoutube(id){ return `https://i.ytimg.com/vi/${id}/oardefault.jpg`; }
 
-  function htmlOverlay(tema){
+  function htmlOverlay(tema, marca){
     if(!tema) return "";
     return `<span class="card-overlay" aria-hidden="true">
         <span class="card-pill">${tema}</span>
         <span class="card-base">
-          <span class="card-chip">${tema}</span>
+          ${marca ? `<span class="card-chip">${marca}</span>` : ""}
           <span class="card-titulo">${tema}</span>
         </span>
       </span>`;
@@ -1027,12 +1029,12 @@
 
   function htmlTelaCelular(item, ui, titulo){
     if(!item.video){
-      return `<div class="ph" role="img" aria-label="${titulo}, ${ui.capaLegenda}"><span>${ui.capaLegenda}</span></div>${htmlOverlay(item.tema)}`;
+      return `<div class="ph" role="img" aria-label="${titulo}, ${ui.capaLegenda}"><span>${ui.capaLegenda}</span></div>${htmlOverlay(item.tema, item.marca)}`;
     }
     const capa = item.capa ? item.capa : miniaturaYoutube(item.video);
     return `<button type="button" class="video-facade" data-video-id="${item.video}" aria-label="${ui.assistir} ${titulo}">
         <img src="${capa}" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${item.video}/hqdefault.jpg'">
-        ${htmlOverlay(item.tema)}
+        ${htmlOverlay(item.tema, item.marca)}
         <span class="play-botao" aria-hidden="true"></span>
       </button>`;
   }
