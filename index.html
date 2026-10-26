@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-j">
+<meta name="build" content="20261026-k">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1247,8 +1247,10 @@
     iframe.allowFullscreen = true;
     caixa.appendChild(iframe);
     const enviar = (func, args) => { try{ iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*"); }catch(e){} };
-    const ajustar = () => { iframe.style.transform = `scale(${caixa.clientWidth / 720})`; };
+    const ajustar = () => { const w = caixa.clientWidth; if(w > 0) iframe.style.transform = `scale(${w / 720})`; };
     ajustar();
+    let observador = null;
+    if("ResizeObserver" in window){ observador = new ResizeObserver(ajustar); observador.observe(caixa); }
     window.addEventListener("resize", ajustar);
 
     let mudo = celular, tentouSom = false;
@@ -1301,6 +1303,7 @@
       document.removeEventListener("keydown", aoTeclar);
       window.removeEventListener("message", aoMensagem);
       window.removeEventListener("resize", ajustar);
+      if(observador) observador.disconnect();
       palco.classList.remove("ativo");
       document.body.classList.remove("palco-aberto");
       setTimeout(() => palco.remove(), reduzirMovimento ? 0 : 350);
