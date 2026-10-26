@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-l">
+<meta name="build" content="20261026-m">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1243,12 +1243,24 @@
 
   function prepararPlayersCelular(){
     if(!window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
+    // Cria o player de cada cartao quando ele esta perto da tela (sem depender de IntersectionObserver).
     if(!ioPlayers){
-      ioPlayers = new IntersectionObserver((entradas) => {
-        entradas.forEach(en => { if(en.isIntersecting){ criarPlayerCartao(en.target); ioPlayers.unobserve(en.target); } });
-      }, { rootMargin: "500px 0px" });
+      ioPlayers = true;
+      let esperando = false;
+      const verificar = () => {
+        esperando = false;
+        document.querySelectorAll(".video-facade:not(.tem-player)").forEach(b => {
+          if(b.dataset.criando || !b.isConnected) return;
+          const r = b.getBoundingClientRect();
+          if(r.bottom > -500 && r.top < window.innerHeight + 500){ b.dataset.criando = "1"; criarPlayerCartao(b); }
+        });
+      };
+      const agendar = () => { if(!esperando){ esperando = true; setTimeout(verificar, 150); } };
+      window.addEventListener("scroll", agendar, { passive: true });
+      window.addEventListener("resize", agendar);
+      window.verificarPlayersCartao = agendar;
     }
-    document.querySelectorAll(".video-facade:not([data-player])").forEach(b => { b.setAttribute("data-player", "1"); ioPlayers.observe(b); });
+    setTimeout(() => { if(window.verificarPlayersCartao) window.verificarPlayersCartao(); }, 100);
   }
 
   function criarPlayerCartao(botao){
