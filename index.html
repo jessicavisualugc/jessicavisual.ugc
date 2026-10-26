@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-i">
+<meta name="build" content="20261026-j">
+<link rel="preconnect" href="https://www.youtube-nocookie.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://www.google.com">
 <script>
 /* Atualizacao automatica: se existir uma versao mais nova publicada, a pagina recarrega sozinha uma vez. */
 (function(){
@@ -663,6 +666,10 @@
   body.palco-aberto{ overflow: hidden; }
   @media (max-width: 640px){ .palco-video{ height: auto; width: 92vw; max-height: 86vh; } }
   .palco-som{ position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 2; border: 0; border-radius: 999px; padding: 12px 22px; background: var(--rosa); color: var(--marrom); font-family: "Manrope", system-ui, sans-serif; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.06em; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35); cursor: pointer; }
+  .palco-video{ position: relative; background-size: cover; background-position: center; }
+  .palco-video iframe{ position: absolute; top: 0; left: 0; width: 720px; height: 1280px; max-width: none; transform-origin: 0 0; opacity: 0; transition: opacity 0.35s ease; }
+  .palco-video.pronto iframe{ opacity: 1; }
+  @media (max-width: 640px){ .palco-video{ height: auto; width: min(92vw, calc(86vh * 0.5625)); max-height: none; } }
 </style>
 </head>
 <body>
@@ -1217,25 +1224,62 @@
   function abrirPalco(botao){
     if(document.querySelector(".video-palco")) return;
     const origem = botao.getBoundingClientRect();
+    const capaImg = botao.querySelector("img");
     const palco = document.createElement("div");
     palco.className = "video-palco";
     palco.setAttribute("role", "dialog");
     palco.setAttribute("aria-modal", "true");
     palco.setAttribute("aria-label", botao.getAttribute("aria-label") || "Video");
-    // No celular o navegador so deixa o video tocar sozinho se estiver sem som; entao comeca mudo e um botao liga o som.
-    const celular = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-    const textoSom = idiomaAtual === "en" ? "Turn sound on" : "Ativar o som";
-    palco.innerHTML = `<button type="button" class="palco-fechar" aria-label="Fechar vídeo">✕</button><div class="palco-video"></div>${celular ? `<button type="button" class="palco-som">🔊 ${textoSom}</button>` : ""}`;
+    palco.innerHTML = `<button type="button" class="palco-fechar" aria-label="Fechar vídeo">✕</button><div class="palco-video"></div>`;
     document.body.appendChild(palco);
     document.body.classList.add("palco-aberto");
 
+    // No celular o navegador so deixa o video tocar sozinho sem som; entao ele comeca mudo e o som e ligado logo em seguida.
+    const celular = window.matchMedia("(hover: none), (pointer: coarse)").matches;
     const caixa = palco.querySelector(".palco-video");
+    if(capaImg) caixa.style.backgroundImage = `url("${capaImg.currentSrc || capaImg.src}")`;
+
+    // O player e criado grande (720x1280) e reduzido por CSS: assim o YouTube entrega alta qualidade em vez de 360p.
     const iframe = document.createElement("iframe");
     iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080&enablejsapi=1${celular ? "&mute=1" : ""}`;
     iframe.title = botao.getAttribute("aria-label") || "";
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
     caixa.appendChild(iframe);
+    const enviar = (func, args) => { try{ iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*"); }catch(e){} };
+    const ajustar = () => { iframe.style.transform = `scale(${caixa.clientWidth / 720})`; };
+    ajustar();
+    window.addEventListener("resize", ajustar);
+
+    let mudo = celular, tentouSom = false;
+    function mostrarBotaoSom(){
+      if(palco.querySelector(".palco-som")) return;
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "palco-som";
+      b.textContent = idiomaAtual === "en" ? "🔊 Turn sound on" : "🔊 Ativar o som";
+      b.addEventListener("click", () => { enviar("unMute"); enviar("setVolume", [100]); enviar("playVideo"); b.remove(); });
+      palco.appendChild(b);
+    }
+    function aoMensagem(e){
+      if(e.source !== iframe.contentWindow) return;
+      let d = e.data;
+      if(typeof d === "string"){ try{ d = JSON.parse(d); }catch(err){ return; } }
+      if(!d || d.event !== "infoDelivery" || !d.info) return;
+      if(typeof d.info.muted === "boolean") mudo = d.info.muted;
+      if(celular && !tentouSom && d.info.playerState === 1){
+        tentouSom = true;
+        enviar("unMute");
+        enviar("setVolume", [100]);
+        // So se o navegador recusar ligar o som sozinho, aparece o botao como ultima opcao.
+        setTimeout(() => { if(mudo) mostrarBotaoSom(); }, 1600);
+      }
+    }
+    window.addEventListener("message", aoMensagem);
+    iframe.addEventListener("load", () => {
+      caixa.classList.add("pronto");
+      try{ iframe.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*"); }catch(e){}
+    });
 
     // Animacao: parte da posicao do cartao e cresce ate o centro.
     const alvo = caixa.getBoundingClientRect();
@@ -1255,6 +1299,8 @@
 
     function fechar(){
       document.removeEventListener("keydown", aoTeclar);
+      window.removeEventListener("message", aoMensagem);
+      window.removeEventListener("resize", ajustar);
       palco.classList.remove("ativo");
       document.body.classList.remove("palco-aberto");
       setTimeout(() => palco.remove(), reduzirMovimento ? 0 : 350);
@@ -1264,19 +1310,8 @@
     document.addEventListener("keydown", aoTeclar);
     palco.addEventListener("click", (e) => { if(e.target === palco) fechar(); });
     palco.querySelector(".palco-fechar").addEventListener("click", fechar);
-    const botaoSom = palco.querySelector(".palco-som");
-    if(botaoSom){
-      botaoSom.addEventListener("click", () => {
-        const enviar = (func, args) => iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*");
-        enviar("unMute");
-        enviar("setVolume", [100]);
-        enviar("playVideo");
-        botaoSom.remove();
-      });
-    }
     palco.querySelector(".palco-fechar").focus({ preventScroll: true });
   }
-
   /* ==================== RENDERIZAÇÃO ==================== */
 
   function renderizarMarcas(){
