@@ -549,6 +549,8 @@
   .com-cursor-play.cursor-nativo input, .com-cursor-play.cursor-nativo textarea{ cursor: text !important; }
   .sobre-lead .letra-j{ font-style: normal; font-size: 1em; }
   .letra-j-min{ font-family: "Lora", Georgia, serif; font-style: normal; font-weight: 500; }
+  /* Cursor azul so sobre os videos; no resto do site fica o cursor normal */
+  @media (hover: hover) and (pointer: fine){ .video-facade, .video-facade *{ cursor: none !important; } }
 </style>
 </head>
 <body>
@@ -1399,21 +1401,20 @@
     el.className = "cursor-play";
     el.setAttribute("aria-hidden", "true");
     document.body.appendChild(el);
-    document.documentElement.classList.add("com-cursor-play");
     let x = -100, y = -100, cx = -100, cy = -100, visivel = false;
-    const CAMPOS = "input, textarea, select, [contenteditable='true']";
+
+    // O cursor azul so aparece sobre a capa dos videos (antes de dar play).
     function atualizar(e){
       x = e.clientX; y = e.clientY;
       const alvo = (e.target && e.target.closest) ? e.target : null;
-      const emCampo = !!(alvo && alvo.closest(CAMPOS));
-      document.documentElement.classList.toggle("cursor-nativo", emCampo);
-      if(emCampo){ el.style.display = "none"; return; }
-      if(!visivel || el.style.display !== "flex"){ visivel = true; cx = x; cy = y; el.style.display = "flex"; }
-      el.classList.toggle("sobre-link", !!(alvo && alvo.closest("a, button, label")));
+      const sobreVideo = !!(alvo && alvo.closest(".video-facade"));
+      if(!sobreVideo){ el.style.display = "none"; visivel = false; return; }
+      if(!visivel){ visivel = true; cx = x; cy = y; el.style.display = "flex"; }
     }
     document.addEventListener("mousemove", atualizar);
     document.addEventListener("mouseover", atualizar);
     document.documentElement.addEventListener("mouseleave", () => { visivel = false; el.style.display = "none"; });
+
     function mover(){
       const fator = reduzirMovimento ? 1 : 0.28;
       cx += (x - cx) * fator;
@@ -1424,7 +1425,6 @@
     }
     requestAnimationFrame(mover);
   }
-
   /* ==================== INÍCIO ==================== */
 
   function iniciar(){
