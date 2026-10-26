@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-h">
+<meta name="build" content="20261026-i">
 <script>
 /* Atualizacao automatica: se existir uma versao mais nova publicada, a pagina recarrega sozinha uma vez. */
 (function(){
@@ -662,6 +662,7 @@
   .palco-fechar:hover{ background: var(--rosa); color: var(--marrom); }
   body.palco-aberto{ overflow: hidden; }
   @media (max-width: 640px){ .palco-video{ height: auto; width: 92vw; max-height: 86vh; } }
+  .palco-som{ position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 2; border: 0; border-radius: 999px; padding: 12px 22px; background: var(--rosa); color: var(--marrom); font-family: "Manrope", system-ui, sans-serif; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.06em; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35); cursor: pointer; }
 </style>
 </head>
 <body>
@@ -1221,13 +1222,16 @@
     palco.setAttribute("role", "dialog");
     palco.setAttribute("aria-modal", "true");
     palco.setAttribute("aria-label", botao.getAttribute("aria-label") || "Video");
-    palco.innerHTML = `<button type="button" class="palco-fechar" aria-label="Fechar vídeo">✕</button><div class="palco-video"></div>`;
+    // No celular o navegador so deixa o video tocar sozinho se estiver sem som; entao comeca mudo e um botao liga o som.
+    const celular = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    const textoSom = idiomaAtual === "en" ? "Turn sound on" : "Ativar o som";
+    palco.innerHTML = `<button type="button" class="palco-fechar" aria-label="Fechar vídeo">✕</button><div class="palco-video"></div>${celular ? `<button type="button" class="palco-som">🔊 ${textoSom}</button>` : ""}`;
     document.body.appendChild(palco);
     document.body.classList.add("palco-aberto");
 
     const caixa = palco.querySelector(".palco-video");
     const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080`;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${botao.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080&enablejsapi=1${celular ? "&mute=1" : ""}`;
     iframe.title = botao.getAttribute("aria-label") || "";
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
@@ -1260,6 +1264,16 @@
     document.addEventListener("keydown", aoTeclar);
     palco.addEventListener("click", (e) => { if(e.target === palco) fechar(); });
     palco.querySelector(".palco-fechar").addEventListener("click", fechar);
+    const botaoSom = palco.querySelector(".palco-som");
+    if(botaoSom){
+      botaoSom.addEventListener("click", () => {
+        const enviar = (func, args) => iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*");
+        enviar("unMute");
+        enviar("setVolume", [100]);
+        enviar("playVideo");
+        botaoSom.remove();
+      });
+    }
     palco.querySelector(".palco-fechar").focus({ preventScroll: true });
   }
 
