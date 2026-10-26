@@ -572,6 +572,10 @@
   section{ scroll-margin-top: calc(var(--nav-altura) + var(--aviso, 0px) + 4px); }
   @media (max-width: 900px){ .nav-links{ top: calc(var(--nav-altura) + var(--aviso, 0px)); } }
   @media (max-width: 640px){ .aviso-bf{ font-size: 0.8rem; padding-right: 40px; } .bf-contagem strong{ font-size: 1.5rem; } }
+  .captura-modal{ max-height: 92vh; overflow-y: auto; }
+  .captura-modal .form-campo{ margin-bottom: 14px; }
+  .captura-modal textarea{ min-height: 84px; }
+  .captura-nota{ margin: 12px 0 0; font-size: 0.78rem; text-align: center; color: var(--tinta-suave); }
 </style>
 </head>
 <body>
@@ -781,25 +785,34 @@
   <div class="captura-fundo" id="capturaFundo">
     <div class="captura-modal" role="dialog" aria-modal="true" aria-labelledby="capturaTitulo">
       <button class="captura-fechar" id="capturaFechar" data-i18n-aria="captura_fechar_aria" aria-label="Fechar">✕</button>
-      <span class="captura-etiqueta" data-i18n="captura_etiqueta">Mídia kit</span>
+      <span class="captura-etiqueta" data-i18n="captura_etiqueta">Vamos conversar?</span>
       <div id="capturaConteudo">
-        <h3 id="capturaTitulo" data-i18n="captura_titulo">Quer meu mídia kit completo?</h3>
-        <p data-i18n="captura_texto">Deixe seu nome e e-mail que eu envio com todos os detalhes dos meus conteúdos.</p>
-        <form id="formCaptura">
+        <h3 id="capturaTitulo" data-i18n="captura_titulo">Bora tirar a sua ideia do papel?</h3>
+        <p data-i18n="captura_texto">Me conta sobre o seu produto e o que você imagina. Eu respondo com ideias de conteúdo pensadas para a sua marca.</p>
+        <form id="formCaptura" novalidate>
           <div class="form-campo">
-            <label for="capturaNome" data-i18n="captura_label_nome">Nome</label>
+            <label for="capturaNome" data-i18n="captura_label_nome">Seu nome</label>
             <input type="text" id="capturaNome" name="nome" required autocomplete="name">
+          </div>
+          <div class="form-campo">
+            <label for="capturaTel" data-i18n="captura_label_tel">WhatsApp / telefone (com DDD)</label>
+            <input type="tel" id="capturaTel" name="telefone" required autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000">
           </div>
           <div class="form-campo">
             <label for="capturaEmail" data-i18n="captura_label_email">E-mail</label>
             <input type="email" id="capturaEmail" name="email" required autocomplete="email">
           </div>
-          <button type="submit" class="botao botao-primario" style="width:100%;" data-i18n="captura_botao">Quero receber</button>
+          <div class="form-campo">
+            <label for="capturaProjeto" data-i18n="captura_label_projeto">Conte sobre o seu projeto</label>
+            <textarea id="capturaProjeto" name="projeto" rows="3" required data-i18n-ph="captura_ph_projeto" placeholder="Qual é o seu produto? Que tipo de conteúdo você imagina?"></textarea>
+          </div>
+          <button type="submit" class="botao botao-primario" style="width:100%;" data-i18n="captura_botao">Quero minhas ideias</button>
+          <p class="captura-nota" data-i18n="captura_nota">Sem spam. Só uma resposta pensada para a sua marca.</p>
         </form>
       </div>
       <div class="captura-obrigado" id="capturaObrigado">
         <h3 data-i18n="captura_obrigado_titulo">Prontinho!</h3>
-        <p data-i18n="captura_obrigado_texto">Recebi seus dados. Em breve envio o mídia kit completo para o seu e-mail.</p>
+        <p data-i18n="captura_obrigado_texto">Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu te respondo com ideias para a sua marca.</p>
       </div>
     </div>
   </div>
@@ -994,13 +1007,13 @@
       footer_email: "E-mail",
       footer_ano: '© <span id="anoAtual"></span> Jéssica Mendes. Todos os direitos reservados.',
       captura_fechar_aria: "Fechar",
-      captura_etiqueta: "Mídia kit",
-      captura_titulo: "Quer meu mídia kit completo?",
-      captura_texto: "Deixe seu nome e e-mail que eu envio com todos os detalhes dos meus conteúdos.",
-      captura_label_nome: "Nome", captura_label_email: "E-mail",
-      captura_botao: "Quero receber",
+      captura_etiqueta: "Vamos conversar?",
+      captura_titulo: "Bora tirar a sua ideia do papel?",
+      captura_texto: "Me conta sobre o seu produto e o que você imagina. Eu respondo com ideias de conteúdo pensadas para a sua marca.",
+      captura_label_nome: "Seu nome", captura_label_email: "E-mail", captura_label_tel: "WhatsApp / telefone (com DDD)", captura_label_projeto: "Conte sobre o seu projeto", captura_ph_projeto: "Qual é o seu produto? Que tipo de conteúdo você imagina?", captura_nota: "Sem spam. Só uma resposta pensada para a sua marca.",
+      captura_botao: "Quero minhas ideias",
       captura_obrigado_titulo: "Prontinho!",
-      captura_obrigado_texto: "Recebi seus dados. Em breve envio o mídia kit completo para o seu e-mail."
+      captura_obrigado_texto: "Abri o WhatsApp com a sua mensagem pronta. É só enviar que eu te respondo com ideias para a sua marca."
     },
     en: {
       nav_sobre: "About", nav_destaques: "Highlights", nav_trabalhos: "Content",
@@ -1041,13 +1054,13 @@
       footer_email: "Email",
       footer_ano: '© <span id="anoAtual"></span> Jéssica Mendes. All rights reserved.',
       captura_fechar_aria: "Close",
-      captura_etiqueta: "Media kit",
-      captura_titulo: "Want my full media kit?",
-      captura_texto: "Leave your name and email and I will send you every detail about my content.",
-      captura_label_nome: "Name", captura_label_email: "Email",
-      captura_botao: "I want it",
+      captura_etiqueta: "Let's talk?",
+      captura_titulo: "Ready to bring your idea to life?",
+      captura_texto: "Tell me about your product and what you have in mind. I will reply with content ideas made for your brand.",
+      captura_label_nome: "Your name", captura_label_email: "Email", captura_label_tel: "WhatsApp / phone (with area code)", captura_label_projeto: "Tell me about your project", captura_ph_projeto: "What is your product? What kind of content do you imagine?", captura_nota: "No spam. Just a reply made for your brand.",
+      captura_botao: "I want my ideas",
       captura_obrigado_titulo: "All set!",
-      captura_obrigado_texto: "Got your details. I will send the full media kit to your email soon."
+      captura_obrigado_texto: "I opened WhatsApp with your message ready. Just send it and I will reply with ideas for your brand."
     }
   };
 
@@ -1288,6 +1301,10 @@
       const k = el.getAttribute("data-i18n-alt");
       if(dic[k] !== undefined) el.setAttribute("alt", dic[k]);
     });
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      const k = el.getAttribute("data-i18n-ph");
+      if(dic[k] !== undefined) el.setAttribute("placeholder", dic[k]);
+    });
     document.documentElement.lang = idiomaAtual === "pt" ? "pt-BR" : "en";
   }
 
@@ -1403,6 +1420,14 @@
     }
     function fechar(){ fundo.classList.remove("aberto"); }
 
+    const tel = document.getElementById("capturaTel");
+    tel.addEventListener("input", () => {
+      const d = tel.value.replace(/\D/g, "").slice(0, 11);
+      let t = d;
+      if(d.length > 2) t = `(${d.slice(0, 2)}) ${d.slice(2, d.length > 10 ? 7 : 6)}${d.length > (d.length > 10 ? 7 : 6) ? "-" + d.slice(d.length > 10 ? 7 : 6) : ""}`;
+      else if(d.length > 0) t = `(${d}`;
+      tel.value = t;
+    });
     setTimeout(abrir, 7000);
     document.getElementById("capturaFechar").addEventListener("click", fechar);
     fundo.addEventListener("click", (ev) => { if(ev.target === fundo) fechar(); });
@@ -1411,9 +1436,14 @@
     form.addEventListener("submit", (ev) => {
       ev.preventDefault();
       if(!form.checkValidity()){ form.reportValidity(); return; }
+      const v = (id) => document.getElementById(id).value.trim();
+      const msg = idiomaAtual === "en"
+        ? `Hi Jessica! I am ${v("capturaNome")}. I saw your portfolio and would like UGC content. About my project: ${v("capturaProjeto")}. My WhatsApp: ${v("capturaTel")}. Email: ${v("capturaEmail")}.`
+        : `Oi Jéssica! Sou ${v("capturaNome")}. Vi seu portfólio e quero criar conteúdo UGC. Sobre o meu projeto: ${v("capturaProjeto")}. Meu WhatsApp: ${v("capturaTel")}. E-mail: ${v("capturaEmail")}.`;
+      window.open(`${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
       conteudoModal.style.display = "none";
       obrigado.classList.add("visivel");
-      setTimeout(fechar, 2600);
+      setTimeout(fechar, 7000);
     });
   }
 
