@@ -563,7 +563,7 @@
           <ul class="nav-links" id="navLinks">
             <li><a href="#sobre" data-i18n="nav_sobre">Sobre</a></li>
             <li><a href="#destaques" data-i18n="nav_destaques">Destaques</a></li>
-            <li><a href="#trabalhos" data-i18n="nav_trabalhos">Trabalhos</a></li>
+            <li><a href="#trabalhos" data-i18n="nav_trabalhos">Conteúdos</a></li>
             <li><a href="#servicos" data-i18n="nav_servicos">Serviços</a></li>
             <li><a href="#processo" data-i18n="nav_processo">Como funciona</a></li>
             <li><a href="#contato" data-i18n="nav_contato">Contato</a></li>
@@ -592,7 +592,7 @@
           <p class="hero-frase hero-nichos" data-i18n="hero_frase"><span>Beleza</span><span>Moda</span><span>Bem-estar</span><span>Gastronomia</span><span>Experiências</span></p>
           <div class="hero-botoes">
             <a class="botao botao-primario" href="https://wa.me/5511989794275?text=Ol%C3%A1!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20parceria." target="_blank" rel="noopener" data-i18n="hero_botao_falar">Falar comigo</a>
-            <a class="botao botao-secundario" href="#trabalhos" data-i18n="hero_botao_ver">Ver os trabalhos</a>
+            <a class="botao botao-secundario" href="#trabalhos" data-i18n="hero_botao_ver">Ver os conteúdos</a>
           </div>
           <div class="hero-numeros">
             <div class="hero-numero">
@@ -663,10 +663,10 @@
     <section id="trabalhos" class="secao listrado">
       <div class="container">
         <div class="secao-cab reveal">
-          <h2 data-i18n="trabalhos_titulo">Trabalhos por <span class="script">nicho</span></h2>
+          <h2 data-i18n="trabalhos_titulo">Conteúdos por <span class="script">nicho</span></h2>
           <p data-i18n="trabalhos_sub">Escolha um nicho e assista aos vídeos direto aqui no site.</p>
         </div>
-        <div class="filtros" id="filtros" role="group" data-i18n-aria="filtros_aria" aria-label="Filtrar trabalhos por nicho"></div>
+        <div class="filtros" id="filtros" role="group" data-i18n-aria="filtros_aria" aria-label="Filtrar conteúdos por nicho"></div>
         <div class="trabalhos-grid" id="trabalhosGrid"></div>
       </div>
     </section>
@@ -763,7 +763,7 @@
       <span class="captura-etiqueta" data-i18n="captura_etiqueta">Mídia kit</span>
       <div id="capturaConteudo">
         <h3 id="capturaTitulo" data-i18n="captura_titulo">Quer meu mídia kit completo?</h3>
-        <p data-i18n="captura_texto">Deixe seu nome e e-mail que eu envio com todos os detalhes do meu trabalho.</p>
+        <p data-i18n="captura_texto">Deixe seu nome e e-mail que eu envio com todos os detalhes dos meus conteúdos.</p>
         <form id="formCaptura">
           <div class="form-campo">
             <label for="capturaNome" data-i18n="captura_label_nome">Nome</label>
@@ -867,7 +867,7 @@
         capaLegenda: "capa 9:16",
         metricaLivre: "Espaço para a próxima métrica",
         milUnidade: "mil",
-        whatsappTrabalho: (marca) => `Oi Jéssica, vi o trabalho da ${marca} no seu portfólio e quero contratar`
+        whatsappTrabalho: (marca) => `Oi Jéssica, vi o conteúdo da ${marca} no seu portfólio e quero contratar`
       }
     },
 
@@ -927,7 +927,7 @@
         capaLegenda: "cover 9:16",
         metricaLivre: "Space for the next metric",
         milUnidade: "K",
-        whatsappTrabalho: (marca) => `Hi Jessica, I saw the ${marca} work on your portfolio and I would like to hire you`
+        whatsappTrabalho: (marca) => `Hi Jessica, I saw the ${marca} content on your portfolio and I would like to hire you`
       }
     }
   };
@@ -935,11 +935,11 @@
   // Textos fixos da página (menu, títulos, formulário, rodapé, card de captura)
   const textosEstaticos = {
     pt: {
-      nav_sobre: "Sobre", nav_destaques: "Destaques", nav_trabalhos: "Trabalhos",
+      nav_sobre: "Sobre", nav_destaques: "Destaques", nav_trabalhos: "Conteúdos",
       nav_servicos: "Serviços", nav_processo: "Como funciona", nav_contato: "Contato",
       nav_toggle_aria: "Abrir menu",
       hero_frase: "<span>Beleza</span><span>Moda</span><span>Bem-estar</span><span>Gastronomia</span><span>Experiências</span>",
-      hero_botao_falar: "Falar comigo", hero_botao_ver: "Ver os trabalhos",
+      hero_botao_falar: "Falar comigo", hero_botao_ver: "Ver os conteúdos",
       hero_num1_label: "anos no audiovisual", hero_num2_label: "prazo de entrega (úteis)", hero_num3_label: "rodada de ajuste inclusa",
       hero_foto_alt: "Jéssica Mendes, UGC Creator",
       sobre_foto_alt: "Jéssica Mendes sorrindo",
@@ -955,9 +955,9 @@
       promessa3: "Entrega em até 72 horas úteis",
       destaques_titulo: "Conteúdos em destaque",
       destaques_sub: "Alguns vídeos que representam bem o meu estilo de criação.",
-      trabalhos_titulo: 'Trabalhos por <span class="script">nicho</span>',
+      trabalhos_titulo: 'Conteúdos por <span class="script">nicho</span>',
       trabalhos_sub: "Escolha um nicho e assista aos vídeos direto aqui no site.",
-      filtros_aria: "Filtrar trabalhos por nicho",
+      filtros_aria: "Filtrar conteúdos por nicho",
       servicos_titulo: 'Como eu te <span class="script">ajudo</span>',
       servicos_sub: "Serviços pensados para encaixar em diferentes momentos da sua marca.",
       processo_titulo: 'Como <span class="script">funciona</span>',
@@ -975,18 +975,18 @@
       captura_fechar_aria: "Fechar",
       captura_etiqueta: "Mídia kit",
       captura_titulo: "Quer meu mídia kit completo?",
-      captura_texto: "Deixe seu nome e e-mail que eu envio com todos os detalhes do meu trabalho.",
+      captura_texto: "Deixe seu nome e e-mail que eu envio com todos os detalhes dos meus conteúdos.",
       captura_label_nome: "Nome", captura_label_email: "E-mail",
       captura_botao: "Quero receber",
       captura_obrigado_titulo: "Prontinho!",
       captura_obrigado_texto: "Recebi seus dados. Em breve envio o mídia kit completo para o seu e-mail."
     },
     en: {
-      nav_sobre: "About", nav_destaques: "Highlights", nav_trabalhos: "Work",
+      nav_sobre: "About", nav_destaques: "Highlights", nav_trabalhos: "Content",
       nav_servicos: "Services", nav_processo: "How it works", nav_contato: "Contact",
       nav_toggle_aria: "Open menu",
       hero_frase: "<span>Beauty</span><span>Fashion</span><span>Wellness</span><span>Gastronomy</span><span>Experiences</span>",
-      hero_botao_falar: "Talk to me", hero_botao_ver: "See my work",
+      hero_botao_falar: "Talk to me", hero_botao_ver: "See my content",
       hero_num1_label: "years in audiovisual", hero_num2_label: "delivery time (business)", hero_num3_label: "round of revisions included",
       hero_foto_alt: "Jéssica Mendes, UGC Creator",
       sobre_foto_alt: "Jéssica Mendes smiling",
@@ -1002,9 +1002,9 @@
       promessa3: "Delivery within 72 business hours",
       destaques_titulo: "Featured content",
       destaques_sub: "A few videos that really show my creative style.",
-      trabalhos_titulo: 'Work by <span class="script">niche</span>',
+      trabalhos_titulo: 'Content by <span class="script">niche</span>',
       trabalhos_sub: "Pick a niche and watch the videos right here on the site.",
-      filtros_aria: "Filter work by niche",
+      filtros_aria: "Filter content by niche",
       servicos_titulo: 'How I can <span class="script">help</span>',
       servicos_sub: "Services designed to fit different moments of your brand.",
       processo_titulo: 'How it <span class="script">works</span>',
@@ -1022,7 +1022,7 @@
       captura_fechar_aria: "Close",
       captura_etiqueta: "Media kit",
       captura_titulo: "Want my full media kit?",
-      captura_texto: "Leave your name and email and I will send you every detail about my work.",
+      captura_texto: "Leave your name and email and I will send you every detail about my content.",
       captura_label_nome: "Name", captura_label_email: "Email",
       captura_botao: "I want it",
       captura_obrigado_titulo: "All set!",
