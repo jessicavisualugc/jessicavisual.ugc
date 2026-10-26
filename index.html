@@ -524,13 +524,18 @@
   .hero-nichos span + span::before{ content: "✱"; color: var(--rosa-escuro); font-family: "Manrope", sans-serif; font-size: 0.6em; margin-right: 14px; vertical-align: middle; }
   .sobre-texto .sobre-lead{ font-size: clamp(1.9rem, 3.4vw, 2.5rem); line-height: 1.25; }
   .play-botao{ background: #5a7cc2; box-shadow: 0 8px 22px rgba(54, 84, 143, 0.4); }
+  .letra-j{ font-family: "Lora", Georgia, serif; font-weight: 500; }
+  .nav-logo .letra-j, figcaption .letra-j, .assinatura .letra-j, footer .nome .letra-j{ font-size: 1.1em; }
+  .play-botao{ top: auto; left: auto; right: 14px; bottom: 14px; transform: none; width: 54px; height: 54px; }
+  .video-facade:hover .play-botao{ transform: scale(1.1); }
+  .card-overlay{ padding-right: 80px; }
 </style>
 </head>
 <body>
 
   <header class="site-header">
     <div class="nav-wrap">
-      <a href="#" class="nav-logo">Jéssica Mendes</a>
+      <a href="#" class="nav-logo"><span class="letra-j">J</span>éssica Mendes</a>
       <div class="nav-actions">
         <nav aria-label="Principal">
           <ul class="nav-links" id="navLinks">
@@ -589,7 +594,7 @@
           <!-- Para trocar a foto: substitua o arquivo public/foto-capa.jpg (mantenha o mesmo nome). Formato retrato, sem corte. -->
           <figure class="polaroid">
             <img src="public/foto-capa.jpg" alt="Jéssica Mendes, UGC Creator" data-i18n-alt="hero_foto_alt">
-            <figcaption>Jéssica Mendes</figcaption>
+            <figcaption><span class="letra-j">J</span>éssica Mendes</figcaption>
           </figure>
         </div>
       </div>
@@ -616,7 +621,7 @@
             <li data-i18n="promessa2">Uma rodada de ajuste inclusa</li>
             <li data-i18n="promessa3">Entrega em até 72 horas úteis</li>
           </ul>
-          <p class="assinatura">Jéssica Mendes</p>
+          <p class="assinatura"><span class="letra-j">J</span>éssica Mendes</p>
         </div>
       </div>
     </section>
@@ -718,7 +723,7 @@
   <footer>
     <div class="container">
       <div class="rodape-grid">
-        <p class="nome">Jéssica Mendes</p>
+        <p class="nome"><span class="letra-j">J</span>éssica Mendes</p>
         <div class="rodape-redes">
           <a href="https://instagram.com/jessicavisual.ugc" target="_blank" rel="noopener">Instagram</a>
           <a href="https://wa.me/5511989794275" target="_blank" rel="noopener">WhatsApp</a>
