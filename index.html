@@ -1000,7 +1000,7 @@
 
   /* ==================== VÍDEOS (tocam no próprio site) ==================== */
 
-  function miniaturaYoutube(id){ return `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
+  function miniaturaYoutube(id){ return `https://i.ytimg.com/vi/${id}/oardefault.jpg`; }
 
   function htmlTelaCelular(item, ui, titulo){
     if(!item.video){
@@ -1008,7 +1008,7 @@
     }
     const capa = item.capa ? item.capa : miniaturaYoutube(item.video);
     return `<button type="button" class="video-facade" data-video-id="${item.video}" aria-label="${ui.assistir} ${titulo}">
-        <img src="${capa}" alt="" loading="lazy">
+        <img src="${capa}" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${item.video}/hqdefault.jpg'">
         <span class="play-botao" aria-hidden="true"></span>
       </button>`;
   }
