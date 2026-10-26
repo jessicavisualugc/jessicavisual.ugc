@@ -577,6 +577,35 @@
   .captura-modal textarea{ min-height: 84px; }
   .captura-nota{ margin: 12px 0 0; font-size: 0.78rem; text-align: center; color: var(--tinta-suave); }
   .captura-modal h3{ font-size: 1.6rem; }
+  /* ===== Celular: capa compacta, texto primeiro e foto menor ao lado ===== */
+  @media (max-width: 640px){
+    .aviso-bf{ flex-wrap: nowrap; gap: 8px; padding: 7px 36px 7px 10px; }
+    .aviso-bf .bf-texto{ display: none; }
+    .bf-selo{ font-size: 0.56rem; padding: 4px 8px; letter-spacing: 0.1em; white-space: nowrap; }
+    .bf-contagem{ font-size: 0.95rem; white-space: nowrap; }
+    .bf-contagem strong{ font-size: 1.3rem; }
+    .bf-botao{ font-size: 0.58rem; padding: 6px 11px; letter-spacing: 0.08em; white-space: nowrap; }
+
+    .hero-grid{ display: grid; grid-template-columns: minmax(0, 1fr) 42%; column-gap: 10px; align-items: start; min-height: 0; padding: 26px 18px 30px; background: #f1e8dc; }
+    .hero-painel{ display: contents; }
+    .hero-painel .estrela, .hero-foto-area .estrela, .hero-foto-area .ponto{ display: none; }
+    .hero-kicker{ grid-column: 1; grid-row: 1; margin: 0 0 12px; }
+    .hero-painel h1{ grid-column: 1; grid-row: 2; font-size: clamp(2.5rem, 12.5vw, 3.5rem); margin: 0 0 14px; }
+    .hero-painel .hero-nichos{ grid-column: 1; grid-row: 3; font-size: 1.02rem; margin: 0; gap: 4px 10px; }
+    .hero-foto-area{ grid-column: 2; grid-row: 1 / span 3; order: 0; background: none; padding: 6px 0 0; overflow: visible; display: block; }
+    .hero-foto-area .polaroid{ width: 100%; padding: 7px 7px 34px; transform: rotate(3deg); }
+    .hero-foto-area .polaroid figcaption{ font-size: 1rem; bottom: 6px; }
+    .hero-foto-area .polaroid::before{ width: 54px; height: 16px; top: -9px; }
+    .hero-botoes{ grid-column: 1 / -1; grid-row: 4; margin: 24px 0 22px; }
+    .hero-numeros{ grid-column: 1 / -1; grid-row: 5; margin: 0; max-width: none; }
+
+    .sobre-grid{ display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .sobre-texto{ display: contents; }
+    .sobre-texto h2{ order: 1; margin: 0; }
+    .sobre-grid .polaroid{ order: 2; width: min(72%, 270px); margin: 0 auto; }
+    .sobre-texto > *:not(h2){ order: 3; }
+    .estrela, .ponto{ display: none !important; }
+  }
 </style>
 </head>
 <body>
