@@ -580,7 +580,7 @@
     <span class="bf-selo" id="bfSelo">Black Friday</span>
     <span class="bf-contagem" id="bfContagem"></span>
     <span class="bf-texto" id="bfTexto"></span>
-    <a class="bf-botao" id="bfBotao" href="#contato" target="_blank" rel="noopener"></a>
+    <a class="bf-botao" id="bfBotao" href="#contato"></a>
     <button type="button" class="bf-fechar" id="bfFechar" aria-label="Fechar aviso">✕</button>
   </div>
 
@@ -1424,7 +1424,7 @@
       selo: "Black Friday",
       dias: (n) => n === 0 ? "<strong>É hoje!</strong>" : (n === 1 ? "Falta <strong>1</strong> dia" : `Faltam <strong>${n}</strong> dias`),
       texto: (n) => n === 0 ? "Ainda dá tempo de a sua marca aparecer. Me chame agora." : "Garanta seus vídeos UGC a tempo de vender mais.",
-      botao: "Quero meu conteúdo",
+      botao: "Reservar agenda",
       fechar: "Fechar aviso",
       aria: "Contagem regressiva para a Black Friday",
       msg: "Oi Jéssica! Vi a contagem da Black Friday no seu portfólio e quero conteúdo UGC para a minha marca."
@@ -1433,7 +1433,7 @@
       selo: "Black Friday",
       dias: (n) => n === 0 ? "<strong>It's today!</strong>" : (n === 1 ? "<strong>1</strong> day to go" : `<strong>${n}</strong> days to go`),
       texto: (n) => n === 0 ? "There is still time for your brand to shine. Message me now." : "Get your UGC videos ready to sell more.",
-      botao: "I want my content",
+      botao: "Book my slot",
       fechar: "Close notice",
       aria: "Black Friday countdown",
       msg: "Hi Jessica! I saw the Black Friday countdown on your portfolio and I would like UGC content for my brand."
@@ -1479,7 +1479,7 @@
     document.getElementById("bfTexto").textContent = t.texto(dias);
     const botao = document.getElementById("bfBotao");
     botao.textContent = t.botao;
-    botao.href = `${WHATSAPP}?text=${encodeURIComponent(t.msg)}`;
+    botao.href = "#contato";
     document.getElementById("bfFechar").setAttribute("aria-label", t.fechar);
     aviso.setAttribute("aria-label", t.aria);
     aviso.hidden = false;
