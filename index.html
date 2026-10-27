@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-n">
+<meta name="build" content="20261026-o">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -682,6 +682,9 @@
   }
   body.palco-aberto .destaques-grid, body.palco-aberto .trabalhos-grid{ z-index: 3001; }
   .palco-fechar{ z-index: 3002; }
+  .filtro-botao:hover{ background: #1f3366; color: var(--branco); border-color: #1f3366; }
+  .filtro-botao.ativo:hover{ background: #1f3366; }
+  .destaque-info{ padding-top: 22px; }
 </style>
 </head>
 <body>
@@ -1453,7 +1456,6 @@
         ${htmlCelular(d, c.ui, d.titulo)}
         <div class="destaque-info">
           ${d.numero ? `<div class="destaque-numero">${d.numero}</div><div class="destaque-rotulo">${d.rotulo}</div>` : ""}
-          <h3 class="destaque-titulo">${d.titulo}</h3>
           <p class="destaque-contexto">${d.contexto}</p>
         </div>
       </article>
