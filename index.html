@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-r">
+<meta name="build" content="20261026-s">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -680,7 +680,8 @@
     .celular:hover{ transform: none; box-shadow: var(--sombra); }
     .celular:hover .video-facade img{ transform: none; }
   }
-  body.palco-aberto .destaques-grid, body.palco-aberto .trabalhos-grid{ z-index: 3001; }
+  .grid-foco{ z-index: 3001 !important; }
+  body.palco-aberto .grid-foco > article:not(.card-foco){ filter: brightness(0.45) blur(3px); pointer-events: none; transition: filter 0.4s ease; }
   .palco-fechar{ z-index: 3002; }
   .filtro-botao:hover{ background: #1f3366; color: var(--branco); border-color: #1f3366; }
   .filtro-botao.ativo:hover{ background: #1f3366; }
@@ -1298,6 +1299,10 @@
 
   function trazerParaFrente(tela, iframe, aoFechar){
     const cartao = tela.closest(".celular");
+    const artigo = tela.closest("article");
+    const grade = tela.closest(".destaques-grid, .trabalhos-grid");
+    if(artigo) artigo.classList.add("card-foco");
+    if(grade) grade.classList.add("grid-foco");
     const origem = tela.getBoundingClientRect();
     cartao.style.height = cartao.offsetHeight + "px";
 
@@ -1337,6 +1342,8 @@
         tela.classList.remove("tela-em-foco");
         ["position", "left", "top", "width", "height", "transition", "transform"].forEach(p => tela.style.removeProperty(p));
         cartao.style.removeProperty("height");
+        if(artigo) artigo.classList.remove("card-foco");
+        if(grade) grade.classList.remove("grid-foco");
         palco.remove();
         aoFechar();
       }, reduzirMovimento ? 0 : 480);
