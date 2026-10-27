@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-s">
+<meta name="build" content="20261026-t">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1326,7 +1326,7 @@
       void tela.offsetWidth;
       tela.style.transition = "transform 0.5s cubic-bezier(0.22, 0.8, 0.3, 1)";
     }
-    requestAnimationFrame(() => { palco.classList.add("ativo"); tela.style.transform = ""; });
+    setTimeout(() => { palco.classList.add("ativo"); tela.style.transform = ""; }, 40);
 
     function fechar(){
       document.removeEventListener("keydown", aoTeclar);
@@ -1424,11 +1424,11 @@
       const dy = (origem.top + origem.height / 2) - (alvo.top + alvo.height / 2);
       caixa.style.transform = `translate(${dx}px, ${dy}px) scale(${origem.width / alvo.width})`;
       caixa.style.opacity = "0.5";
-      requestAnimationFrame(() => requestAnimationFrame(() => {
+      setTimeout(() => {
         palco.classList.add("ativo");
         caixa.style.transform = "";
         caixa.style.opacity = "";
-      }));
+      }, 40);
     } else {
       palco.classList.add("ativo");
     }
