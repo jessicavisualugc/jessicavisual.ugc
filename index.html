@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-y">
+<meta name="build" content="20261026-z">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -686,6 +686,9 @@
   .filtro-botao:hover{ background: #1f3366; color: var(--branco); border-color: #1f3366; }
   .filtro-botao.ativo:hover{ background: #1f3366; }
   .destaque-info{ padding-top: 22px; }
+  .palco-fechar-topo{ position: fixed; top: 16px; right: 16px; z-index: 3003; }
+  .grid-foco{ pointer-events: none; }
+  .grid-foco .tela-em-foco{ pointer-events: auto; }
 </style>
 </head>
 <body>
@@ -959,7 +962,7 @@
         { marca: "Marca 02", nicho: "beleza", novo: false, video: "" },
         { marca: "Dance Glow", nicho: "experiencias", novo: false, video: "TEghqGwzSX4", capa: "https://i.ytimg.com/vi/TEghqGwzSX4/oar1.jpg" },
         { marca: "Marca 04", nicho: "bemestar", novo: false, video: "" },
-        { marca: "Aurora", nicho: "moda", novo: false, video: "zRZOu0fUQVI", capa: "https://i.ytimg.com/vi/zRZOu0fUQVI/oardefault.jpg" },
+        { marca: "Aurora", nicho: "moda", novo: false, video: "L53gM7D-C8Q", capa: "https://i.ytimg.com/vi/L53gM7D-C8Q/oardefault.jpg" },
         { marca: "Natural One", nicho: "gastronomia", novo: false, video: "pF7tPb0dids", capa: "https://i.ytimg.com/vi/pF7tPb0dids/oardefault.jpg" },
         { marca: "Leão", nicho: "gastronomia", novo: false, video: "5NScq6MnT_M", capa: "https://i.ytimg.com/vi/5NScq6MnT_M/oar1.jpg" }
       ],
@@ -1029,7 +1032,7 @@
         { marca: "Brand 02", nicho: "beleza", novo: false, video: "" },
         { marca: "Dance Glow", nicho: "experiencias", novo: false, video: "TEghqGwzSX4", capa: "https://i.ytimg.com/vi/TEghqGwzSX4/oar1.jpg" },
         { marca: "Brand 04", nicho: "bemestar", novo: false, video: "" },
-        { marca: "Aurora", nicho: "moda", novo: false, video: "zRZOu0fUQVI", capa: "https://i.ytimg.com/vi/zRZOu0fUQVI/oardefault.jpg" },
+        { marca: "Aurora", nicho: "moda", novo: false, video: "L53gM7D-C8Q", capa: "https://i.ytimg.com/vi/L53gM7D-C8Q/oardefault.jpg" },
         { marca: "Natural One", nicho: "gastronomia", novo: false, video: "pF7tPb0dids", capa: "https://i.ytimg.com/vi/pF7tPb0dids/oardefault.jpg" },
         { marca: "Leão", nicho: "gastronomia", novo: false, video: "5NScq6MnT_M", capa: "https://i.ytimg.com/vi/5NScq6MnT_M/oar1.jpg" }
       ],
@@ -1321,8 +1324,13 @@
     palco.className = "video-palco";
     palco.setAttribute("role", "dialog");
     palco.setAttribute("aria-modal", "true");
-    palco.innerHTML = `<button type="button" class="palco-fechar" aria-label="Fechar vídeo">✕</button>`;
     document.body.appendChild(palco);
+    const botaoX = document.createElement("button");
+    botaoX.type = "button";
+    botaoX.className = "palco-fechar palco-fechar-topo";
+    botaoX.setAttribute("aria-label", "Fechar vídeo");
+    botaoX.textContent = "✕";
+    document.body.appendChild(botaoX);
     document.body.classList.add("palco-aberto");
 
     const w = Math.min(window.innerWidth * 0.92, window.innerHeight * 0.86 * 0.5625);
@@ -1341,6 +1349,7 @@
 
     function fechar(){
       document.removeEventListener("keydown", aoTeclar);
+      botaoX.remove();
       enviarComando(iframe, "pauseVideo");
       palco.classList.remove("ativo");
       document.body.classList.remove("palco-aberto");
@@ -1362,7 +1371,8 @@
     function aoTeclar(e){ if(e.key === "Escape") fechar(); }
     document.addEventListener("keydown", aoTeclar);
     palco.addEventListener("click", (e) => { if(e.target === palco) fechar(); });
-    palco.querySelector(".palco-fechar").addEventListener("click", fechar);
+    botaoX.addEventListener("click", (e) => { e.stopPropagation(); fechar(); });
+    botaoX.focus({ preventScroll: true });
   }
 
   // Ao clicar, o video "vem para frente": a pagina fica de fundo (escurecida e desfocada) e o video cresce no centro.
