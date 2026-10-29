@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="build" content="20261026-w">
+<meta name="build" content="20261026-x">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="dns-prefetch" href="https://www.google.com">
@@ -1269,6 +1269,15 @@
       window.verificarPlayersCartao = agendar;
     }
     setTimeout(() => { if(window.verificarPlayersCartao) window.verificarPlayersCartao(); }, 100);
+    // Carrega tambem, aos poucos, os players dos cartoes mais abaixo e dos filtros escondidos,
+    // para que nenhum video esteja "ainda carregando" quando alguem tocar nele.
+    setTimeout(() => {
+      [...document.querySelectorAll(".video-facade:not(.tem-player)")]
+        .filter(b => !b.dataset.criando)
+        .forEach((b, i) => setTimeout(() => {
+          if(!b.dataset.criando && b.isConnected){ b.dataset.criando = "1"; criarPlayerCartao(b); }
+        }, i * 700));
+    }, 2000);
   }
 
   function criarPlayerCartao(botao){
